@@ -29,8 +29,10 @@ namespace Game.Editor.AI
             IModuleValidator[] validators = new IModuleValidator[]
             {
                 new CompileErrorValidator(),
+                new ValidatorRegistrationValidator(),
                 new ForbiddenFolderValidator(),
                 new ModuleStructureValidator(),
+                new ModuleBoundaryValidator(),
                 new ArchitectureRuleValidator()
             };
             for (int i = 0; i < validators.Length; i++)

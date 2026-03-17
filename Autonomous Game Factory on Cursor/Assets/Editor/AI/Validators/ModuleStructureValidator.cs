@@ -21,6 +21,7 @@ namespace Game.Editor.AI
             }
 
             List<ModuleEntry> modules = ParseModuleRegistry(File.ReadAllLines(registryFullPath));
+            Debug.Log("[ModuleStructureValidator] Parsed module count: " + modules.Count);
             int scannedCount = 0;
 
             for (int i = 0; i < modules.Count; i++)
@@ -66,7 +67,7 @@ namespace Game.Editor.AI
                 }
                 else
                 {
-                    string[] testFiles = Directory.GetFiles(testsFolder, "*Tests.cs", SearchOption.TopDirectoryOnly);
+                    string[] testFiles = Directory.GetFiles(testsFolder, "*Tests.cs", SearchOption.AllDirectories);
                     if (testFiles == null || testFiles.Length == 0)
                         report.AddError(VALIDATOR_NAME, "No *Tests.cs in Tests folder: " + entry.Name, entry.Path + "/Tests");
                 }
@@ -88,7 +89,7 @@ namespace Game.Editor.AI
             for (int i = 0; i < lines.Length; i++)
             {
                 string line = lines[i];
-                Match nameMatch = Regex.Match(line, @"^\s*name:\s*(\w+)");
+                Match nameMatch = Regex.Match(line, @"^\s*-?\s*name:\s*(\w+)");
                 if (nameMatch.Success)
                 {
                     currentName = nameMatch.Groups[1].Value;
