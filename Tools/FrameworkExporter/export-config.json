@@ -1,0 +1,60 @@
+{
+  "sourceRoot": "../../unity_project/playable_ow/playable_ow",
+  "exportRoot": "./ExportPackage",
+  "dryRun": false,
+  "exportMode": "Framework",
+  "frameworkPaths": [
+    ".cursor/rules",
+    "Docs/ai",
+    "Assets/Editor/AI",
+    "Assets/Game/Modules/Template"
+  ],
+  "gameplayModulePaths": [
+    "Assets/Projects/FortressSaga/Playable016/Scripts",
+    "Assets/Projects/FortressSaga/Playable016/Data",
+    "Assets/Game/Modules"
+  ],
+  "additionalAllowedPaths": [],
+  "deniedPaths": [
+    "Library",
+    "Temp",
+    "Logs",
+    "obj",
+    "Build",
+    ".vs",
+    ".idea",
+    "UserSettings",
+    "LunaTemp",
+    "Packages",
+    ".vscode"
+  ],
+  "deniedExtensions": [
+    ".log",
+    ".tmp",
+    ".pdb",
+    ".dll",
+    ".exe",
+    ".so",
+    ".dylib",
+    ".mdb",
+    ".cache"
+  ],
+  "riskyExtensions": [
+    ".unity",
+    ".prefab",
+    ".asmdef",
+    ".asmref",
+    ".asset",
+    ".meta",
+    ".mat",
+    ".shader",
+    ".cginc",
+    ".compute",
+    ".shadergraph",
+    ".shadersubgraph"
+  ],
+  "riskyWarning": true,
+  "includeMetaFiles": true,
+  "includeOnlyChangedFiles": false,
+  "confirmBeforeExport": true
+}

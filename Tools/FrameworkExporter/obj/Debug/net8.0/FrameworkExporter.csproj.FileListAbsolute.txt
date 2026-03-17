@@ -1,0 +1,15 @@
+C:\Users\dustl\Documents\playable_ow\Tools\FrameworkExporter\bin\Debug\net8.0\FrameworkExporter.exe
+C:\Users\dustl\Documents\playable_ow\Tools\FrameworkExporter\bin\Debug\net8.0\FrameworkExporter.deps.json
+C:\Users\dustl\Documents\playable_ow\Tools\FrameworkExporter\bin\Debug\net8.0\FrameworkExporter.runtimeconfig.json
+C:\Users\dustl\Documents\playable_ow\Tools\FrameworkExporter\bin\Debug\net8.0\FrameworkExporter.dll
+C:\Users\dustl\Documents\playable_ow\Tools\FrameworkExporter\bin\Debug\net8.0\FrameworkExporter.pdb
+C:\Users\dustl\Documents\playable_ow\Tools\FrameworkExporter\obj\Debug\net8.0\FrameworkExporter.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dustl\Documents\playable_ow\Tools\FrameworkExporter\obj\Debug\net8.0\FrameworkExporter.AssemblyInfoInputs.cache
+C:\Users\dustl\Documents\playable_ow\Tools\FrameworkExporter\obj\Debug\net8.0\FrameworkExporter.AssemblyInfo.cs
+C:\Users\dustl\Documents\playable_ow\Tools\FrameworkExporter\obj\Debug\net8.0\FrameworkExporter.csproj.CoreCompileInputs.cache
+C:\Users\dustl\Documents\playable_ow\Tools\FrameworkExporter\obj\Debug\net8.0\FrameworkExporter.sourcelink.json
+C:\Users\dustl\Documents\playable_ow\Tools\FrameworkExporter\obj\Debug\net8.0\FrameworkExporter.dll
+C:\Users\dustl\Documents\playable_ow\Tools\FrameworkExporter\obj\Debug\net8.0\refint\FrameworkExporter.dll
+C:\Users\dustl\Documents\playable_ow\Tools\FrameworkExporter\obj\Debug\net8.0\FrameworkExporter.pdb
+C:\Users\dustl\Documents\playable_ow\Tools\FrameworkExporter\obj\Debug\net8.0\FrameworkExporter.genruntimeconfig.cache
+C:\Users\dustl\Documents\playable_ow\Tools\FrameworkExporter\obj\Debug\net8.0\ref\FrameworkExporter.dll

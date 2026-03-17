@@ -1,0 +1,39 @@
+# 모듈 레지스트리 (예시)
+# .example을 제거하고 프로젝트에 맞게 수정하세요.
+# editable: false → AI가 해당 모듈 코드 수정 금지
+# risk: high/medium/low → 잘못 수정 시 영향도
+
+modules:
+  - name: Core
+    path: Assets/Game/Core
+    editable: false
+    risk: high
+    description: 부트스트랩, 입력, 카메라, 세이브. 전역 필수 시스템.
+    dependencies: []
+
+  - name: Shared
+    path: Assets/Game/Shared
+    editable: true
+    risk: low
+    description: 공용 인터페이스, enum, 상수. 모듈 간 계약.
+    dependencies: []
+
+  - name: Template
+    path: Assets/Game/Modules/Template
+    editable: true
+    risk: low
+    description: AI 생성용 표준 모듈 템플릿. 복사 후 도메인에 맞게 수정.
+    dependencies: [Core, Shared]
+
+# 새 모듈 추가 시:
+#  - name: MyModule
+#    path: Assets/Game/Modules/MyModule
+#    editable: true
+#    risk: medium
+#    description: 모듈 설명
+#    dependencies: [Core, Shared]
+
+# 의존성 규칙:
+# - Core는 다른 모듈에 의존하지 않는다.
+# - 순환 의존 금지.
+# - 새 모듈 추가 시 name, path, editable, risk, description, dependencies를 추가.

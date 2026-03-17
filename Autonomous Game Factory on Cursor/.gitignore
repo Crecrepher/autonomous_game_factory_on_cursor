@@ -1,0 +1,42 @@
+# Unity
+Library/
+Temp/
+Logs/
+Obj/
+Build/
+Builds/
+UserSettings/
+
+# IDE
+.vscode/
+.idea/
+*.csproj
+*.sln
+*.suo
+*.user
+*.pidb
+*.booproj
+*.svd
+*.pdb
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Unity meta (only ignore if using external version control)
+# *.meta
+
+# Build artifacts
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# Luna / Playable
+LunaTemp/
+luna.json
+
+# Export artifacts (FrameworkExporter)
+export_report.md
+manifest.json
