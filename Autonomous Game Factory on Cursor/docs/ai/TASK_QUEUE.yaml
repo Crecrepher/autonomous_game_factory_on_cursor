@@ -1,0 +1,177 @@
+# ── AI 모듈 생성 태스크 큐 ──
+# 이 파일은 병렬 AI 에이전트가 모듈을 생성할 때 작업 상태를 추적하는 단일 소스이다.
+#
+# 상태(status):
+#   pending    — 아직 아무도 건드리지 않음
+#   planned    — Planner가 PLAN을 작성 완료
+#   in_progress — Builder가 구현 중
+#   review     — Builder 완료, Reviewer 검증 대기
+#   done       — 검증 통과, 완료
+#   blocked    — 의존 모듈 미완성 또는 검증 실패 후 대기
+#
+# 규칙:
+#   - owner: 현재 작업 중인 에이전트 ID (null = 미할당)
+#   - role: 현재 담당 역할 (planner | builder | reviewer | null)
+#   - depends_on: 이 모듈이 시작되려면 done 상태여야 하는 모듈 목록
+#   - module_path: Assets/Game/Modules/<ModuleName> 경로
+#   - priority: high | medium | low
+#   - 하나의 태스크에 동시에 둘 이상의 Builder가 할당될 수 없다.
+#   - depends_on에 listed된 모듈이 모두 done이 아니면 status는 blocked로 유지한다.
+
+version: 1
+
+modules:
+
+  # ── 우선순위 HIGH: 핵심 시스템 (다른 모듈의 의존 대상) ──
+
+  - name: Economy
+    status: pending
+    priority: high
+    owner: null
+    role: null
+    depends_on: []
+    module_path: Assets/Game/Modules/Economy
+    description: 코인 경제 시스템 — 재화 정의, 잔고 관리, 획득/소비 이벤트
+
+  - name: Player
+    status: pending
+    priority: high
+    owner: null
+    role: null
+    depends_on: []
+    module_path: Assets/Game/Modules/Player
+    description: 플레이어 이동, 자동 공격, 입력 처리
+
+  - name: Enemies
+    status: pending
+    priority: high
+    owner: null
+    role: null
+    depends_on: []
+    module_path: Assets/Game/Modules/Enemies
+    description: 적 스폰, 웨이브 패턴, 일반/큰 적 AI, HP 관리
+
+  # ── 우선순위 HIGH: 이미 등록된 모듈 (의존 없음) ──
+
+  - name: StatusEffect
+    status: done
+    priority: high
+    owner: null
+    role: null
+    depends_on: []
+    module_path: Assets/Game/Modules/StatusEffect
+    description: 상태이상 시스템(v1) — 이미 구현 완료
+
+  # ── 우선순위 MEDIUM: 핵심 의존 모듈 완료 후 병렬 가능 ──
+
+  - name: Warriors
+    status: pending
+    priority: medium
+    owner: null
+    role: null
+    depends_on: [Economy]
+    module_path: Assets/Game/Modules/Warriors
+    description: 전사 고용, 배치, 자동 전투, 장비 착용
+
+  - name: DefenseTowers
+    status: pending
+    priority: medium
+    owner: null
+    role: null
+    depends_on: [Economy]
+    module_path: Assets/Game/Modules/DefenseTowers
+    description: 수비탑 건설, 인원 배치, 울타리/수비문
+
+  - name: Fortress
+    status: pending
+    priority: medium
+    owner: null
+    role: null
+    depends_on: [Economy]
+    module_path: Assets/Game/Modules/Fortress
+    description: 기지 HP, 1차/2차 업그레이드
+
+  - name: Pickups
+    status: pending
+    priority: medium
+    owner: null
+    role: null
+    depends_on: [Economy]
+    module_path: Assets/Game/Modules/Pickups
+    description: 코인 드롭 줍기, 자동 수집
+
+  - name: HireNodes
+    status: pending
+    priority: medium
+    owner: null
+    role: null
+    depends_on: [Economy, Warriors]
+    module_path: Assets/Game/Modules/HireNodes
+    description: 고용 노드 UI/로직, 비용 관리, 일괄 고용
+
+  - name: Blacksmith
+    status: pending
+    priority: medium
+    owner: null
+    role: null
+    depends_on: [Economy, Warriors]
+    module_path: Assets/Game/Modules/Blacksmith
+    description: 대장간, 장비 소환, 전사 장비 배분
+
+  # ── 우선순위 MEDIUM: UI/연출 계열 ──
+
+  - name: Guide
+    status: pending
+    priority: medium
+    owner: null
+    role: null
+    depends_on: []
+    module_path: Assets/Game/Modules/Guide
+    description: 화살표 가이드, 조건부 노출, 유저 유도
+
+  - name: DynamicConfig
+    status: pending
+    priority: medium
+    owner: null
+    role: null
+    depends_on: []
+    module_path: Assets/Game/Modules/DynamicConfig
+    description: 다이나믹 대응 설정값 관리 — 런타임 밸런스 조절
+
+  - name: BuffIconUI
+    status: pending
+    priority: medium
+    owner: null
+    role: null
+    depends_on: [StatusEffect]
+    module_path: Assets/Game/Modules/BuffIconUI
+    description: 상태이상 아이콘 UI 표시
+
+  # ── 우선순위 LOW: 최종 단계 ──
+
+  - name: EndCard
+    status: pending
+    priority: low
+    owner: null
+    role: null
+    depends_on: [Fortress]
+    module_path: Assets/Game/Modules/EndCard
+    description: 앤드카드 — 딤드 + 로고 + CTA 버튼
+
+  - name: UI
+    status: pending
+    priority: low
+    owner: null
+    role: null
+    depends_on: [Economy]
+    module_path: Assets/Game/Modules/UI
+    description: UI 관리, 코인 표시, CTA 버튼
+
+  - name: GameManager
+    status: pending
+    priority: low
+    owner: null
+    role: null
+    depends_on: [Player, Enemies, Economy, Warriors, DefenseTowers, Fortress]
+    module_path: Assets/Game/Modules/GameManager
+    description: 게임 매니저, 전체 시퀀스/플로우 제어
