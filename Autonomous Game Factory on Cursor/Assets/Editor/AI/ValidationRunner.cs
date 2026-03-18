@@ -37,7 +37,9 @@ namespace Game.Editor.AI
                 new CodingStyleValidator(),
                 new PerformanceValidator(),
                 new ArchitecturePatternValidator(),
-                new StringAndAnimatorValidator()
+                new StringAndAnimatorValidator(),
+                new DependencyValidator(),
+                new CircularDependencyValidator()
             };
             for (int i = 0; i < validators.Length; i++)
             {

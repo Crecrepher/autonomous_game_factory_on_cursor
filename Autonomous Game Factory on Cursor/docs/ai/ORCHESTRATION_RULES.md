@@ -247,10 +247,68 @@ Reviewer: 재검증 실행
 
 ---
 
-## 8. 요약: 안전한 병렬 개발의 3가지 보장
+## 8. 의존성 그래프 시스템
+
+### 8.1 개요
+
+오케스트레이터는 모듈 생성 전에 **의존성 그래프**를 빌드하여 올바른 실행 순서를 결정한다.
+이 시스템은 `Assets/Editor/AI/DependencyGraphBuilder.cs`에 구현되어 있다.
+
+### 8.2 그래프 빌드 절차
+
+```
+1. MODULE_REGISTRY.yaml 읽기
+2. 각 모듈의 dependencies 필드에서 모듈 의존성 추출 (UnityEngine, System 제외)
+3. TASK_QUEUE.yaml 읽기
+4. 의존성 그래프 구성
+5. 토폴로지 정렬로 실행 순서 결정
+6. 실행 가능 모듈 목록 산출
+```
+
+### 8.3 실행 가능 모듈 판정
+
+모듈이 실행 가능하려면 다음 조건을 **모두** 충족해야 한다:
+
+```
+module.status == planned
+AND
+모든 depends_on 모듈의 status == done
+```
+
+조건을 충족하지 못하면 해당 모듈은 `blocked` 상태를 유지한다.
+
+### 8.4 검증 시스템 (Validator)
+
+의존성 관련 검증은 두 개의 Validator가 담당한다:
+
+| Validator | 검사 내용 |
+|-----------|-----------|
+| `DependencyValidator` | ① 레지스트리 의존성이 존재하는 모듈을 가리키는지 ② 코드의 using 문이 선언된 의존성만 참조하는지 ③ TASK_QUEUE와 REGISTRY 간 의존성 정합성 |
+| `CircularDependencyValidator` | ① DFS 기반 순환 의존 감지 ② 토폴로지 정렬 완전성 검증 |
+
+### 8.5 병렬 빌더 지원
+
+의존성 그래프는 병렬 빌더를 위한 기반이다:
+
+- 동일 단계의 독립 모듈은 서로 다른 Builder가 동시에 작업 가능
+- `GetExecutableModules()`로 현재 실행 가능한 모듈 목록을 조회
+- `GetBlockedModules()`로 대기 중인 모듈 목록을 조회
+- `TopologicalSort()`로 전체 빌드 순서를 결정
+
+### 8.6 의존성 규칙 요약
+
+- 모듈은 `MODULE_REGISTRY.yaml`의 `dependencies`에 명시된 대상만 참조 가능
+- `TASK_QUEUE.yaml`의 `depends_on`은 레지스트리 의존성과 일치해야 함
+- 순환 의존은 절대 금지 (A → B → C → A)
+- 미등록 모듈에 대한 의존은 에러로 처리
+
+---
+
+## 9. 요약: 안전한 병렬 개발의 4가지 보장
 
 | 보장 | 메커니즘 |
 |------|----------|
 | **태스크 소유권** | TASK_QUEUE.yaml의 owner 필드 — 한 태스크에 한 에이전트 |
 | **모듈 격리** | 각 Builder는 자기 모듈 폴더만 수정 — 파일 충돌 불가 |
-| **아키텍처 검증** | 6개 Validator가 구조/규칙/경계/컴파일 에러 검증 — 품질 보장 |
+| **아키텍처 검증** | 12개 Validator가 구조/규칙/경계/컴파일 에러/의존성 검증 — 품질 보장 |
+| **의존성 그래프** | DependencyGraphBuilder가 빌드 순서 결정 + 순환 감지 — 안전한 실행 순서 보장 |

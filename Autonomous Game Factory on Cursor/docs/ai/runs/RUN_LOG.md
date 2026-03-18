@@ -168,3 +168,47 @@ Assets/Game/Modules/<Module>/
 4. **Bootstrap 컴포넌트 배치** — 씬에 Bootstrap 컴포넌트 추가 및 Config 에셋 연결
 5. **모듈 간 연동 구현** — 현재 각 모듈은 독립 상태이므로, GameManager에서 모듈 간 이벤트 구독/연동 구현 필요
 6. **DynamicConfig 연동** — 각 모듈의 setter를 DynamicConfig에서 호출하는 로직 구현
+
+---
+
+## 의존성 그래프 시스템 업그레이드 (2026-03-18)
+
+### 추가된 인프라
+
+| 파일 | 역할 |
+|------|------|
+| `Assets/Editor/AI/DependencyGraphBuilder.cs` | YAML 파싱, 그래프 빌드, 토폴로지 정렬, 순환 감지, 실행 가능 모듈 판정 |
+| `Assets/Editor/AI/Validators/DependencyValidator.cs` | 레지스트리 의존성 검증, 코드 참조 검증, TASK_QUEUE ↔ REGISTRY 정합성 |
+| `Assets/Editor/AI/Validators/CircularDependencyValidator.cs` | DFS 기반 순환 의존 감지, 토폴로지 정렬 완전성 검증 |
+
+### RUN_LOG 기록 포맷 (향후 실행 시 적용)
+
+향후 오케스트레이터 실행 시 각 Run은 아래 포맷으로 기록한다:
+
+```
+Run <날짜>
+
+Dependency Order (topological):
+  1. Economy
+  2. StatusEffect
+  3. Player
+  ...
+
+Generated:
+  <모듈 이름> (dependencies: [<의존 목록>])
+  ...
+
+Skipped (dependency not ready):
+  <모듈 이름> → requires <미완료 의존 모듈>
+  ...
+
+Blocked:
+  <모듈 이름> → waiting for <의존 목록>
+
+Validation:
+  DependencyValidator: PASS / FAIL
+  CircularDependencyValidator: PASS / FAIL
+  (기존 Validator 결과)
+
+Overall: PASS / FAIL
+```
