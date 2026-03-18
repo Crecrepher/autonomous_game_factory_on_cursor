@@ -181,34 +181,82 @@ Assets/Game/Modules/<Module>/
 | `Assets/Editor/AI/Validators/DependencyValidator.cs` | 레지스트리 의존성 검증, 코드 참조 검증, TASK_QUEUE ↔ REGISTRY 정합성 |
 | `Assets/Editor/AI/Validators/CircularDependencyValidator.cs` | DFS 기반 순환 의존 감지, 토폴로지 정렬 완전성 검증 |
 
-### RUN_LOG 기록 포맷 (향후 실행 시 적용)
+### RUN_LOG 기록 포맷 (Parallel Builder Pool 버전)
 
-향후 오케스트레이터 실행 시 각 Run은 아래 포맷으로 기록한다:
+`ParallelBuilderOrchestrator`가 실행될 때 각 Run은 아래 포맷으로 자동 기록된다:
 
 ```
-Run <날짜>
+## Run <timestamp>
 
-Dependency Order (topological):
-  1. Economy
-  2. StatusEffect
-  3. Player
-  ...
+### Topological Order
+1. Economy
+2. StatusEffect
+3. Player
+...
 
-Generated:
-  <모듈 이름> (dependencies: [<의존 목록>])
-  ...
+### Round 1
 
-Skipped (dependency not ready):
-  <모듈 이름> → requires <미완료 의존 모듈>
-  ...
+**Executable:**
+- Economy
+- StatusEffect
+- Player
 
-Blocked:
-  <모듈 이름> → waiting for <의존 목록>
+**Skipped (dependency not ready):**
+- Warriors → waiting for Economy
+- BuffIconUI → waiting for StatusEffect
+- GameManager → waiting for Player
 
-Validation:
-  DependencyValidator: PASS / FAIL
-  CircularDependencyValidator: PASS / FAIL
-  (기존 Validator 결과)
+**Builder Assignments:**
+- builder_1 → Economy (Assets/Game/Modules/Economy)
+- builder_2 → StatusEffect (Assets/Game/Modules/StatusEffect)
+- builder_3 → Player (Assets/Game/Modules/Player)
 
-Overall: PASS / FAIL
+**Validation:**
+- Economy → PASS (errors: 0, warnings: 0)
+- StatusEffect → PASS (errors: 0, warnings: 0)
+- Player → PASS (errors: 0, warnings: 0)
+
+**Final State:**
+- Economy → done
+- StatusEffect → done
+- Player → done
+
+### Round 2
+
+**Executable:**
+- Warriors
+- BuffIconUI
+
+**Skipped (dependency not ready):**
+- GameManager → waiting for Warriors
+
+**Builder Assignments:**
+- builder_1 → Warriors (Assets/Game/Modules/Warriors)
+- builder_2 → BuffIconUI (Assets/Game/Modules/BuffIconUI)
+
+**Validation:**
+- Warriors → PASS (errors: 0, warnings: 0)
+- BuffIconUI → PASS (errors: 0, warnings: 0)
+
+**Final State:**
+- Warriors → done
+- BuffIconUI → done
+
+### Round 3
+
+**Executable:**
+- GameManager
+
+**Builder Assignments:**
+- builder_1 → GameManager (Assets/Game/Modules/GameManager)
+
+**Validation:**
+- GameManager → PASS (errors: 0, warnings: 0)
+
+**Final State:**
+- GameManager → done
+
+**ALL DONE** — Queue exhausted.
+
+Total rounds: 3
 ```

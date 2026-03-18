@@ -158,6 +158,26 @@ modules:
     dependencies: [UnityEngine, System, Fortress]
     config_hint: dim alpha, fade in duration
 
+  - name: ItemStacking
+    path: Assets/Game/Modules/ItemStacking
+    editable: true
+    risk: low
+    description: >
+      아이템 스태킹/언스태킹 시스템. 고정 크기 배열 기반 스택.
+      Push/Pop/PopAll로 아이템 관리. 이벤트로 외부에 상태 통지.
+    dependencies: [UnityEngine, System]
+    config_hint: max stack size
+
+  - name: InventorySystem
+    path: Assets/Game/Modules/InventorySystem
+    editable: true
+    risk: low
+    description: >
+      슬롯 기반 인벤토리 시스템. ItemStacking을 슬롯 단위 스택으로 재사용.
+      Add/Remove/Query/Has/GetCount API. 오버플로우 핸들링.
+    dependencies: [UnityEngine, System, ItemStacking]
+    config_hint: max slots, max stack size per slot
+
   - name: GameManager
     path: Assets/Game/Modules/GameManager
     editable: true

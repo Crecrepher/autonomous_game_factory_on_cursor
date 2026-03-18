@@ -39,7 +39,14 @@ namespace Game.Editor.AI
                 new ArchitecturePatternValidator(),
                 new StringAndAnimatorValidator(),
                 new DependencyValidator(),
-                new CircularDependencyValidator()
+                new CircularDependencyValidator(),
+                new IntegrationStrategyValidator(),
+                new ConfigConflictValidator(),
+                new ArchitectureDiffValidator(),
+                new RegressionGuardianValidator(),
+                new PipelineTruthValidator(),
+                new ModuleReuseIntegrityValidator(),
+                new ConfigurationAuthorityValidator()
             };
             for (int i = 0; i < validators.Length; i++)
             {

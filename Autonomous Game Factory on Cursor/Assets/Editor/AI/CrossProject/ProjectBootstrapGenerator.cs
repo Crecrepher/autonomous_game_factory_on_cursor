@@ -1,0 +1,243 @@
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using UnityEngine;
+
+namespace Game.Editor.AI.CrossProject
+{
+    public static class ProjectBootstrapGenerator
+    {
+        const string LOG_PREFIX = "[Bootstrap] ";
+        const string MODULE_PATH_PREFIX = "Assets/Game/Modules/";
+
+        public struct BootstrapModule
+        {
+            public string Name;
+            public string Category;
+            public string Source;
+            public string[] Dependencies;
+            public string Description;
+            public string Priority;
+        }
+
+        public struct BootstrapPlan
+        {
+            public string ProjectName;
+            public string GameDescription;
+            public PatternRecognitionEngine.PatternMatch[] DetectedPatterns;
+            public BootstrapModule[] ProposedModules;
+            public string[] FeatureGroups;
+            public string[] DependencyOrder;
+            public int TotalModules;
+            public int ReusableCount;
+            public int NewCount;
+        }
+
+        public static BootstrapPlan Generate(string projectName, string gameDescription)
+        {
+            PatternRecognitionEngine.RecognitionResult recognition =
+                PatternRecognitionEngine.Recognize(gameDescription);
+
+            GlobalModuleLibrary.GlobalModule[] catalog = GlobalModuleLibrary.LoadCatalog();
+
+            List<BootstrapModule> modules = new List<BootstrapModule>();
+            List<string> featureGroups = new List<string>();
+            List<string> addedNames = new List<string>();
+            int reusable = 0;
+            int newCount = 0;
+
+            for (int p = 0; p < recognition.Matches.Length; p++)
+            {
+                PatternRecognitionEngine.PatternMatch pattern = recognition.Matches[p];
+                string group = pattern.Category.ToLower();
+                if (!featureGroups.Contains(group))
+                    featureGroups.Add(group);
+
+                for (int s = 0; s < pattern.SuggestedModules.Length; s++)
+                {
+                    string rawName = pattern.SuggestedModules[s];
+                    bool isGlobal = rawName.Contains("[GLOBAL]");
+                    string cleanName = rawName.Replace(" [GLOBAL]", "").Replace(" [NEW]", "").Trim();
+
+                    if (addedNames.Contains(cleanName)) continue;
+                    addedNames.Add(cleanName);
+
+                    string[] deps = new string[0];
+                    string desc = "";
+
+                    if (isGlobal)
+                    {
+                        reusable++;
+                        for (int c = 0; c < catalog.Length; c++)
+                        {
+                            if (catalog[c].Name == cleanName)
+                            {
+                                desc = catalog[c].Description;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        newCount++;
+                        desc = "New module for " + pattern.Category;
+                    }
+
+                    modules.Add(new BootstrapModule
+                    {
+                        Name = cleanName,
+                        Category = pattern.Category,
+                        Source = isGlobal ? "global_library" : "new",
+                        Dependencies = deps,
+                        Description = desc,
+                        Priority = pattern.Score > 0.5f ? "high" : "medium"
+                    });
+                }
+            }
+
+            string[] depOrder = BuildDependencyOrder(modules);
+
+            return new BootstrapPlan
+            {
+                ProjectName = projectName,
+                GameDescription = gameDescription,
+                DetectedPatterns = recognition.Matches,
+                ProposedModules = modules.ToArray(),
+                FeatureGroups = featureGroups.ToArray(),
+                DependencyOrder = depOrder,
+                TotalModules = modules.Count,
+                ReusableCount = reusable,
+                NewCount = newCount
+            };
+        }
+
+        static string[] BuildDependencyOrder(List<BootstrapModule> modules)
+        {
+            List<string> order = new List<string>();
+            for (int i = 0; i < modules.Count; i++)
+            {
+                if (modules[i].Dependencies == null || modules[i].Dependencies.Length == 0)
+                    order.Add(modules[i].Name);
+            }
+            for (int i = 0; i < modules.Count; i++)
+            {
+                if (!order.Contains(modules[i].Name))
+                    order.Add(modules[i].Name);
+            }
+            return order.ToArray();
+        }
+
+        public static string GenerateTaskQueueYaml(BootstrapPlan plan)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("# Auto-generated TASK_QUEUE for: " + plan.ProjectName);
+            sb.AppendLine("# Generated by: Project Bootstrap Generator (CPIL)");
+            sb.AppendLine();
+            sb.AppendLine("tasks:");
+
+            for (int i = 0; i < plan.DependencyOrder.Length; i++)
+            {
+                string name = plan.DependencyOrder[i];
+                BootstrapModule mod = new BootstrapModule();
+                for (int m = 0; m < plan.ProposedModules.Length; m++)
+                {
+                    if (plan.ProposedModules[m].Name == name)
+                    {
+                        mod = plan.ProposedModules[m];
+                        break;
+                    }
+                }
+
+                sb.AppendLine("  - name: " + name);
+                sb.AppendLine("    status: pending");
+                sb.AppendLine("    priority: " + mod.Priority);
+                sb.AppendLine("    owner: null");
+                sb.AppendLine("    role: null");
+                sb.AppendLine("    depends_on: []");
+                sb.AppendLine("    module_path: " + MODULE_PATH_PREFIX + name);
+                sb.AppendLine("    description: \"" + mod.Description + "\"");
+                sb.AppendLine("    human_state: none");
+                sb.AppendLine("    learning_state: none");
+                sb.AppendLine("    commit_state: none");
+                sb.AppendLine("    feature_group: " + mod.Category.ToLower());
+                sb.AppendLine("    integration_strategy: "
+                    + (mod.Source == "global_library" ? "reuse" : "create_new"));
+                sb.AppendLine("    arch_diff_risk: not_analyzed");
+                sb.AppendLine("    arch_diff_blocked: false");
+                sb.AppendLine("    decomposition_source: cpil_bootstrap");
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
+        }
+
+        public static string FormatPlan(BootstrapPlan plan)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("# Project Bootstrap Plan — " + plan.ProjectName);
+            sb.AppendLine();
+            sb.AppendLine("## Game Description");
+            sb.AppendLine("```");
+            sb.AppendLine(plan.GameDescription);
+            sb.AppendLine("```");
+            sb.AppendLine();
+            sb.AppendLine("## Statistics");
+            sb.AppendLine("- Total Modules: " + plan.TotalModules);
+            sb.AppendLine("- From Global Library: " + plan.ReusableCount);
+            sb.AppendLine("- New Modules: " + plan.NewCount);
+            sb.AppendLine("- Feature Groups: " + plan.FeatureGroups.Length);
+            sb.AppendLine("- Detected Patterns: " + plan.DetectedPatterns.Length);
+            sb.AppendLine();
+
+            sb.AppendLine("## Detected Patterns");
+            for (int i = 0; i < plan.DetectedPatterns.Length; i++)
+            {
+                PatternRecognitionEngine.PatternMatch p = plan.DetectedPatterns[i];
+                sb.AppendLine("- **" + p.PatternName + "** (" + p.Category
+                    + ", score: " + p.Score.ToString("F2") + ", complexity: " + p.Complexity + ")");
+            }
+            sb.AppendLine();
+
+            sb.AppendLine("## Proposed Module Architecture");
+            string currentCat = "";
+            for (int i = 0; i < plan.ProposedModules.Length; i++)
+            {
+                BootstrapModule m = plan.ProposedModules[i];
+                if (m.Category != currentCat)
+                {
+                    currentCat = m.Category;
+                    sb.AppendLine();
+                    sb.AppendLine("### " + currentCat);
+                }
+                string tag = m.Source == "global_library" ? "[REUSE]" : "[NEW]";
+                sb.AppendLine("- " + tag + " " + m.Name + " — " + m.Description);
+            }
+            sb.AppendLine();
+
+            sb.AppendLine("## Dependency Order");
+            for (int i = 0; i < plan.DependencyOrder.Length; i++)
+                sb.AppendLine((i + 1) + ". " + plan.DependencyOrder[i]);
+
+            sb.AppendLine();
+            sb.AppendLine("## Feature Groups");
+            for (int i = 0; i < plan.FeatureGroups.Length; i++)
+                sb.AppendLine("- " + plan.FeatureGroups[i]);
+
+            return sb.ToString();
+        }
+
+        [UnityEditor.MenuItem("Tools/AI/CPIL/Bootstrap New Project (Test — CozyFarm)")]
+        static void TestBootstrap()
+        {
+            string desc = "아늑한 농사 게임. 작물을 심고 키우고 수확한다. "
+                + "수확물을 상점에서 판매하여 골드를 벌고, "
+                + "골드로 새 씨앗과 도구를 구매한다. "
+                + "인벤토리에 아이템을 관리하고, 레벨업으로 새 작물을 해금한다. "
+                + "퀘스트를 완료하면 보상을 받는다. 게임 진행 상황을 저장한다.";
+
+            BootstrapPlan plan = Generate("CozyFarm", desc);
+            Debug.Log(FormatPlan(plan));
+            Debug.Log("--- TASK_QUEUE YAML ---\n" + GenerateTaskQueueYaml(plan));
+        }
+    }
+}

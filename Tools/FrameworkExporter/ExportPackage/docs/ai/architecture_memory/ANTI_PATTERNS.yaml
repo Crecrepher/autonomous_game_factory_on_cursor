@@ -1,0 +1,116 @@
+# Anti-Patterns — Known Dangerous Patterns
+# Autonomous Game Factory v2.3
+#
+# 이전 파이프라인 실행에서 발견된 위험 패턴.
+# Builder/Reviewer가 이 패턴을 감지하면 즉시 차단.
+
+anti_patterns:
+  - id: ANTI-001
+    name: RuntimeMonoBehaviour
+    category: architecture
+    severity: critical
+    description: "Runtime 클래스가 MonoBehaviour를 상속하면 계층 분리 위반."
+    detection_regex: "class\\s+\\w+Runtime\\s*:\\s*.*MonoBehaviour"
+    auto_block: true
+    fix_strategy: "MonoBehaviour 상속 제거. Bootstrap에서만 MonoBehaviour 사용."
+    discovered_in: "InventorySystem pipeline (2026-03-18)"
+    occurrence_count: 1
+
+  - id: ANTI-002
+    name: ForeachInRuntime
+    category: performance
+    severity: critical
+    description: "Runtime에서 foreach 사용 시 GC 할당 발생."
+    detection_regex: "\\bforeach\\s*\\("
+    auto_block: true
+    fix_strategy: "for (int i = 0; i < count; i++) 루프로 교체."
+    discovered_in: "Coding rules baseline"
+    occurrence_count: 0
+
+  - id: ANTI-003
+    name: LINQUsage
+    category: performance
+    severity: critical
+    description: "System.Linq 사용 시 GC 할당 다수 발생."
+    detection_regex: "\\busing\\s+System\\.Linq\\b"
+    auto_block: true
+    fix_strategy: "LINQ 제거, 수동 루프로 교체."
+    discovered_in: "Coding rules baseline"
+    occurrence_count: 0
+
+  - id: ANTI-004
+    name: GetComponentRuntime
+    category: performance
+    severity: high
+    description: "런타임 중 GetComponent 호출은 O(n) 검색. 캐싱 필요."
+    detection_regex: "GetComponent[<(]"
+    auto_block: false
+    fix_strategy: "Awake/Init에서 캐싱 후 필드 참조."
+    discovered_in: "Coding rules baseline"
+    occurrence_count: 0
+
+  - id: ANTI-005
+    name: SingletonMonoBehaviour
+    category: architecture
+    severity: high
+    description: "MonoBehaviour 싱글턴은 테스트 어렵고 결합도 높음."
+    detection_regex: "static\\s+\\w+\\s+Instance"
+    auto_block: false
+    fix_strategy: "의존성 주입 또는 ScriptableObject 기반 서비스 로케이터."
+    discovered_in: "Coding rules baseline"
+    occurrence_count: 0
+
+  - id: ANTI-006
+    name: GodModule
+    category: architecture
+    severity: high
+    description: "하나의 모듈이 너무 많은 책임을 담당 (GameplaySystem, UniversalManager 등)."
+    detection_regex: null
+    auto_block: false
+    fix_strategy: "단일 책임 원칙에 따라 모듈 분해."
+    discovered_in: "Pipeline design rule"
+    occurrence_count: 0
+
+  - id: ANTI-007
+    name: DuplicateConfigValues
+    category: data
+    severity: medium
+    description: "의존 관계인 두 모듈의 Config에 유사한 필드가 존재."
+    detection_regex: null
+    auto_block: false
+    fix_strategy: "상위 모듈의 Config를 Source-of-Truth로 지정."
+    discovered_in: "InventorySystem pipeline (2026-03-18)"
+    occurrence_count: 1
+
+  - id: ANTI-008
+    name: CircularDependency
+    category: dependency
+    severity: critical
+    description: "모듈 간 순환 의존이 존재하면 빌드/테스트 불가."
+    detection_regex: null
+    auto_block: true
+    fix_strategy: "Shared 인터페이스를 도입하여 의존 방향을 단방향으로 정리."
+    discovered_in: "Pipeline design rule"
+    occurrence_count: 0
+
+  - id: ANTI-009
+    name: InterfaceMethodRemoval
+    category: compatibility
+    severity: critical
+    description: "기존 인터페이스 메서드를 삭제하면 하위 호환성 파괴."
+    detection_regex: null
+    auto_block: true
+    fix_strategy: "메서드 삭제 대신 deprecated 표시 후 새 메서드 추가."
+    discovered_in: "Architecture Diff Analyzer design"
+    occurrence_count: 0
+
+  - id: ANTI-010
+    name: CoroutineInRuntime
+    category: performance
+    severity: critical
+    description: "Runtime 클래스에서 코루틴 사용 시 GC + MonoBehaviour 필요."
+    detection_regex: "\\bIEnumerator\\b|\\bStartCoroutine\\b"
+    auto_block: true
+    fix_strategy: "Update 루프 + deltaTime 누적으로 교체."
+    discovered_in: "Coding rules baseline"
+    occurrence_count: 0

@@ -1,0 +1,112 @@
+# Architecture Patterns — Known Safe Patterns
+# Autonomous Game Factory v2.3
+#
+# 검증된 아키텍처 패턴 저장소. Planner/Builder가 이 패턴을 참조하여
+# 안전한 코드를 생성한다.
+
+patterns:
+  - id: AP-001
+    name: RuntimeIsolation
+    category: architecture
+    description: "Runtime 로직은 순수 C# 클래스. MonoBehaviour 상속 금지."
+    validator_reference: ArchitectureRuleValidator
+    risk_if_violated: critical
+    examples:
+      - "EconomyRuntime : MonoBehaviour  ← 위반"
+      - "EconomyRuntime (plain class)    ← 올바름"
+    first_recorded: "2026-03-18"
+    reinforcement_count: 0
+
+  - id: AP-002
+    name: FactoryStaticPattern
+    category: architecture
+    description: "Factory는 static class. 인스턴스 생성 금지."
+    validator_reference: ModuleStructureValidator
+    risk_if_violated: high
+    examples:
+      - "public static class EconomyFactory  ← 올바름"
+      - "public class EconomyFactory          ← 위반"
+    first_recorded: "2026-03-18"
+    reinforcement_count: 0
+
+  - id: AP-003
+    name: ConfigScriptableObject
+    category: architecture
+    description: "Config는 ScriptableObject 상속. 로직 포함 금지."
+    validator_reference: ArchitectureRuleValidator
+    risk_if_violated: high
+    examples:
+      - "public class EconomyConfig : ScriptableObject  ← 올바름"
+    first_recorded: "2026-03-18"
+    reinforcement_count: 0
+
+  - id: AP-004
+    name: BootstrapThinShell
+    category: architecture
+    description: "Bootstrap은 MonoBehaviour. 최소한의 초기화/이벤트 전달만 수행."
+    validator_reference: ArchitecturePatternValidator
+    risk_if_violated: medium
+    examples:
+      - "Bootstrap에서 비즈니스 로직 실행  ← 위반"
+    first_recorded: "2026-03-18"
+    reinforcement_count: 0
+
+  - id: AP-005
+    name: InterfaceFirst
+    category: communication
+    description: "모듈 간 통신은 인터페이스(I<Module>)를 통해서만 수행."
+    validator_reference: ModuleBoundaryValidator
+    risk_if_violated: high
+    examples:
+      - "EconomyRuntime를 직접 참조  ← 위반"
+      - "IEconomy를 통해 참조        ← 올바름"
+    first_recorded: "2026-03-18"
+    reinforcement_count: 0
+
+  - id: AP-006
+    name: NoGCAllocation
+    category: performance
+    description: "foreach, LINQ, 코루틴, 람다, Invoke 사용 금지. for문만 사용."
+    validator_reference: CodingStyleValidator
+    risk_if_violated: critical
+    examples:
+      - "foreach (var item in list)  ← 위반"
+      - "for (int i = 0; i < count; i++)  ← 올바름"
+    first_recorded: "2026-03-18"
+    reinforcement_count: 0
+
+  - id: AP-007
+    name: NoCyclicDependency
+    category: dependency
+    description: "모듈 간 순환 의존 절대 금지. 단방향 의존만 허용."
+    validator_reference: CircularDependencyValidator
+    risk_if_violated: critical
+    first_recorded: "2026-03-18"
+    reinforcement_count: 0
+
+  - id: AP-008
+    name: SingleResponsibility
+    category: architecture
+    description: "하나의 모듈은 하나의 명확한 책임만 담당."
+    validator_reference: ModuleStructureValidator
+    risk_if_violated: medium
+    first_recorded: "2026-03-18"
+    reinforcement_count: 0
+
+  - id: AP-009
+    name: ConfigSourceOfTruth
+    category: data
+    description: "공유 설정값은 단일 모듈의 Config에서만 정의 (Source-of-Truth)."
+    validator_reference: ConfigConflictValidator
+    risk_if_violated: high
+    first_recorded: "2026-03-18"
+    reinforcement_count: 0
+
+  - id: AP-010
+    name: SixFileModuleStructure
+    category: structure
+    description: "모듈은 6개 파일로 구성: I<M>, <M>Config, <M>Runtime, <M>Factory, <M>Bootstrap, Tests/<M>Tests."
+    validator_reference: ModuleStructureValidator
+    risk_if_violated: high
+    first_recorded: "2026-03-18"
+    reinforcement_count: 0

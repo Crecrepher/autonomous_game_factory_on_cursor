@@ -1,7 +1,15 @@
-> **EXAMPLE FILE** — 이 파일은 AI Game Dev Framework의 예시 문서입니다.
-> 실제 프로젝트에 적용할 때 이 내용을 프로젝트에 맞게 수정하여 `Docs/ai/AI_DEVELOPMENT_LOOP.md`로 사용하세요.
+> **SUPERSEDED** — 이 문서는 v1 프레임워크의 예시 문서로, **Autonomous Game Factory v2**에서 대체되었다.
+> v2의 9역할 파이프라인, 4차원 상태 모델, Human Validation Gate, Learning Memory는
+> 아래 문서를 참조:
+>
+> - `ORCHESTRATION_RULES.md` — 통합 오케스트레이션 명세
+> - `AGENT_ROLES.md` — 9개 역할 상세
+> - `STATE_MACHINE.md` — 4차원 상태 전이 명세
+> - `PROJECT_OVERVIEW.md` — 프로젝트 개요
+>
+> 이 파일은 히스토리 참조용으로만 유지한다.
 
-# AI 개발 루프 아키텍처
+# AI 개발 루프 아키텍처 (v1 — SUPERSEDED)
 
 Cursor 워크플로 안에서 동작하는 **AI 개발 루프**의 역할·단계·검증·개선 방식을 정의한다.  
 코드 구현 없이 설계만 기술한다.

@@ -1,0 +1,277 @@
+# Rule Memory — Autonomous Game Factory v2
+# 스키마 버전: 1
+#
+# 이 파일은 AI 에이전트가 코드 생성 전에 반드시 읽어야 하는 규칙 기억 저장소다.
+# 사람의 수정, validator 실패, 반복 실수에서 추출한 구체적 규칙을 축적한다.
+#
+# 스키마:
+#   - id:            고유 식별자 (RM-XXXX)
+#   - rule:          한 줄 규칙 요약
+#   - detail:        상세 설명 (왜 이 규칙이 필요한가)
+#   - source:        규칙의 출처 (validator | human_fix | recurring_mistake | coding_rules)
+#   - validator:     관련 validator 이름 (없으면 null)
+#   - severity:      error | warning
+#   - scope:         project | global
+#                    project = 이 프로젝트에만 적용
+#                    global  = 모든 Unity 프로젝트에 재사용 가능
+#   - module_pattern: 적용 대상 파일 패턴 (예: "*Runtime.cs", "*Config.cs", "*")
+#   - example_bad:   위반 코드 예시 (한 줄)
+#   - example_good:  올바른 코드 예시 (한 줄)
+#   - added_date:    추가 날짜 (ISO 8601)
+#   - tags:          검색용 태그 배열
+#
+# 사용법:
+#   - Planner: PLAN 작성 시 이 파일을 읽고 관련 규칙을 PLAN에 포함
+#   - Builder: 코드 생성 전 module_pattern과 tags로 관련 규칙 필터링
+#   - Reviewer: 검증 시 이 규칙들이 준수되었는지 확인
+#   - Learning Recorder: 새 규칙 추가 시 중복 확인 후 append
+#
+# 규칙:
+#   - 삭제 금지. 축적 전용.
+#   - 중복 규칙은 기존 항목의 detail에 사례를 추가하는 것으로 병합.
+#   - id는 순차 증가 (RM-0001, RM-0002, ...)
+
+version: 1
+
+rules:
+
+  - id: RM-0001
+    rule: "Runtime 클래스는 MonoBehaviour를 상속하면 안 된다"
+    detail: >
+      *Runtime.cs 파일은 순수 C# 비즈니스 로직 전용이다.
+      MonoBehaviour 상속 시 ArchitectureRuleValidator가 즉시 실패한다.
+      Unity 라이프사이클이 필요하면 Bootstrap에서 호출하고, Runtime은 POCO로 유지한다.
+    source: validator
+    validator: ArchitectureRuleValidator
+    severity: error
+    scope: global
+    module_pattern: "*Runtime.cs"
+    example_bad: "public class InventoryRuntime : MonoBehaviour"
+    example_good: "public class InventoryRuntime"
+    added_date: "2026-03-18"
+    tags: [architecture, monobehaviour, runtime, inheritance]
+
+  - id: RM-0002
+    rule: "Config 클래스는 반드시 ScriptableObject를 상속해야 한다"
+    detail: >
+      *Config.cs 파일은 ScriptableObject 상속 필수.
+      데이터 전용이며 로직을 포함하면 안 된다.
+      ArchitectureRuleValidator가 검증한다.
+    source: validator
+    validator: ArchitectureRuleValidator
+    severity: error
+    scope: global
+    module_pattern: "*Config.cs"
+    example_bad: "public class CombatConfig : MonoBehaviour"
+    example_good: "[CreateAssetMenu] public class CombatConfig : ScriptableObject"
+    added_date: "2026-03-18"
+    tags: [architecture, config, scriptableobject]
+
+  - id: RM-0003
+    rule: "using 문으로 참조하는 모듈은 MODULE_REGISTRY.yaml에 선언되어야 한다"
+    detail: >
+      코드에서 using Game.OtherModule을 사용하면 MODULE_REGISTRY.yaml의
+      dependencies 배열에 해당 모듈이 선언되어 있어야 한다.
+      미선언 시 DependencyValidator가 에러를 발생시킨다.
+    source: validator
+    validator: DependencyValidator
+    severity: error
+    scope: global
+    module_pattern: "*.cs"
+    example_bad: "using Game.Economy; // MODULE_REGISTRY에 Economy 의존성 미선언"
+    example_good: "using Game.Economy; // MODULE_REGISTRY dependencies: [Economy]"
+    added_date: "2026-03-18"
+    tags: [dependency, registry, using, module-boundary]
+
+  - id: RM-0004
+    rule: "foreach는 금지 — for문만 사용한다"
+    detail: >
+      foreach는 IEnumerator를 할당하여 GC를 유발한다.
+      모바일 최적화를 위해 for문만 사용한다.
+      CodingStyleValidator가 foreach 사용 시 에러를 발생시킨다.
+    source: validator
+    validator: CodingStyleValidator
+    severity: error
+    scope: global
+    module_pattern: "*.cs"
+    example_bad: "foreach (var item in items) { }"
+    example_good: "for (int i = 0; i < items.Length; i++) { var item = items[i]; }"
+    added_date: "2026-03-18"
+    tags: [gc, performance, foreach, for-loop]
+
+  - id: RM-0005
+    rule: "GetComponent는 런타임에서 절대 사용하지 않는다"
+    detail: >
+      GetComponent, GetComponentInChildren 등은 매 호출마다 검색 비용이 발생한다.
+      에디터 시점에 SerializeField로 참조하거나, 초기화 시 캐싱한다.
+      PerformanceValidator가 런타임 GetComponent 사용 시 에러를 발생시킨다.
+    source: validator
+    validator: PerformanceValidator
+    severity: error
+    scope: global
+    module_pattern: "*.cs"
+    example_bad: "var rb = GetComponent<Rigidbody>();"
+    example_good: "[SerializeField] Rigidbody _rigidbody;"
+    added_date: "2026-03-18"
+    tags: [performance, getcomponent, caching, serializefield]
+
+  - id: RM-0006
+    rule: "Animator 파라미터는 StringToHash로 캐싱해야 한다"
+    detail: >
+      Animator.SetFloat("speed", v) 같은 문자열 기반 호출은 해시 변환 비용이 매번 발생한다.
+      private readonly static int로 미리 캐싱한다.
+      StringAndAnimatorValidator가 검증한다.
+    source: validator
+    validator: StringAndAnimatorValidator
+    severity: error
+    scope: global
+    module_pattern: "*.cs"
+    example_bad: '_animator.SetFloat("speed", 1f);'
+    example_good: 'static readonly int SPEED_HASH = Animator.StringToHash("speed"); _animator.SetFloat(SPEED_HASH, 1f);'
+    added_date: "2026-03-18"
+    tags: [performance, animator, string-hash, caching]
+
+  - id: RM-0007
+    rule: "모듈 루트에는 규정된 파일만 존재해야 한다"
+    detail: >
+      Assets/Game/Modules/<Module>/ 루트에는 I<Module>.cs, <Module>Config.cs,
+      <Module>Runtime.cs, <Module>Factory.cs, <Module>Instance.cs,
+      <Module>Bootstrap.cs, E<Module>*.cs만 허용된다.
+      그 외 파일은 ModuleBoundaryValidator가 에러를 발생시킨다.
+    source: validator
+    validator: ModuleBoundaryValidator
+    severity: error
+    scope: project
+    module_pattern: "Assets/Game/Modules/*/root"
+    example_bad: "Assets/Game/Modules/Combat/DamageHelper.cs"
+    example_good: "Assets/Game/Modules/Combat/CombatRuntime.cs (내부에 DamageHelper 로직 포함)"
+    added_date: "2026-03-18"
+    tags: [module-boundary, file-naming, structure]
+
+  - id: RM-0008
+    rule: "LINQ(System.Linq)는 금지 — 수동 루프를 사용한다"
+    detail: >
+      Select, Where, ToList, Any, First 등 LINQ 메서드는
+      내부적으로 IEnumerable을 생성하여 GC를 유발한다.
+      CodingStyleValidator가 에러를 발생시킨다.
+    source: validator
+    validator: CodingStyleValidator
+    severity: error
+    scope: global
+    module_pattern: "*.cs"
+    example_bad: "var results = items.Where(x => x.IsActive).ToList();"
+    example_good: "int count = 0; for (int i = 0; i < items.Length; i++) { if (items[i].IsActive) results[count++] = items[i]; }"
+    added_date: "2026-03-18"
+    tags: [gc, performance, linq, allocation]
+
+  - id: RM-0009
+    rule: "Core(Assets/Game/Core/) 폴더는 명시적 허가 없이 수정 금지"
+    detail: >
+      Core는 editable: false, risk: high로 설정되어 있다.
+      새 파일 추가 시 ForbiddenFolderValidator가 baseline과 비교하여 에러를 발생시킨다.
+      사용자가 명시적으로 허가한 경우에만 수정하고, 수정 후 Core Baseline을 업데이트해야 한다.
+    source: validator
+    validator: ForbiddenFolderValidator
+    severity: error
+    scope: project
+    module_pattern: "Assets/Game/Core/*"
+    example_bad: "Assets/Game/Core/에 NewCoreHelper.cs 추가 (baseline 미등록)"
+    example_good: "Assets/Game/Modules/에 새 모듈로 분리하거나, 허가 후 baseline 업데이트"
+    added_date: "2026-03-18"
+    tags: [core, forbidden-folder, baseline, safety]
+
+  - id: RM-0010
+    rule: "MonoBehaviour 싱글턴 패턴 사용 금지"
+    detail: >
+      static Instance 프로퍼티나 Singleton 패턴은 테스트 불가능성, 숨겨진 의존성,
+      초기화 순서 문제를 야기한다. DI 또는 명시적 참조를 사용한다.
+      ArchitecturePatternValidator가 검증한다.
+    source: validator
+    validator: ArchitecturePatternValidator
+    severity: error
+    scope: global
+    module_pattern: "*.cs"
+    example_bad: "public static CombatManager Instance { get; private set; }"
+    example_good: "[SerializeField] CombatRuntime _combatRuntime; // 명시적 참조"
+    added_date: "2026-03-18"
+    tags: [architecture, singleton, dependency-injection, testability]
+
+  - id: RM-0011
+    rule: "모든 .cs 파일에 namespace 선언 필수"
+    detail: >
+      namespace가 없으면 전역 네임스페이스 오염과 이름 충돌이 발생한다.
+      이 프로젝트에서는 namespace Game을 사용한다.
+      ArchitecturePatternValidator가 검증한다.
+    source: validator
+    validator: ArchitecturePatternValidator
+    severity: error
+    scope: global
+    module_pattern: "*.cs"
+    example_bad: "public class InventoryRuntime { } // namespace 없음"
+    example_good: "namespace Game { public class InventoryRuntime { } }"
+    added_date: "2026-03-18"
+    tags: [namespace, architecture, naming]
+
+  - id: RM-0012
+    rule: "순환 의존은 절대 금지"
+    detail: >
+      Module A → Module B → Module A 같은 순환 참조는
+      컴파일 순서 문제, 테스트 격리 실패, 리팩토링 불가를 야기한다.
+      CircularDependencyValidator가 MODULE_REGISTRY.yaml 기반으로 검증한다.
+      공통 계약이 필요하면 Shared 인터페이스로 분리한다.
+    source: validator
+    validator: CircularDependencyValidator
+    severity: error
+    scope: global
+    module_pattern: "MODULE_REGISTRY.yaml"
+    example_bad: "Combat depends_on: [Inventory], Inventory depends_on: [Combat]"
+    example_good: "Combat depends_on: [Shared], Inventory depends_on: [Shared], IItemProvider in Shared"
+    added_date: "2026-03-18"
+    tags: [dependency, circular, shared, interface]
+
+  - id: RM-0013
+    rule: "Update 계열 메서드에서 magnitude/distance 사용 금지"
+    detail: >
+      Vector3.magnitude와 Vector3.Distance는 내부에서 Mathf.Sqrt를 호출한다.
+      매 프레임 호출 시 성능 저하가 누적된다. sqrMagnitude로 대체한다.
+      PerformanceValidator가 경고를 발생시킨다.
+    source: validator
+    validator: PerformanceValidator
+    severity: warning
+    scope: global
+    module_pattern: "*.cs"
+    example_bad: "void Update() { if (Vector3.Distance(a, b) < 5f) { } }"
+    example_good: "void Update() { if ((a - b).sqrMagnitude < 25f) { } }"
+    added_date: "2026-03-18"
+    tags: [performance, update, magnitude, sqrmagnitude]
+
+  - id: RM-0014
+    rule: "람다 표현식은 메서드로 캐싱해야 한다"
+    detail: >
+      람다는 클로저 객체를 할당하여 GC를 유발한다.
+      이벤트 구독 시 named method로 캐싱하여 구독/해제를 명확히 한다.
+      CodingStyleValidator가 경고를 발생시킨다.
+    source: validator
+    validator: CodingStyleValidator
+    severity: warning
+    scope: global
+    module_pattern: "*.cs"
+    example_bad: "button.onClick += () => DoSomething();"
+    example_good: "button.onClick += OnButtonClicked; void OnButtonClicked() { DoSomething(); }"
+    added_date: "2026-03-18"
+    tags: [gc, lambda, event, caching]
+
+  - id: RM-0015
+    rule: "모듈당 최소 1개 테스트 파일이 Tests/ 폴더에 존재해야 한다"
+    detail: >
+      모듈의 핵심 로직(주로 Runtime)에 대한 단위 테스트가 반드시 있어야 한다.
+      ModuleStructureValidator가 Tests/ 폴더와 *Tests.cs 파일 존재를 검증한다.
+    source: validator
+    validator: ModuleStructureValidator
+    severity: error
+    scope: project
+    module_pattern: "Assets/Game/Modules/*/Tests/"
+    example_bad: "Assets/Game/Modules/Combat/ (Tests 폴더 없음)"
+    example_good: "Assets/Game/Modules/Combat/Tests/Editor/CombatTests.cs"
+    added_date: "2026-03-18"
+    tags: [testing, module-structure, nunit]

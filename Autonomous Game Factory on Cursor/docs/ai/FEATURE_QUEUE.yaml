@@ -1,0 +1,60 @@
+# ── Feature Queue — Autonomous Game Factory ──
+# 디자인 입력 → 모듈 분해 → TASK_QUEUE 생성 → 구현 → 검증 → 커밋 파이프라인의 진입점.
+#
+# 상태(status):
+#   intake       — 디자인 입력 접수됨
+#   decomposed   — FeatureDecomposer가 모듈 분해 완료
+#   queued       — QueueGenerator가 TASK_QUEUE에 엔트리 생성 완료
+#   in_progress  — 모듈 구현/검증 진행 중
+#   done         — 모든 모듈 done + 검증 통과 + Git 커밋 완료
+#   blocked      — 일부 모듈 blocked
+#
+# feature_group:
+#   동일 feature_group의 모듈은 한 번에 커밋된다.
+#   feature_group 내 모든 모듈이 done이어야 커밋 가능.
+#
+# 규칙:
+#   - 각 feature는 고유한 feature_group을 가진다
+#   - modules 필드는 FeatureDecomposer가 채운다
+#   - constraints는 분해/구현 시 반드시 준수한다
+#   - references는 기존 문서/모듈을 참조할 때 사용한다
+
+version: 1
+
+features:
+  - name: item-stacking
+    feature_group: item-stacking
+    status: done
+    description: >
+      아이템 스태킹/언스태킹 시스템.
+      캐릭터가 아이템을 쌓고(Stack) 내려놓는(Unstack) 메카닉.
+      고정 크기 배열 기반, GC-Free 설계.
+    modules: [ItemStacking]
+    constraints:
+      - GC-Free (no coroutines, no lambda, no LINQ, no foreach)
+      - 고정 크기 배열 기반 스택
+      - MonoBehaviour는 Bootstrap만
+    references:
+      - docs/ai/CODING_RULES.md
+      - docs/ai/MODULE_TEMPLATES.md
+    created_at: "2026-03-18"
+
+  - name: inventory-system
+    feature_group: inventory-system
+    status: done
+    description: >
+      인벤토리 시스템. 슬롯 기반 아이템 관리.
+      ItemStacking 모듈을 슬롯 단위 스택으로 재사용.
+      Add/Remove/Query/Has/GetCount 등 인벤토리 레벨 API.
+      고정 크기 배열 기반, GC-Free 설계.
+    modules: [InventorySystem]
+    constraints:
+      - GC-Free (no coroutines, no lambda, no LINQ, no foreach)
+      - ItemStacking 재사용 (스택 로직 재구현 금지)
+      - 고정 크기 배열 기반 슬롯
+      - MonoBehaviour는 Bootstrap만
+    references:
+      - docs/ai/CODING_RULES.md
+      - docs/ai/MODULE_TEMPLATES.md
+      - Assets/Game/Modules/ItemStacking/
+    created_at: "2026-03-18"

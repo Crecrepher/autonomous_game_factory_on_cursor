@@ -1,0 +1,281 @@
+# ── AGF Prompt OS — Command Profile Registry ──
+# 사용자의 짧은 자연어 명령을 파이프라인 인텐트로 매핑한다.
+#
+# 구조:
+#   intent: 파이프라인 인텐트 ID
+#   triggers: 이 인텐트를 활성화하는 키워드/구문 목록
+#   pipeline: 실행할 파이프라인 흐름
+#   auto_context: 자동으로 읽어야 할 컨텍스트
+#   requires_attachment: 첨부 파일이 필요한지 여부
+#   safety_level: 실행 안전 수준 (safe / guarded / dangerous)
+#   description: 인텐트 설명
+
+version: 1
+
+profiles:
+
+  # ── 1. 기획서 기반 프로젝트 셋업 ──
+  # 첨부 파일(파일 첨부)이든 메시지 내 텍스트(붙여넣기)든 기획서가 있으면 매칭됨.
+  # requires_attachment: false — Cursor 대화에서는 첨부=메시지 내 텍스트이므로
+  # 기획서 내용이 메시지에 포함되어 있으면 자동으로 인식한다.
+  - intent: bootstrap_from_design
+    triggers:
+      - "기획서 첨부"
+      - "기획서"
+      - "셋팅해줘"
+      - "셋업해줘"
+      - "프로젝트 셋업"
+      - "프로젝트 설정"
+      - "부트스트랩"
+      - "bootstrap"
+      - "새 프로젝트"
+      - "초기 설정"
+      - "디자인 문서"
+      - "게임 기획"
+      - "이 기획서로 시작"
+      - "원클릭 셋팅"
+      - "원클릭 셋업"
+      - "원클릭"
+      - "시작해"
+    pipeline: bootstrap
+    auto_context:
+      - docs/ai/FEATURE_QUEUE.yaml
+      - docs/ai/TASK_QUEUE.yaml
+      - docs/ai/MODULE_REGISTRY.yaml
+      - docs/ai/CODING_RULES.md
+      - docs/ai/MODULE_TEMPLATES.md
+      - docs/ai/PROJECT_OVERVIEW.md
+      - docs/ai/BOOTSTRAP_WORKFLOW.md
+    requires_attachment: false
+    safety_level: guarded
+    bootstrap_rules:
+      - inspect_existing_modules_first
+      - prefer_reuse_over_create
+      - never_overwrite_existing_assets
+      - initialize_all_queues
+      - generate_specs_and_plans
+      - truthful_reporting_only
+      - human_validation_preserved
+      - dry_run_first_recommended
+    description: >
+      기획서/디자인 문서를 기반으로 원클릭 프로젝트 셋업을 실행한다.
+      BootstrapEngine을 사용한다.
+      자동 실행 절차:
+      1. 기존 레포 구조 검사 (Assets/Game/Modules/, TASK_QUEUE 등)
+      2. 기존 모듈 탐색 (ModuleDiscovery) — reuse > adapt > create_new
+      3. 기획서 분석 → IntelligentDecomposer로 시스템/모듈 분해
+      4. Dry Run 실행 → 결과 미리보기
+      5. Apply 실행 → 폴더/씬/프리팹/큐/레지스트리/Spec/Plan 생성
+      6. Bootstrap Report 생성 → truthful 보고
+      기존 파일을 절대 덮어쓰지 않는다.
+      모든 태스크는 status:pending, human_state:none으로 시작한다.
+
+  # ── 2. 기존 코드 흡수/분석 ──
+  # 코드 폴더를 스캔하여 모듈 후보를 자동 추론하고 마이그레이션 계획을 생성한다.
+  # 원본 코드를 절대 수정/삭제하지 않는다. 분석 + 리포트 + 드래프트 생성만.
+  - intent: ingest_codebase
+    triggers:
+      - "폴더를 읽어"
+      - "폴더 읽어"
+      - "코드 흡수"
+      - "코드 분석"
+      - "코드 읽어"
+      - "기존 코드"
+      - "기존 코드 읽어"
+      - "레거시 코드"
+      - "코드베이스"
+      - "ingest"
+      - "코드 스캔"
+      - "모듈화"
+      - "흡수해"
+      - "이 폴더"
+      - "스캔해줘"
+      - "코드 가져와"
+    pipeline: ingestion
+    auto_context:
+      - docs/ai/MODULE_REGISTRY.yaml
+      - docs/ai/TASK_QUEUE.yaml
+      - docs/ai/CODING_RULES.md
+      - docs/ai/CODEBASE_INGESTION.md
+      - docs/ai/PROJECT_OVERVIEW.md
+    requires_attachment: false
+    safety_level: safe
+    ingestion_rules:
+      - never_modify_original_code
+      - never_delete_original_code
+      - never_mark_migration_complete
+      - prefer_staged_migration
+      - compare_against_existing_modules
+      - generate_reports_first
+      - draft_queue_entries_as_pending
+      - preserve_validator_and_human_gates
+      - truthful_reporting_only
+    target_folder_resolution:
+      auto_detect:
+        - Assets/Supercent
+        - Assets/Scripts
+        - Assets/Game
+      fallback: prompt_user_for_folder
+    integration_strategies:
+      - reuse_as_is
+      - wrap_with_module_interface
+      - extract_runtime_module
+      - split_into_multiple_modules
+      - adapt_existing_module
+      - replace_later
+      - leave_unclassified
+    description: >
+      기존 코드를 스캔하여 모듈 후보를 자동 추론한다.
+      자동 실행 절차:
+      1. 스캔 대상 폴더 자동 감지 (Assets/Supercent, Assets/Scripts, Assets/Game)
+      2. CodebaseAnalyzer로 코드 분석 (클래스/인터페이스/MonoBehaviour/SO/static/의존성/아키텍처 드리프트)
+      3. ModuleCandidateInferrer로 모듈 후보 추론 (7가지 전략 결정)
+      4. 기존 AGF 모듈과 비교 (MODULE_REGISTRY)
+      5. IngestionReportGenerator로 7종 리포트 생성
+      6. TASK_QUEUE/MODULE_REGISTRY 드래프트 생성 (pending, 사람 확인 필수)
+      원본 코드를 절대 수정/삭제하지 않는다.
+      마이그레이션 완료를 주장하지 않는다.
+
+  # ── 3. 새 기능 추가 (풀 파이프라인) ──
+  - intent: integrate_feature
+    triggers:
+      - "기능 추가"
+      - "이 기능 붙여"
+      - "구현해줘"
+      - "만들어줘"
+      - "추가해줘"
+      - "모듈 만들어"
+      - "시스템 추가"
+      - "개발해줘"
+    pipeline: full_pipeline
+    auto_context:
+      - docs/ai/PROJECT_OVERVIEW.md
+      - docs/ai/CODING_RULES.md
+      - docs/ai/MODULE_REGISTRY.yaml
+      - docs/ai/TASK_QUEUE.yaml
+      - docs/ai/FEATURE_QUEUE.yaml
+      - docs/ai/MODULE_TEMPLATES.md
+      - docs/ai/ORCHESTRATION_RULES.md
+    requires_attachment: false
+    safety_level: guarded
+    description: >
+      9단계 파이프라인을 처음부터 끝까지 실행한다.
+      Feature Intake → Queue Generator → Orchestrator → Planner →
+      Builder → Human Validator → Reviewer → Committer → Learning Recorder.
+
+  # ── 4. 기존 모듈 활용 우선 통합 ──
+  - intent: reuse_first_integration
+    triggers:
+      - "기존 모듈 활용"
+      - "재사용"
+      - "있는 거 써서"
+      - "기존 거 활용"
+      - "reuse"
+      - "extend"
+      - "확장해줘"
+    pipeline: reuse_then_pipeline
+    auto_context:
+      - docs/ai/MODULE_REGISTRY.yaml
+      - docs/ai/TASK_QUEUE.yaml
+      - docs/ai/FEATURE_QUEUE.yaml
+      - docs/ai/CODING_RULES.md
+    requires_attachment: false
+    safety_level: guarded
+    description: >
+      먼저 기존 모듈에서 재사용 가능한 것을 탐색한 뒤,
+      reuse > extend > adapt > create_new 순서로 결정한다.
+      ModuleDiscovery + IntegrationStrategyEngine을 사용한다.
+
+  # ── 5. 기존 모듈 분석 ──
+  - intent: analyze_existing_modules
+    triggers:
+      - "모듈 분석"
+      - "현재 모듈"
+      - "모듈 상태"
+      - "레지스트리 확인"
+      - "의존성 확인"
+      - "검증해줘"
+      - "validate"
+    pipeline: analysis_only
+    auto_context:
+      - docs/ai/MODULE_REGISTRY.yaml
+      - docs/ai/TASK_QUEUE.yaml
+    requires_attachment: false
+    safety_level: safe
+    description: >
+      기존 모듈 구조, 의존성, 상태를 분석하고 보고한다.
+      DependencyGraphBuilder + ValidationRunner를 사용한다.
+
+  # ── 6. 큐/레지스트리만 생성 ──
+  - intent: generate_queue_only
+    triggers:
+      - "큐만 생성"
+      - "태스크 큐"
+      - "TASK_QUEUE"
+      - "큐 만들어"
+      - "레지스트리 업데이트"
+    pipeline: queue_generation
+    auto_context:
+      - docs/ai/MODULE_REGISTRY.yaml
+      - docs/ai/TASK_QUEUE.yaml
+      - docs/ai/FEATURE_QUEUE.yaml
+    requires_attachment: false
+    safety_level: safe
+    description: >
+      모듈 코드를 생성하지 않고 TASK_QUEUE, FEATURE_QUEUE,
+      MODULE_REGISTRY 엔트리만 생성한다.
+
+  # ── 7. 검증만 실행 ──
+  - intent: run_validation_only
+    triggers:
+      - "검증만"
+      - "validator"
+      - "밸리데이터"
+      - "린트"
+      - "체크해줘"
+      - "검사해줘"
+    pipeline: validation_only
+    auto_context:
+      - docs/ai/TASK_QUEUE.yaml
+      - docs/ai/MODULE_REGISTRY.yaml
+    requires_attachment: false
+    safety_level: safe
+    description: >
+      ValidationRunner의 19개 Validator를 실행하고 결과를 보고한다.
+      코드 변경 없음.
+
+  # ── 8. 커밋 ──
+  - intent: commit_changes
+    triggers:
+      - "커밋해줘"
+      - "커밋"
+      - "commit"
+      - "저장해줘"
+      - "푸시해줘"
+    pipeline: commit
+    auto_context:
+      - docs/ai/TASK_QUEUE.yaml
+      - docs/ai/COMMIT_RULES.md
+    requires_attachment: false
+    safety_level: dangerous
+    description: >
+      7 Gate 커밋 규칙에 따라 안전한 커밋을 실행한다.
+      human_state == validated 필수, commit_state == ready 필수.
+
+  # ── 9. 학습/리포트 확인 ──
+  - intent: review_learning
+    triggers:
+      - "학습 기록"
+      - "learning"
+      - "무엇을 배웠"
+      - "실패 패턴"
+      - "리포트 보여줘"
+    pipeline: learning_review
+    auto_context:
+      - docs/ai/learning/LEARNING_LOG.md
+      - docs/ai/learning/RECURRING_MISTAKES.md
+      - docs/ai/learning/VALIDATOR_FAILURE_PATTERNS.md
+    requires_attachment: false
+    safety_level: safe
+    description: >
+      학습 기록, 반복 실수, 검증 실패 패턴을 읽고 보고한다.

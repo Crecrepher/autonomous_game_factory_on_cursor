@@ -7,7 +7,7 @@ namespace Game.Editor.AI
 {
     public static class DependencyGraphBuilder
     {
-        const string MODULE_REGISTRY_RELATIVE = "Docs/ai/MODULE_REGISTRY.yaml";
+        const string MODULE_REGISTRY_RELATIVE = "docs/ai/MODULE_REGISTRY.yaml";
         const string TASK_QUEUE_RELATIVE = "docs/ai/TASK_QUEUE.yaml";
 
         static readonly Regex REGEX_NAME = new Regex(@"^\s*-?\s*name:\s*(\w+)");
@@ -15,6 +15,13 @@ namespace Game.Editor.AI
         static readonly Regex REGEX_DEPENDENCIES = new Regex(@"^\s*dependencies:\s*\[([^\]]*)\]");
         static readonly Regex REGEX_DEPENDS_ON = new Regex(@"^\s*depends_on:\s*\[([^\]]*)\]");
         static readonly Regex REGEX_STATUS = new Regex(@"^\s*status:\s*(\w+)");
+        static readonly Regex REGEX_OWNER = new Regex(@"^\s*owner:\s*(.+)");
+        static readonly Regex REGEX_ROLE = new Regex(@"^\s*role:\s*(.+)");
+        static readonly Regex REGEX_HUMAN_STATE = new Regex(@"^\s*human_state:\s*(\w+)");
+        static readonly Regex REGEX_LEARNING_STATE = new Regex(@"^\s*learning_state:\s*(\w+)");
+        static readonly Regex REGEX_COMMIT_STATE = new Regex(@"^\s*commit_state:\s*(\w+)");
+        static readonly Regex REGEX_FEATURE_GROUP = new Regex(@"^\s*feature_group:\s*""?([^""]+)""?");
+        static readonly Regex REGEX_RETRY_COUNT = new Regex(@"^\s*retry_count:\s*(\d+)");
 
         public struct RegistryModule
         {
@@ -28,6 +35,26 @@ namespace Game.Editor.AI
             public string Name;
             public string Status;
             public string[] DependsOn;
+            public string Owner;
+            public string Role;
+            public string HumanState;
+            public string LearningState;
+            public string CommitState;
+            public string FeatureGroup;
+            public int RetryCount;
+        }
+
+        public struct SkippedModule
+        {
+            public string Name;
+            public string Reason;
+        }
+
+        public struct BuilderAssignment
+        {
+            public string BuilderId;
+            public string ModuleName;
+            public string ModulePath;
         }
 
         public struct DependencyGraph
@@ -100,6 +127,13 @@ namespace Game.Editor.AI
             string currentName = null;
             string currentStatus = null;
             string[] currentDeps = null;
+            string currentOwner = null;
+            string currentRole = null;
+            string currentHumanState = null;
+            string currentLearningState = null;
+            string currentCommitState = null;
+            string currentFeatureGroup = null;
+            int currentRetryCount = 0;
 
             for (int i = 0; i < lines.Length; i++)
             {
@@ -109,33 +143,122 @@ namespace Game.Editor.AI
                 if (nameMatch.Success)
                 {
                     if (currentName != null)
-                        list.Add(new TaskEntry { Name = currentName, Status = currentStatus ?? "pending", DependsOn = currentDeps ?? new string[0] });
+                        list.Add(BuildTaskEntry(currentName, currentStatus, currentDeps, currentOwner,
+                            currentRole, currentHumanState, currentLearningState, currentCommitState,
+                            currentFeatureGroup, currentRetryCount));
 
                     currentName = nameMatch.Groups[1].Value;
                     currentStatus = null;
                     currentDeps = null;
+                    currentOwner = null;
+                    currentRole = null;
+                    currentHumanState = null;
+                    currentLearningState = null;
+                    currentCommitState = null;
+                    currentFeatureGroup = null;
+                    currentRetryCount = 0;
                     continue;
                 }
 
+                if (currentName == null) continue;
+
                 Match statusMatch = REGEX_STATUS.Match(line);
-                if (statusMatch.Success && currentName != null)
+                if (statusMatch.Success)
                 {
                     currentStatus = statusMatch.Groups[1].Value;
                     continue;
                 }
 
                 Match depMatch = REGEX_DEPENDS_ON.Match(line);
-                if (depMatch.Success && currentName != null)
+                if (depMatch.Success)
                 {
                     currentDeps = ParseBracketList(depMatch.Groups[1].Value);
+                    continue;
+                }
+
+                Match ownerMatch = REGEX_OWNER.Match(line);
+                if (ownerMatch.Success)
+                {
+                    string ownerVal = ownerMatch.Groups[1].Value.Trim();
+                    currentOwner = (ownerVal == "null" || ownerVal == "~") ? null : ownerVal;
+                    continue;
+                }
+
+                Match roleMatch = REGEX_ROLE.Match(line);
+                if (roleMatch.Success)
+                {
+                    string roleVal = roleMatch.Groups[1].Value.Trim();
+                    currentRole = (roleVal == "null" || roleVal == "~") ? null : roleVal;
+                    continue;
+                }
+
+                Match hsMatch = REGEX_HUMAN_STATE.Match(line);
+                if (hsMatch.Success)
+                {
+                    currentHumanState = hsMatch.Groups[1].Value;
+                    continue;
+                }
+
+                Match lsMatch = REGEX_LEARNING_STATE.Match(line);
+                if (lsMatch.Success)
+                {
+                    currentLearningState = lsMatch.Groups[1].Value;
+                    continue;
+                }
+
+                Match csMatch = REGEX_COMMIT_STATE.Match(line);
+                if (csMatch.Success)
+                {
+                    currentCommitState = csMatch.Groups[1].Value;
+                    continue;
+                }
+
+                Match fgMatch = REGEX_FEATURE_GROUP.Match(line);
+                if (fgMatch.Success)
+                {
+                    currentFeatureGroup = fgMatch.Groups[1].Value.Trim();
+                    continue;
+                }
+
+                Match rcMatch = REGEX_RETRY_COUNT.Match(line);
+                if (rcMatch.Success)
+                {
+                    int.TryParse(rcMatch.Groups[1].Value, out currentRetryCount);
                     continue;
                 }
             }
 
             if (currentName != null)
-                list.Add(new TaskEntry { Name = currentName, Status = currentStatus ?? "pending", DependsOn = currentDeps ?? new string[0] });
+                list.Add(BuildTaskEntry(currentName, currentStatus, currentDeps, currentOwner,
+                    currentRole, currentHumanState, currentLearningState, currentCommitState,
+                    currentFeatureGroup, currentRetryCount));
 
             return list.ToArray();
+        }
+
+        static TaskEntry BuildTaskEntry(string name, string status, string[] deps, string owner,
+            string role, string humanState, string learningState, string commitState,
+            string featureGroup, int retryCount)
+        {
+            TaskEntry entry = new TaskEntry();
+            entry.Name = name;
+            entry.Status = status ?? "pending";
+            entry.DependsOn = deps ?? new string[0];
+            entry.Owner = owner;
+            entry.Role = role;
+            entry.HumanState = humanState ?? "none";
+            entry.LearningState = learningState ?? "none";
+            entry.CommitState = commitState ?? "none";
+            entry.FeatureGroup = featureGroup ?? "";
+            entry.RetryCount = retryCount;
+
+            if (entry.Status == "done")
+            {
+                if (humanState == null) entry.HumanState = "validated";
+                if (commitState == null) entry.CommitState = "committed";
+            }
+
+            return entry;
         }
 
         public static DependencyGraph BuildGraph()
@@ -370,6 +493,100 @@ namespace Game.Editor.AI
                 filtered.Add(rawDeps[i]);
             }
             return filtered.ToArray();
+        }
+
+        public static SkippedModule[] GetSkippedModulesWithReasons(DependencyGraph graph)
+        {
+            var skipped = new List<SkippedModule>();
+            for (int i = 0; i < graph.Tasks.Length; i++)
+            {
+                TaskEntry task = graph.Tasks[i];
+                if (task.Status == "done" || task.Status == "review" || task.Status == "in_progress")
+                    continue;
+
+                if (task.Status != "planned")
+                    continue;
+
+                for (int d = 0; d < task.DependsOn.Length; d++)
+                {
+                    TaskEntry dep;
+                    if (!graph.TaskMap.TryGetValue(task.DependsOn[d], out dep) || dep.Status != "done")
+                    {
+                        skipped.Add(new SkippedModule { Name = task.Name, Reason = "waiting for " + task.DependsOn[d] });
+                        break;
+                    }
+                }
+            }
+            return skipped.ToArray();
+        }
+
+        public static BuilderAssignment[] AssignBuilders(DependencyGraph graph, int maxParallelBuilders)
+        {
+            string[] executable = GetExecutableModules(graph);
+            int assignCount = executable.Length < maxParallelBuilders ? executable.Length : maxParallelBuilders;
+
+            var assignments = new List<BuilderAssignment>(assignCount);
+            var claimedFolders = new HashSet<string>();
+
+            for (int i = 0; i < executable.Length && assignments.Count < maxParallelBuilders; i++)
+            {
+                string moduleName = executable[i];
+
+                TaskEntry task = graph.TaskMap[moduleName];
+                if (task.Owner != null)
+                    continue;
+
+                string modulePath = "";
+                RegistryModule regModule;
+                if (graph.ModuleMap.TryGetValue(moduleName, out regModule))
+                    modulePath = regModule.Path;
+
+                if (!string.IsNullOrEmpty(modulePath) && !claimedFolders.Add(modulePath))
+                    continue;
+
+                string builderId = "builder_" + (assignments.Count + 1);
+                assignments.Add(new BuilderAssignment
+                {
+                    BuilderId = builderId,
+                    ModuleName = moduleName,
+                    ModulePath = modulePath
+                });
+            }
+
+            return assignments.ToArray();
+        }
+
+        public static bool ValidateModuleIsolation(BuilderAssignment[] assignments)
+        {
+            var folders = new HashSet<string>();
+            for (int i = 0; i < assignments.Length; i++)
+            {
+                if (!folders.Add(assignments[i].ModulePath))
+                    return false;
+            }
+            return true;
+        }
+
+        public static bool IsModuleClaimable(DependencyGraph graph, string moduleName)
+        {
+            TaskEntry task;
+            if (!graph.TaskMap.TryGetValue(moduleName, out task))
+                return false;
+
+            if (task.Status != "planned")
+                return false;
+
+            if (task.Owner != null)
+                return false;
+
+            for (int d = 0; d < task.DependsOn.Length; d++)
+            {
+                TaskEntry dep;
+                if (!graph.TaskMap.TryGetValue(task.DependsOn[d], out dep) || dep.Status != "done")
+                    return false;
+            }
+
+            return true;
         }
 
         static string[] ParseBracketList(string bracketContent)

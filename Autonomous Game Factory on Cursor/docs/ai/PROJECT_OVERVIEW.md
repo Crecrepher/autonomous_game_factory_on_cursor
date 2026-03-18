@@ -1,161 +1,274 @@
-> **EXAMPLE FILE** — 이 파일은 AI Game Dev Framework의 예시 문서입니다.
-> 실제 프로젝트에 적용할 때 이 내용을 프로젝트에 맞게 수정하여 `Docs/ai/PROJECT_OVERVIEW.md`로 사용하세요.
+# 프로젝트 개요 — Autonomous Game Factory v2
 
-# 프로젝트 개요
+## 1. 프로젝트 정의
 
-## 1. 프로젝트 목적 및 장르
+이 프로젝트는 **Human-in-the-Loop Learning Pipeline**을 구현하는 Unity AI 개발 팩토리다.
 
-이 프로젝트는 **2D 아이소메트릭 탑뷰 타워 디펜스 Playable Ad** 를 위한 Unity C# 프로젝트이며, **Cursor 기반 자율 AI 보조 개발** 환경을 따른다.
+핵심 사이클:
 
-- **아이소메트릭 탑뷰**: 쿼터뷰(탑다운) 시점, 2D 스프라이트 오브젝트. 아이소메트릭 카메라·깊이 정렬·레이어 일관성.
-- **타워 디펜스**: 기지 방어, 수비탑 건설, 전사 고용·배치, 적 웨이브 격퇴.
-- **Playable Ad**: 광고용 짧은 인터랙티브 체험. 제한된 플레이 후 앤드카드(CTA)로 유도.
+```
+AI 코드 생성 → 사람이 Unity에서 검증 → 사람이 수정 → 수정 이유 기록 → AI 재검증 → 재커밋 → 학습 축적
+```
 
-목표는 설계 문서 기반으로 모듈형 게임 시스템을 생성·검증·개선하는 것이다. 실제 게임플레이 루프와 밸런스는 별도 기획 문서에서 정의하며, 이 개요는 **개발 구조·아키텍처·기능 도메인**에 초점을 둔다.
-
-레퍼런스: **KingShot** (점유율 1위 타사) — 끝없이 몰려오는 적 해치움, 동료 고용, 공간 해금, 업그레이드 등 다양한 재미 요소 구성.
+이것은 단순한 코드 자동생성 도구가 아니다.
+AI가 생성하고, 사람이 검증하고 고치며, 그 과정에서 축적된 학습이 다음 생성의 품질을 올리는 **피드백 루프 시스템**이다.
 
 ---
 
-## 2. 핵심 게임플레이 루프 (개념)
+## 2. 시스템의 세 가지 축
 
-1. **고용·배치** — 전사 고용(비용 증가식), 수비탑에 자동 배치, 고용 노드 인터랙션.
-2. **전투** — 플레이어·전사가 자동 공격, 적(일반/큰 적) 웨이브 격퇴, 사망 시 코인 드롭.
-3. **건설·해금** — 수비탑 6개 순차 건설, 화살탑·울타리·수비문 해금, 바닥 컬러 변경 연출.
-4. **업그레이드** — 기지 업그레이드(1차 10원 → 2차 80원), 대장간(50원)에서 장비(총) 생성·자동 착용.
-5. **성장·경제** — 적 처치 코인 드롭, 코인 축적 후 고용·건설·업그레이드에 소비.
-6. **메타** — 기지 2차 업그레이드 또는 특정 조건 달성 시 앤드카드(CTA) 노출, 스토어 유도.
+### 2.1 AI Generation (생성)
 
-AI 보조 개발 루프: **설계 문서 읽기 → 모듈 생성/수정(MODULE_REGISTRY·CODING_RULES 준수) → 검증 → 개선**.
+- 사용자가 기능 설명 또는 기획서를 제공한다.
+- AI가 이를 모듈 단위로 분해한다.
+- 각 모듈은 표준 템플릿(Interface, Config, Runtime, Factory, Bootstrap, Tests)에 따라 생성된다.
+- 생성된 코드는 CODING_RULES.md와 MODULE_REGISTRY.yaml의 규칙을 준수한다.
 
----
+### 2.2 Human Validation (사람 검증)
 
-## 3. 기능 도메인 요약
+- AI는 자체적으로 검증을 "완료"할 수 없다.
+- **반드시 사람이 Unity Editor에서 Validator를 실행**해야 한다.
+- 사람이 생성 코드를 직접 확인하고, 필요하면 수정한다.
+- AI는 사람의 수정 사항을 받아 재검증(Reviewer)과 재커밋(Committer)을 수행한다.
 
-| 도메인 | 대표 기능 |
-|--------|-----------|
-| **플레이어** | 기지 주변 이동, 적 자동 공격, 공격/이동 속도 다이나믹 대응 |
-| **전사(동료)** | 고용 노드에서 고용(비용 2→4→6→8→10원 MAX), 최대 26명, 자동 전투·배치, 장비 착용 시 외형 변화 |
-| **적** | 일반 적(4대/1대 사망, 1원 드롭), 큰 적(20대/5대 사망, 30원 드롭), 좌·우측 웨이브 등장, 리스폰 주기·등장 패턴 |
-| **수비탑** | 6개 순차/동시 건설, 탑별 가격(5원/30원), 인원 배치(4명), 울타리·수비문·바닥 컬러 변경 |
-| **기지** | HP(다이나믹 대응), 1차 업그레이드(10원, 전사 3명씩 고용 해금), 2차 업그레이드(80원, 앤드카드 트리거) |
-| **대장간** | 장비 소환(50원당 6개, 최대 4회), 유저 뒤 전사부터 순차 배분, 총 아이템 |
-| **고용 노드** | 고용 UI, 비용 표시, 화살표 가이드, 비활성/활성 상태, 3명 일괄 고용(업그레이드 후) |
-| **경제(코인)** | 적 사망 코인 드롭, 줍기, 코인 축적·소비, 시작 코인 6원 |
-| **카메라** | 레퍼런스 기반 뷰, 다이나믹 뷰 조절 기능 |
-| **가이드** | 화살표(고용 노드·업그레이드 노드·대장간 유도), 바닥 화살표, 조건부 노출 |
-| **앤드카드** | 딤드 배경 + 로고 + 아이콘 + CTA(Play Now) 버튼, 기지 2차 업그레이드 시 노출 |
-| **다이나믹 대응** | 플레이어/전사 공격·이동 속도, 적 등장 수·리스폰 속도, 기지 HP, 카메라 뷰, 앤드카드 타이밍 등 실시간 조절 |
+### 2.3 Learning Accumulation (학습 축적)
+
+- 사람이 수정한 모든 건에 대해 **수정 이유(rationale)**를 기록한다.
+- Validator 실패 패턴을 `learning/VALIDATOR_FAILURE_PATTERNS.md`에 축적한다.
+- 핵심 규칙을 `learning/RULE_MEMORY.yaml`에 기계 판독 가능 형식으로 저장한다.
+- 시간순 학습 이벤트를 `learning/LEARNING_LOG.md`에 기록한다.
+- 사람 수정 사례를 `learning/HUMAN_FIX_EXAMPLES.md`에 Before/After로 기록한다.
+- 축적된 학습은 다음 생성 시 AI가 참조하는 컨텍스트가 된다.
+- 학습 데이터는 프로젝트를 넘어 **다른 프로젝트에서도 재사용** 가능하다 (`scope: global`).
 
 ---
 
-## 4. 전체 플로우 (플레이 시퀀스)
+## 3. 대상 게임
 
-| 단계 | 내용 | 비고 |
-|------|------|------|
-| **인트로** | 플레이어가 고용 노드를 바라보고 시작, 6원 보유, 적 미등장 | 화살표로 고용 유도 |
-| **초기 고용** | 전사 2명 고용 (2원 + 4원), 적 등장 시작 | 고용 시 미고용 전사 하얀색 처리 |
-| **추가 고용 유도** | 적 처치하며 코인 모아 3명 추가 고용 (6→8→10원) | 6원 이상 보유 시 화살표 표시 |
-| **기지 1차 업그레이드** | 전사 5명 모으면 업그레이드 노드(10원) 생성 | 업그레이드 시 3명 일괄 고용 + 1번 수비탑 노드 |
-| **1번 수비탑** | 5원, 배치 4명, 울타리 생성 + 2번 수비탑 노드 | |
-| **2번 수비탑** | 5원, 배치 4명, 수비문 + 돈 노드 생성, 큰 적 첫 등장 + 좌측 적 등장 | |
-| **3·4번 수비탑** | 각 30원, 배치 4명, 바닥 컬러 변경, 구역 내 적 자동 사망 | |
-| **5·6번 수비탑** | 각 30원 동시 노드, 배치 4명, 기지 커짐 | 고용 28명 완료 시 업그레이드 + 대장간 노드 |
-| **대장간** | 50원, 장비 6개 생성 → 전사 자동 착용(외형 변화) | 화살표 대장간 우선 유도 |
-| **기지 2차 업그레이드** | 80원, 앤드카드 노출 | 대장간 미사용 시에도 가능 |
-| **앤드카드** | 딤드 + 로고 + 아이콘 + CTA 버튼 | 스토어 이동 |
+- **장르**: 2D 아이소메트릭 탑뷰 타워 디펜스 Playable Ad
+- **엔진**: Unity (C#)
+- **네임스페이스**: `Game`
+- **레퍼런스**: KingShot 등 캐주얼 아이소메트릭 디펜스 게임
+
+게임 기획 상세(게임플레이 루프, 적 패턴, 경제, 수비탑, 업그레이드 흐름 등)는 별도 기획 문서에서 관리한다. 이 문서는 **개발 파이프라인 아키텍처**에 집중한다.
 
 ---
 
-## 5. 적 등장 패턴
+## 4. 파이프라인 전체 흐름
 
-우측(1명) → 정면(1명) → 우측(2명) → 정면(2명) → 우측(2명) → 정면(2명) → [우측(3명) → 정면(3명)] × 7회 반복 → 우측 큰 적 1명 → 2번 수비탑 해금까지 큰 적 X → 2번 수비탑 해금 시 큰 적 2명 동시(우측) 등장 루프 변경
+9개 역할이 정해진 순서로 바톤을 넘긴다:
 
----
+```
+사용자 요청 (기능 설명 / 기획서)
+ ↓
+[1] Feature Intake       → FEATURE_QUEUE.yaml
+ ↓
+[2] Queue Generator      → TASK_QUEUE.yaml + MODULE_REGISTRY.yaml + generated_specs/
+ ↓
+[3] Orchestrator         → 의존성 그래프 빌드, Builder Pool 배정
+ ↓
+[4] Planner              → plans/<Module>_PLAN.md
+ ↓
+[5] Builder              → Assets/Game/Modules/<Module>/ (6파일)
+ ↓
+[6] ★ Human Validator ★  → 사람이 Unity Validator 실행 + 코드 수정
+ ↓
+[7] Reviewer             → 코드 검증 (통과: commit ready / 실패: blocked → [5] 루프)
+ ↓
+[8] Committer            → feature_group 단위 git commit
+ ↓
+[9] Learning Recorder    → learning/ 폴더에 학습 데이터 축적
+```
 
-## 6. 상세 조건 표
-
-### 6.1 플레이어 관련
-
-| 항목 | 값 | 비고 |
-|------|------|------|
-| 일반 전사 고용 비용 | 2원 (해금마다 +2원, MAX 10원) | |
-| 전사 총 고용 가능 수 | 26명 | |
-| 기지 1차 업그레이드 | 10원 | 전사 3명씩 고용 해금 + 화살탑 설치 가능 |
-| 기지 2차 업그레이드 | 80원 | 이후 앤드카드 |
-| 대장간 비용 | 50원 | 장비 6개/회, 최대 4회 |
-| 화살탑(수비탑) 비용 | 1·2차: 5원 / 3·4·5·6차: 30원 | |
-
-### 6.2 적 관련
-
-| 항목 | 업그레이드 전 | 업그레이드 후 | 드롭 |
-|------|------|------|------|
-| 일반 적 HP | 4대 | 1대 | 1원 |
-| 큰 적 HP | 20대 | 5대 | 30원 |
-
-### 6.3 다이나믹 대응 요소
-
-- 플레이어 공격/이동 속도
-- 전사 공격/이동 속도
-- 카메라 뷰 조절
-- 앤드카드 등장 타이밍
-- 기지 HP (무한 ~ 피격 50번 이내)
-- 적 등장 수 / 리스폰 속도
-- 고용·건설·업그레이드 비용 등 상세 조건 표 전체
+**[6] Human Validator**가 이 시스템의 핵심 관문이다.
+human_state == validated 없이 done 처리되는 모듈은 존재하지 않는다.
 
 ---
 
-## 7. 아키텍처 철학
+## 5. 에이전트 역할 요약
 
-### 7.1 원칙
+| # | 역할 | 핵심 책임 | 코드 수정 권한 |
+|---|------|-----------|---------------|
+| 1 | **Feature Intake** | 사용자 요청 → FEATURE_QUEUE 엔트리 | 없음 |
+| 2 | **Queue Generator** | 모듈 분해, TASK_QUEUE/REGISTRY 등록, Spec 생성 | 없음 |
+| 3 | **Orchestrator** | 의존성 그래프, Builder Pool 배정 | 없음 |
+| 4 | **Planner** | Spec 분석, PLAN 작성 | 없음 |
+| 5 | **Builder** | PLAN에 따라 모듈 코드 생성 | 자기 모듈 폴더만 |
+| 6 | **Human Validator** | Unity Validator 실행, 코드 수정 | 전체 (사람) |
+| 7 | **Reviewer** | 품질 검증, 아키텍처 적합성 판정 | 없음 |
+| 8 | **Committer** | 스테이징, 커밋, 재커밋 | 없음 (git만) |
+| 9 | **Learning Recorder** | 수정 이유 기록, 패턴 축적 | 학습 문서만 |
 
-- **SOLID** — 단일 책임, 개방-폐쇄, 리스코프 치환, 인터페이스 분리, 의존성 역전.
-- **의존성 주입** — 생성자/세터/ScriptableObject 등으로 주입, 하드코딩 지양.
-- **이벤트 기반 통신** — 필요한 객체끼리만 통신, 전역 이벤트 버스 사용 금지.
-- **느슨한 결합·높은 응집** — 모듈 간에는 인터페이스로만 의존, 모듈 내부는 응집도 유지.
-
-### 7.2 구조적 원칙
-
-- **MonoBehaviour는 얇게** — 뷰·바인딩·라이프사이클만, 로직은 서비스·런타임 클래스로 분리.
-- **네임스페이스** — `FortressSaga` 기준.
-- **ScriptableObject** — 적 스탯, 전사 스탯, 수비탑 설정, 업그레이드 비용, 웨이브 패턴 등 설정·데이터.
-- **자식만 참조** — 씬/프리팹에서 동일·상위 오브젝트 직접 참조 금지, **자식 오브젝트만** 참조.
-- **GC 최소화** — 코루틴·무명메서드·foreach·LINQ 사용 금지, 풀링·캐싱 우선.
-- **런타임 GetComponent 금지** — SerializeField 또는 에디터 타임 캐싱으로 대체.
+상세: `AGENT_ROLES.md` 참조.
 
 ---
 
-## 8. 폴더 구조 설명
+## 6. 아키텍처 원칙
+
+### 6.1 설계 원칙
+
+- **SOLID** — 단일 책임, 개방-폐쇄, 리스코프 치환, 인터페이스 분리, 의존성 역전
+- **모듈 격리** — 모듈 간 참조는 인터페이스만. 직접 Runtime 참조 금지
+- **의존성 주입** — 생성자/세터/ScriptableObject 등으로 주입. 하드코딩 지양
+- **이벤트 기반 통신** — 필요한 객체끼리만 통신. 전역 이벤트 버스 금지
+
+### 6.2 구조 원칙
+
+- **MonoBehaviour는 얇게** — Bootstrap/View만. 로직은 Runtime(순수 C#)으로
+- **GC 최소화** — 코루틴, 람다, LINQ, foreach, Invoke 전부 금지
+- **런타임 GetComponent 금지** — SerializeField 또는 에디터 타임 캐싱
+- **자식만 참조** — 동일/상위 오브젝트 직접 참조 금지
+- **매직넘버 금지** — const UPPER_SNAKE_CASE 사용
+
+### 6.3 모듈 구조
+
+모든 모듈은 6개 필수 파일로 구성된다:
+
+```
+Assets/Game/Modules/<Module>/
+├── I<Module>.cs          # 인터페이스 (공개 계약)
+├── <Module>Config.cs     # ScriptableObject (설정 데이터)
+├── <Module>Runtime.cs    # 순수 C# (비즈니스 로직)
+├── <Module>Factory.cs    # static class (생성/DI)
+├── <Module>Bootstrap.cs  # MonoBehaviour (씬 진입점, 얇게)
+└── Tests/Editor/
+    └── <Module>Tests.cs  # NUnit 테스트 (최소 2개)
+```
+
+상세: `MODULE_TEMPLATES.md`, `CODING_RULES.md` 참조.
+
+---
+
+## 7. 폴더 구조
 
 ```
 Assets/
-  Supercent/
-    FortressSaga/
-     Playable016/
-      Scripts/
-        Core/                    # 부트스트랩, 입력, 카메라, 세이브 (AI 비편집 권장)
-        Shared/                  # 공용 타입, 인터페이스, 상수, Enum
-        Modules/
-          GameManager/           # 게임 매니저, 플로우, 전체 시퀀스 제어
-          Mediators/             # 기능별 중재자
-          Economy/               # 코인 경제 (드롭, 줍기, 축적, 소비)
-          Player/                # 플레이어 이동, 자동 공격
-          Warriors/              # 전사 고용, 배치, 자동 전투, 장비 착용
-          Enemies/               # 적 스폰, 웨이브 패턴, 일반/큰 적, AI
-          DefenseTowers/         # 수비탑 건설, 인원 배치, 울타리/수비문
-          Fortress/              # 기지 HP, 업그레이드 (1차/2차)
-          Blacksmith/            # 대장간, 장비 소환, 전사 장비 배분
-          HireNodes/             # 고용 노드 UI/로직, 비용 관리
-          Pickups/               # 코인 드롭 줍기
-          Guide/                 # 화살표 가이드, 조건부 노출
-          DynamicConfig/         # 다이나믹 대응 설정값 관리
-          EndCard/               # 앤드카드 (딤드 + 로고 + CTA)
-          UI/                    # UI 관리, 코인 표시, CTA 버튼
-Docs/
+  Game/
+    Modules/           # AI가 생성하는 모듈 코드
+      Template/        # 참조용 템플릿 (수정 금지)
+      Economy/         # 생성된 모듈 예시
+      Player/
+      ...
+  Editor/
+    AI/                # 검증 시스템, 파이프라인 도구 (수정 금지)
+      Validators/      # 12+ 검증기
+      ...
+
+docs/
   ai/
-    PROJECT_OVERVIEW.md
-    CODING_RULES.md
-    MODULE_REGISTRY.yaml
+    PROJECT_OVERVIEW.md      # 이 문서
+    AGENT_ROLES.md           # 에이전트 역할 정의
+    ORCHESTRATION_RULES.md   # 오케스트레이션 규칙
+    CODING_RULES.md          # 코딩 규칙
+    MODULE_REGISTRY.yaml     # 모듈 레지스트리
+    MODULE_TEMPLATES.md      # 모듈 템플릿 가이드
+    TASK_QUEUE.yaml           # 태스크 큐
+    FEATURE_QUEUE.yaml        # 기능 큐
+    FEATURE_INTAKE.md         # 기능 입력 형식
+    COMMIT_RULES.md           # 커밋 규칙
+    KNOWN_FAILURE_PATTERNS.md # (레거시 → learning/ 으로 이전)
+    generated_specs/          # 모듈 명세서
+    plans/                    # 구현 계획서
+    reviews/                  # 검증 보고서
+    commit_logs/              # 커밋 로그
+    learning/                 # 학습 메모리 시스템
+      LEARNING_INDEX.md       #   진입점 (에이전트 Quick-Start)
+      RULE_MEMORY.yaml        #   규칙 저장소 (기계 판독용)
+      LEARNING_LOG.md         #   시간순 이벤트 로그
+      VALIDATOR_FAILURE_PATTERNS.md  # Validator별 실패 패턴 사전
+      CODING_PATTERNS.md      #   BAD/GOOD 코드 패턴
+      HUMAN_FIX_EXAMPLES.md   #   Before/After 사람 수정 사례
+      CROSS_PROJECT_RULES.md  #   프로젝트 간 재사용 규칙
+      RECURRING_MISTAKES.md   #   반복 AI 실수 패턴
 ```
 
-모듈별 경로·의존성·편집 가능 여부·설정값 요약은 `MODULE_REGISTRY.yaml`에서 관리한다.
+---
+
+## 8. Human-in-the-Loop: 왜 필수인가
+
+### AI만으로 안 되는 이유
+
+1. **Unity 컴파일은 Unity Editor에서만 가능하다** — AI는 실제 컴파일 결과를 알 수 없다.
+2. **씬/프리팹 연결은 사람이 확인해야 한다** — SerializeField 바인딩, 프리팹 참조 등.
+3. **게임 "느낌"은 사람만 판단할 수 있다** — 연출, 타이밍, 밸런스.
+4. **AI는 같은 실수를 반복한다** — 학습 없이는 동일 패턴의 에러를 계속 만든다.
+
+### 사람이 개입하는 지점
+
+| 단계 | 사람의 역할 |
+|------|------------|
+| 기능 요청 | 기획 의도 전달 |
+| Validator 실행 | Unity Editor에서 `Tools/AI/Validate Generated Modules` 실행 |
+| 코드 수정 | 생성 코드의 컴파일 에러, 로직 오류, 스타일 수정 |
+| 수정 이유 기록 | 왜 고쳤는지를 LEARNING_LOG에 기록 |
+| 최종 승인 | Reviewer 결과 확인 후 커밋 승인 |
+
+### 사람이 하지 않는 것
+
+- TASK_QUEUE 상태 전이 (자동)
+- 재검증 실행 (Reviewer가 수행)
+- 재커밋 (Committer가 수행)
+- 학습 데이터 구조화 (Learning Recorder가 수행)
+
+---
+
+## 9. 학습 시스템 개요
+
+### 9.1 학습 데이터 소스
+
+| 소스 | 데이터 |
+|------|--------|
+| Validator 실패 | 에러 유형, 파일, 검증기 이름 |
+| 사람 수정 | 변경 전/후, 수정 이유(rationale) |
+| Reviewer 보고서 | blocked 사유, 반복 위반 패턴 |
+| 재커밋 이력 | 몇 번 만에 통과했는지, 어떤 수정이 필요했는지 |
+
+### 9.2 학습 데이터 저장소
+
+진입점: `learning/LEARNING_INDEX.md`
+
+| 파일 | 용도 | 형식 |
+|------|------|------|
+| `learning/RULE_MEMORY.yaml` | 핵심 규칙 저장소 | YAML (기계 판독용) |
+| `learning/LEARNING_LOG.md` | 시간순 학습 이벤트 로그 | Markdown + YAML |
+| `learning/VALIDATOR_FAILURE_PATTERNS.md` | 12 Validator별 실패 패턴 사전 | 테이블 |
+| `learning/CODING_PATTERNS.md` | BAD/GOOD 코드 패턴 | 코드 예시 |
+| `learning/HUMAN_FIX_EXAMPLES.md` | Before/After 사람 수정 사례 | 코드 예시 |
+| `learning/CROSS_PROJECT_RULES.md` | 프로젝트 간 재사용 규칙 (scope: global) | 자연어 |
+| `learning/RECURRING_MISTAKES.md` | 3회 이상 반복 AI 실수 패턴 | 구조화 설명 |
+
+### 9.3 학습 활용
+
+- **Planner**: `RULE_MEMORY.yaml` + `RECURRING_MISTAKES.md`를 읽고 PLAN에 "회피할 규칙" 반영
+- **Builder**: `CODING_PATTERNS.md` + `HUMAN_FIX_EXAMPLES.md` + `RULE_MEMORY.yaml`을 읽고 코드 생성
+- **Reviewer**: `VALIDATOR_FAILURE_PATTERNS.md`를 참조하여 알려진 패턴 집중 검증
+- **Learning Recorder**: 커밋 사이클 완료 시 `learning/` 전체 파일에 새 데이터 기록
+- 새 프로젝트 시작 시 `learning/` 폴더를 복사하여 사전 학습 컨텍스트로 사용한다.
+
+---
+
+## 10. 수정 금지 영역
+
+| 영역 | 이유 |
+|------|------|
+| `Assets/Editor/AI/` | 검증 시스템 — 공유 인프라 |
+| `Assets/Game/Modules/Template/` | 참조용 템플릿 — 원본 보존 |
+| `.cursor/rules/` | Cursor 규칙 — 사용자만 수정 |
+
+---
+
+## 11. 관련 문서
+
+| 문서 | 내용 |
+|------|------|
+| `ORCHESTRATION_RULES.md` | **통합 오케스트레이션 명세** — 9역할 바톤 패스, 4차원 상태, I/O 계약 |
+| `AGENT_ROLES.md` | 9개 에이전트 역할 상세, 허용/금지 액션, 권한 매트릭스 |
+| `STATE_MACHINE.md` | 4차원 상태 전이 명세, 교차 조건, 복합 상태 매핑 |
+| `QUEUE_GENERATOR.md` | Queue Generator 분해/의존/위험 규칙, 전체 예시 |
+| `FEATURE_INTAKE.md` | Feature Intake 입력 형식, 자연어 변환 예시 |
+| `COMMIT_RULES.md` | 5 Gate, Staging Policy, Recommit, 커밋 메시지 규격 |
+| `CODING_RULES.md` | C#/Unity 코딩 규칙 |
+| `MODULE_TEMPLATES.md` | 모듈 템플릿 6파일 구조 |
+| `TASK_SCHEMA.md` | TASK_QUEUE.yaml 필드 정의, enum 값 |
+| `generated_specs/README.md` | Spec 출력 규격 |
+| `PROJECT_HANDOFF.md` | 핸드오프 문서 — 아키텍처 요약, 갭, 다음 작업 |

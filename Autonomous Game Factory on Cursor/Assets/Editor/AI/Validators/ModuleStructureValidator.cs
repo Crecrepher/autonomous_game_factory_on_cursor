@@ -8,7 +8,7 @@ namespace Game.Editor.AI
     public class ModuleStructureValidator : IModuleValidator
     {
         const string VALIDATOR_NAME = "ModuleStructure";
-        const string MODULE_REGISTRY_PATH = "Docs/ai/MODULE_REGISTRY.yaml";
+        const string MODULE_REGISTRY_PATH = "docs/ai/MODULE_REGISTRY.yaml";
 
         public int Validate(ValidationReport report)
         {

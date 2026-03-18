@@ -1,0 +1,95 @@
+# ── AGF Prompt OS — Default Execution Policy ──
+# 모든 파이프라인 실행에 자동으로 주입되는 안전 규칙.
+# 사용자가 명시적으로 override하지 않는 한 항상 적용된다.
+
+version: 1
+
+# ── 핵심 원칙 ──
+core_principles:
+  module_strategy_priority: [reuse, adapt, extend, wrap, create_new]
+  overwrite_policy: never_blindly_overwrite
+  truth_reporting: never_claim_done_unless_verified
+  human_gate: always_required
+  learning_flow: always_record
+
+# ── 모듈 생성 규칙 ──
+module_creation:
+  template: 6_file_template
+  required_files:
+    - I<Module>.cs
+    - <Module>Config.cs
+    - <Module>Runtime.cs
+    - <Module>Factory.cs
+    - <Module>Bootstrap.cs
+    - Tests/Editor/<Module>Tests.cs
+  runtime_rule: pure_csharp_no_monobehaviour
+  config_rule: scriptable_object_no_logic
+  factory_rule: static_class
+  bootstrap_rule: monobehaviour_thin_entry
+  namespace: Game
+  gc_forbidden: [coroutine, lambda, linq, foreach, invoke]
+  magic_numbers: forbidden_use_const
+
+# ── 큐/레지스트리 규칙 ──
+queue_rules:
+  append_only: true
+  never_modify_existing_entries: true
+  new_entries_status: pending
+  new_entries_human_state: none
+  new_entries_commit_state: none
+  feature_group_required: true
+
+# ── 검증 규칙 ──
+validation_rules:
+  validator_count: 19
+  blocking_validators:
+    - PipelineTruth
+    - ModuleReuseIntegrity
+    - RegressionGuardian
+    - ArchitectureDiff
+  must_pass_before_commit: true
+  false_pass_forbidden: true
+
+# ── 커밋 규칙 ──
+commit_rules:
+  gates: 7
+  required_gates:
+    - reviewer_gate
+    - human_gate
+    - learning_gate
+    - completeness_gate
+    - scope_gate
+    - regression_gate
+    - arch_diff_gate
+  force_push: forbidden
+  auto_commit: forbidden
+
+# ── 코드 변경 규칙 ──
+code_change_rules:
+  core_module_edit: forbidden_unless_explicit
+  scene_changes: minimal_localized
+  prefab_changes: prefer_new_over_modify
+  legacy_code: never_auto_delete
+  legacy_code_migration: incremental_adapter_first
+
+# ── 컨텍스트 자동 로딩 ──
+auto_context_always:
+  - docs/ai/PROJECT_OVERVIEW.md
+  - docs/ai/CODING_RULES.md
+
+# ── 안전 수준별 확인 요구사항 ──
+safety_levels:
+  safe:
+    confirmation_required: false
+    can_modify_files: false
+    description: "분석/읽기만. 파일 변경 없음."
+  guarded:
+    confirmation_required: false
+    can_modify_files: true
+    overwrite_protection: true
+    description: "파일 생성/수정 가능하지만 기존 파일 덮어쓰기 보호."
+  dangerous:
+    confirmation_required: true
+    can_modify_files: true
+    requires_human_validation: true
+    description: "커밋/삭제 등 되돌리기 어려운 작업. 명시적 확인 필수."

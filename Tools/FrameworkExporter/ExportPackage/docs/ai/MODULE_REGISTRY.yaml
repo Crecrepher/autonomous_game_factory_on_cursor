@@ -1,0 +1,189 @@
+# 모듈 레지스트리 — Fortress Saga
+# editable: false → AI가 해당 모듈 코드 수정 금지 (문서만 참조)
+# risk: high/medium/low → 잘못 수정 시 영향도
+
+# ── 의존성 규칙 ──
+# - 모듈은 dependencies에 나열된 대상만 참조할 수 있다.
+# - dependencies에 사용 가능한 값:
+#     모듈 이름(name)  — 다른 모듈을 참조 (빌드 순서 + 참조 허용)
+#     "UnityEngine"    — UnityEngine.* 네임스페이스
+#     "System"         — System.* 네임스페이스
+# - 순환 의존 금지. (CircularDependencyValidator가 DFS로 감지)
+# - 코드의 using Game.<ModuleName> 문은 반드시 dependencies에 해당 모듈이 선언되어야 한다.
+#   (DependencyValidator가 자동 검증)
+# - TASK_QUEUE.yaml의 depends_on은 이 파일의 dependencies와 일치해야 한다.
+# - 새 모듈 추가 시 아래 필드를 반드시 작성한다:
+#     name, path, editable, risk, description, dependencies (, config_hint)
+# - 의존성 그래프는 DependencyGraphBuilder.cs가 빌드하며 토폴로지 정렬로 실행 순서를 결정한다.
+
+modules:
+  - name: Template
+    path: Assets/Game/Modules/Template
+    editable: true
+    risk: low
+    description: AI 생성용 표준 모듈 템플릿. 복사 후 모듈명·도메인에 맞게 수정.
+    dependencies: [UnityEngine]
+
+  - name: Economy
+    path: Assets/Game/Modules/Economy
+    editable: true
+    risk: medium
+    description: >
+      코인 경제 시스템. 재화 정의, 잔고 관리, 획득/소비 이벤트.
+      다수 모듈(Warriors, DefenseTowers, Fortress, Pickups, HireNodes, Blacksmith, UI, GameManager)의 의존 대상.
+    dependencies: [UnityEngine, System]
+    config_hint: starting balance, max balance
+
+  - name: StatusEffect
+    path: Assets/Game/Modules/StatusEffect
+    editable: true
+    risk: low
+    description: 상태이상 시스템(v1). 효과 정의·적용·틱·만료 관리. 외부 모듈 수정 없음.
+    dependencies: [UnityEngine, System]
+    config_hint: effect type, duration, tick interval, value per tick
+
+  - name: Player
+    path: Assets/Game/Modules/Player
+    editable: true
+    risk: medium
+    description: >
+      플레이어 이동, 자동 공격, 입력 처리.
+      GameManager에서 참조. DynamicConfig에서 속도 조절 가능.
+    dependencies: [UnityEngine, System]
+    config_hint: move speed, attack speed, attack damage, attack range
+
+  - name: Enemies
+    path: Assets/Game/Modules/Enemies
+    editable: true
+    risk: medium
+    description: >
+      적 스폰, 웨이브 패턴, 일반/큰 적 AI, HP 관리.
+      Pickups에서 드롭 코인량 참조, GameManager에서 웨이브 제어.
+    dependencies: [UnityEngine, System]
+    config_hint: normal/big enemy hp, coin drop, spawn interval, max alive
+
+  - name: Guide
+    path: Assets/Game/Modules/Guide
+    editable: true
+    risk: low
+    description: 화살표 가이드, 조건부 노출, 유저 유도 시스템.
+    dependencies: [UnityEngine, System]
+    config_hint: max active guides
+
+  - name: DynamicConfig
+    path: Assets/Game/Modules/DynamicConfig
+    editable: true
+    risk: low
+    description: >
+      다이나믹 대응 설정값 관리. 런타임 밸런스 조절.
+      키-값 기반으로 각 모듈의 속도/비용/HP 등을 동적으로 변경.
+    dependencies: [UnityEngine, System]
+    config_hint: max entries
+
+  - name: BuffIconUI
+    path: Assets/Game/Modules/BuffIconUI
+    editable: true
+    risk: low
+    description: 상태이상 아이콘 UI 표시. StatusEffect 모듈에 의존.
+    dependencies: [UnityEngine, System, StatusEffect]
+    config_hint: max icons
+
+  - name: Warriors
+    path: Assets/Game/Modules/Warriors
+    editable: true
+    risk: medium
+    description: >
+      전사 고용, 배치, 자동 전투, 장비 착용.
+      Economy에서 고용 비용 차감. HireNodes, Blacksmith에서 참조.
+    dependencies: [UnityEngine, System, Economy]
+    config_hint: max warriors, hire cost base/increment/max, attack/move speed
+
+  - name: DefenseTowers
+    path: Assets/Game/Modules/DefenseTowers
+    editable: true
+    risk: medium
+    description: >
+      수비탑 건설, 인원 배치, 울타리/수비문.
+      Economy에서 건설 비용 차감. GameManager에서 참조.
+    dependencies: [UnityEngine, System, Economy]
+    config_hint: max towers, early/late cost, warriors per tower
+
+  - name: Fortress
+    path: Assets/Game/Modules/Fortress
+    editable: true
+    risk: medium
+    description: >
+      기지 HP, 1차/2차 업그레이드.
+      Economy에서 업그레이드 비용 차감. EndCard, GameManager에서 참조.
+    dependencies: [UnityEngine, System, Economy]
+    config_hint: max hp, upgrade level/cost
+
+  - name: Pickups
+    path: Assets/Game/Modules/Pickups
+    editable: true
+    risk: low
+    description: 코인 드롭 줍기, 자동 수집. Economy의 Add와 연동.
+    dependencies: [UnityEngine, System, Economy]
+    config_hint: max pending pickups, auto collect delay
+
+  - name: UI
+    path: Assets/Game/Modules/UI
+    editable: true
+    risk: low
+    description: UI 관리, 코인 표시, CTA 버튼. Economy의 OnBalanceChanged 구독.
+    dependencies: [UnityEngine, System, Economy]
+    config_hint: show coin on start
+
+  - name: HireNodes
+    path: Assets/Game/Modules/HireNodes
+    editable: true
+    risk: low
+    description: 고용 노드 UI/로직, 비용 관리, 일괄 고용. Economy·Warriors 의존.
+    dependencies: [UnityEngine, System, Economy, Warriors]
+    config_hint: max nodes, default batch hire count
+
+  - name: Blacksmith
+    path: Assets/Game/Modules/Blacksmith
+    editable: true
+    risk: low
+    description: 대장간, 장비 소환, 전사 장비 배분. Economy·Warriors 의존.
+    dependencies: [UnityEngine, System, Economy, Warriors]
+    config_hint: forge cost, max forge count, equipment per forge
+
+  - name: EndCard
+    path: Assets/Game/Modules/EndCard
+    editable: true
+    risk: low
+    description: 앤드카드 — 딤드 + 로고 + CTA 버튼. Fortress 의존.
+    dependencies: [UnityEngine, System, Fortress]
+    config_hint: dim alpha, fade in duration
+
+  - name: ItemStacking
+    path: Assets/Game/Modules/ItemStacking
+    editable: true
+    risk: low
+    description: >
+      아이템 스태킹/언스태킹 시스템. 고정 크기 배열 기반 스택.
+      Push/Pop/PopAll로 아이템 관리. 이벤트로 외부에 상태 통지.
+    dependencies: [UnityEngine, System]
+    config_hint: max stack size
+
+  - name: InventorySystem
+    path: Assets/Game/Modules/InventorySystem
+    editable: true
+    risk: low
+    description: >
+      슬롯 기반 인벤토리 시스템. ItemStacking을 슬롯 단위 스택으로 재사용.
+      Add/Remove/Query/Has/GetCount API. 오버플로우 핸들링.
+    dependencies: [UnityEngine, System, ItemStacking]
+    config_hint: max slots, max stack size per slot
+
+  - name: GameManager
+    path: Assets/Game/Modules/GameManager
+    editable: true
+    risk: high
+    description: >
+      게임 매니저, 전체 시퀀스/플로우 제어.
+      Player, Enemies, Economy, Warriors, DefenseTowers, Fortress 의존.
+    dependencies: [UnityEngine, System, Player, Enemies, Economy, Warriors, DefenseTowers, Fortress]
+    config_hint: total phases

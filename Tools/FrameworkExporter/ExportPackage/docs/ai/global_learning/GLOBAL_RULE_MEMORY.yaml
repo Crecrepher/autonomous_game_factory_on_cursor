@@ -1,0 +1,66 @@
+# Global Rule Memory — Cross-Project Intelligence
+# 프로젝트 간 공유되는 검증된 규칙.
+
+version: "1.0"
+last_updated: "2026-03-18"
+
+rules:
+  - id: GR-001
+    name: RuntimePureCSharp
+    description: "Runtime 클래스는 MonoBehaviour 상속 금지. 순수 C#만."
+    source_project: luna_lumberchopper
+    category: architecture
+    severity: critical
+    validator: ArchitectureRuleValidator
+    reinforcement_count: 1
+    applicable_to: all_projects
+
+  - id: GR-002
+    name: NoGCInGameLoop
+    description: "foreach, LINQ, 코루틴, 람다, Invoke 사용 금지."
+    source_project: luna_lumberchopper
+    category: performance
+    severity: critical
+    validator: CodingStyleValidator
+    reinforcement_count: 1
+    applicable_to: all_projects
+
+  - id: GR-003
+    name: SixFileModule
+    description: "모든 모듈은 I<M>, Config, Runtime, Factory, Bootstrap, Tests 6파일 구성."
+    source_project: luna_lumberchopper
+    category: structure
+    severity: high
+    validator: ModuleStructureValidator
+    reinforcement_count: 1
+    applicable_to: all_projects
+
+  - id: GR-004
+    name: InterfaceOnlyCommunication
+    description: "모듈 간 통신은 인터페이스(I<Module>)를 통해서만."
+    source_project: luna_lumberchopper
+    category: architecture
+    severity: high
+    validator: ModuleBoundaryValidator
+    reinforcement_count: 1
+    applicable_to: all_projects
+
+  - id: GR-005
+    name: NoCyclicDependency
+    description: "모듈 간 순환 의존 절대 금지."
+    source_project: luna_lumberchopper
+    category: dependency
+    severity: critical
+    validator: CircularDependencyValidator
+    reinforcement_count: 1
+    applicable_to: all_projects
+
+  - id: GR-006
+    name: ConfigSourceOfTruth
+    description: "공유 설정값은 단일 모듈 Config에서만 정의."
+    source_project: luna_lumberchopper
+    category: data
+    severity: high
+    validator: ConfigConflictValidator
+    reinforcement_count: 1
+    applicable_to: all_projects
