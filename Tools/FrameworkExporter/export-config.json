@@ -1,5 +1,5 @@
 {
-  "sourceRoot": "../../unity_project/playable_ow/playable_ow",
+  "sourceRoot": "auto",
   "exportRoot": "./ExportPackage",
   "dryRun": false,
   "exportMode": "Framework",
@@ -10,8 +10,6 @@
     "Assets/Game/Modules/Template"
   ],
   "gameplayModulePaths": [
-    "Assets/Projects/FortressSaga/Playable016/Scripts",
-    "Assets/Projects/FortressSaga/Playable016/Data",
     "Assets/Game/Modules"
   ],
   "additionalAllowedPaths": [],

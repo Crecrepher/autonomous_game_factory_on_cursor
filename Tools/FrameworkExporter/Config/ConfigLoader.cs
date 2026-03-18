@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text.Json;
 
 namespace FrameworkExporter.Config
@@ -5,6 +6,9 @@ namespace FrameworkExporter.Config
     public static class ConfigLoader
     {
         const string DEFAULT_CONFIG_NAME = "export-config.json";
+        const string AUTO_SOURCE = "auto";
+        const string UNITY_PROJECT_DIR = "unity_project";
+        const string UNITY_ASSETS_DIR = "Assets";
 
         static readonly JsonSerializerOptions _jsonOptions = new()
         {
@@ -36,14 +40,71 @@ namespace FrameworkExporter.Config
             if (config == null)
                 throw new InvalidOperationException($"Failed to deserialize config from '{configPath}'.");
 
+            if (IsAutoSource(config.SourceRoot))
+            {
+                string resolved = ResolveUnityProjectRoot();
+                Console.WriteLine($"[AUTO] Resolved Unity project: '{resolved}'");
+                config.SourceRoot = resolved;
+            }
+
             return config;
+        }
+
+        static bool IsAutoSource(string sourceRoot)
+        {
+            return string.IsNullOrWhiteSpace(sourceRoot)
+                || string.Equals(sourceRoot, AUTO_SOURCE, StringComparison.OrdinalIgnoreCase)
+                || string.Equals(sourceRoot, ".", StringComparison.Ordinal);
+        }
+
+        static string ResolveUnityProjectRoot()
+        {
+            string gitRoot = FindGitRoot();
+            if (gitRoot == null)
+                throw new InvalidOperationException("Cannot auto-detect: not inside a git repository. Set sourceRoot explicitly.");
+
+            string unityProjectDir = Path.Combine(gitRoot, UNITY_PROJECT_DIR);
+            if (!Directory.Exists(unityProjectDir))
+                throw new DirectoryNotFoundException($"Cannot auto-detect: '{UNITY_PROJECT_DIR}/' not found under git root '{gitRoot}'.");
+
+            string[] candidates = Directory.GetDirectories(unityProjectDir);
+            for (int i = 0; i < candidates.Length; i++)
+            {
+                string assetsPath = Path.Combine(candidates[i], UNITY_ASSETS_DIR);
+                if (Directory.Exists(assetsPath))
+                    return candidates[i];
+            }
+
+            throw new DirectoryNotFoundException(
+                $"Cannot auto-detect: no Unity project (with Assets/ folder) found under '{unityProjectDir}'.");
+        }
+
+        static string FindGitRoot()
+        {
+            ProcessStartInfo psi = new()
+            {
+                FileName = "git",
+                Arguments = "rev-parse --show-toplevel",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            using Process process = Process.Start(psi);
+            if (process == null)
+                return null;
+
+            string output = process.StandardOutput.ReadToEnd().Trim();
+            process.WaitForExit();
+            return process.ExitCode == 0 ? output : null;
         }
 
         public static ExportConfig CreateDefault()
         {
             return new ExportConfig
             {
-                SourceRoot = ".",
+                SourceRoot = AUTO_SOURCE,
                 ExportRoot = "./ExportPackage",
                 DryRun = false,
                 ExportMode = EExportMode.Framework,
@@ -56,8 +117,6 @@ namespace FrameworkExporter.Config
                 },
                 GameplayModulePaths = new[]
                 {
-                    "Assets/Projects/FortressSaga/Playable016/Scripts",
-                    "Assets/Projects/FortressSaga/Playable016/Data",
                     "Assets/Game/Modules"
                 },
                 AdditionalAllowedPaths = Array.Empty<string>(),

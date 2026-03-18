@@ -33,7 +33,11 @@ namespace Game.Editor.AI
                 new ForbiddenFolderValidator(),
                 new ModuleStructureValidator(),
                 new ModuleBoundaryValidator(),
-                new ArchitectureRuleValidator()
+                new ArchitectureRuleValidator(),
+                new CodingStyleValidator(),
+                new PerformanceValidator(),
+                new ArchitecturePatternValidator(),
+                new StringAndAnimatorValidator()
             };
             for (int i = 0; i < validators.Length; i++)
             {

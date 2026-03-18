@@ -300,7 +300,7 @@ namespace FrameworkExporter
             Console.WriteLine($"  {ARG_MODE} <mode>         Export mode: framework | full");
             Console.WriteLine($"  {ARG_DRY_RUN}             Preview only, no files copied");
             Console.WriteLine($"  {ARG_CHANGED_ONLY}        Only export git-changed files");
-            Console.WriteLine($"  {ARG_SOURCE} <path>       Override source root directory");
+            Console.WriteLine($"  {ARG_SOURCE} <path>       Override source root directory (default: auto-detect)");
             Console.WriteLine($"  {ARG_OUTPUT} <path>       Override export output directory");
             Console.WriteLine($"  {ARG_ALLOW} <path>        Add extra allowed path (repeatable)");
             Console.WriteLine($"  {ARG_YES}                 Skip confirmation prompt");

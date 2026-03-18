@@ -39,7 +39,7 @@ namespace Game.Editor.AI
                 if (fileName.EndsWith("Runtime.cs") && RegexMonoBehaviour.IsMatch(content))
                     report.AddError(VALIDATOR_NAME, "Runtime file must not inherit MonoBehaviour: " + fileName, reportPath);
 
-                if (fileName.EndsWith("Config.cs") && !RegexScriptableObject.IsMatch(content))
+                if (fileName.EndsWith("Config.cs") && !fileName.StartsWith("I") && !RegexScriptableObject.IsMatch(content))
                     report.AddError(VALIDATOR_NAME, "Config file must inherit ScriptableObject: " + fileName, reportPath);
             }
 

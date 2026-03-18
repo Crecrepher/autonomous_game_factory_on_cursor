@@ -118,6 +118,9 @@ namespace Game.Editor.AI
 
         void CheckSuspiciousGameplayFile(string fileName, string moduleName, string reportPath, ValidationReport report)
         {
+            if (fileName == "I" + moduleName)
+                return;
+
             for (int i = 0; i < SUSPICIOUS_GAMEPLAY_SUFFIXES.Length; i++)
             {
                 string suffix = SUSPICIOUS_GAMEPLAY_SUFFIXES[i];

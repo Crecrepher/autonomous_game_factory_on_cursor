@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/supercent/autonomous_game_factory_on_cursor/Tools/FrameworkExporter/FrameworkExporter.csproj": {}
+    "/Users/supercent/luna_lumberchopper/Tools/FrameworkExporter/FrameworkExporter.csproj": {}
   },
   "projects": {
-    "/Users/supercent/autonomous_game_factory_on_cursor/Tools/FrameworkExporter/FrameworkExporter.csproj": {
+    "/Users/supercent/luna_lumberchopper/Tools/FrameworkExporter/FrameworkExporter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/supercent/autonomous_game_factory_on_cursor/Tools/FrameworkExporter/FrameworkExporter.csproj",
+        "projectUniqueName": "/Users/supercent/luna_lumberchopper/Tools/FrameworkExporter/FrameworkExporter.csproj",
         "projectName": "FrameworkExporter",
-        "projectPath": "/Users/supercent/autonomous_game_factory_on_cursor/Tools/FrameworkExporter/FrameworkExporter.csproj",
+        "projectPath": "/Users/supercent/luna_lumberchopper/Tools/FrameworkExporter/FrameworkExporter.csproj",
         "packagesPath": "/Users/supercent/.nuget/packages/",
-        "outputPath": "/Users/supercent/autonomous_game_factory_on_cursor/Tools/FrameworkExporter/obj/",
+        "outputPath": "/Users/supercent/luna_lumberchopper/Tools/FrameworkExporter/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/supercent/.nuget/NuGet/NuGet.Config"
