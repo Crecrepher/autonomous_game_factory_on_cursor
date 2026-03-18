@@ -25,7 +25,7 @@ modules:
   # ── 우선순위 HIGH: 핵심 시스템 (다른 모듈의 의존 대상) ──
 
   - name: Economy
-    status: pending
+    status: done
     priority: high
     owner: null
     role: null
@@ -34,7 +34,7 @@ modules:
     description: 코인 경제 시스템 — 재화 정의, 잔고 관리, 획득/소비 이벤트
 
   - name: Player
-    status: pending
+    status: done
     priority: high
     owner: null
     role: null
@@ -43,7 +43,7 @@ modules:
     description: 플레이어 이동, 자동 공격, 입력 처리
 
   - name: Enemies
-    status: pending
+    status: done
     priority: high
     owner: null
     role: null
@@ -65,7 +65,7 @@ modules:
   # ── 우선순위 MEDIUM: 핵심 의존 모듈 완료 후 병렬 가능 ──
 
   - name: Warriors
-    status: pending
+    status: done
     priority: medium
     owner: null
     role: null
@@ -74,7 +74,7 @@ modules:
     description: 전사 고용, 배치, 자동 전투, 장비 착용
 
   - name: DefenseTowers
-    status: pending
+    status: done
     priority: medium
     owner: null
     role: null
@@ -83,7 +83,7 @@ modules:
     description: 수비탑 건설, 인원 배치, 울타리/수비문
 
   - name: Fortress
-    status: pending
+    status: done
     priority: medium
     owner: null
     role: null
@@ -92,7 +92,7 @@ modules:
     description: 기지 HP, 1차/2차 업그레이드
 
   - name: Pickups
-    status: pending
+    status: done
     priority: medium
     owner: null
     role: null
@@ -101,7 +101,7 @@ modules:
     description: 코인 드롭 줍기, 자동 수집
 
   - name: HireNodes
-    status: pending
+    status: done
     priority: medium
     owner: null
     role: null
@@ -110,7 +110,7 @@ modules:
     description: 고용 노드 UI/로직, 비용 관리, 일괄 고용
 
   - name: Blacksmith
-    status: pending
+    status: done
     priority: medium
     owner: null
     role: null
@@ -121,7 +121,7 @@ modules:
   # ── 우선순위 MEDIUM: UI/연출 계열 ──
 
   - name: Guide
-    status: pending
+    status: done
     priority: medium
     owner: null
     role: null
@@ -130,7 +130,7 @@ modules:
     description: 화살표 가이드, 조건부 노출, 유저 유도
 
   - name: DynamicConfig
-    status: pending
+    status: done
     priority: medium
     owner: null
     role: null
@@ -139,7 +139,7 @@ modules:
     description: 다이나믹 대응 설정값 관리 — 런타임 밸런스 조절
 
   - name: BuffIconUI
-    status: pending
+    status: done
     priority: medium
     owner: null
     role: null
@@ -150,7 +150,7 @@ modules:
   # ── 우선순위 LOW: 최종 단계 ──
 
   - name: EndCard
-    status: pending
+    status: done
     priority: low
     owner: null
     role: null
@@ -159,7 +159,7 @@ modules:
     description: 앤드카드 — 딤드 + 로고 + CTA 버튼
 
   - name: UI
-    status: pending
+    status: done
     priority: low
     owner: null
     role: null
@@ -168,7 +168,7 @@ modules:
     description: UI 관리, 코인 표시, CTA 버튼
 
   - name: GameManager
-    status: pending
+    status: done
     priority: low
     owner: null
     role: null
