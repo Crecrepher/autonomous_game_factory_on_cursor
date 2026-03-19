@@ -447,3 +447,142 @@ modules:
       매치-3 계열 게임에서 특수 블록(폭탄, 라인 클리어, 동일색 제거 등) 시스템으로 재사용 가능.
     dependencies: [UnityEngine, System, PuzzleBlock, PuzzleBoard]
     config_hint: bomb threshold, same color threshold, bomb radius, effect durations
+
+  # ══════════════════════════════════════════════════════════════
+  # [Playable002] — P002 전용 모듈
+  # ══════════════════════════════════════════════════════════════
+
+  - name: P002_GameConfig
+    path: Assets/Game/Modules/P002_GameConfig
+    editable: true
+    risk: low
+    dimension: both
+    genre_tags: [universal]
+    description: Playable002 게임 밸런스 설정
+    dependencies: []
+
+  - name: P002_GameEvents
+    path: Assets/Game/Modules/P002_GameEvents
+    editable: true
+    risk: low
+    dimension: both
+    genre_tags: [universal]
+    description: Playable002 이벤트 시스템
+    dependencies: []
+
+  - name: P002_BattleCharacter
+    path: Assets/Game/Modules/P002_BattleCharacter
+    editable: true
+    risk: low
+    dimension: both
+    genre_tags: [universal]
+    description: Playable002 캐릭터 모델+스킬게이지
+    dependencies: [P002_GameConfig, P002_GameEvents]
+
+  - name: P002_BattleMonster
+    path: Assets/Game/Modules/P002_BattleMonster
+    editable: true
+    risk: low
+    dimension: both
+    genre_tags: [universal]
+    description: Playable002 몬스터 HP+데미지
+    dependencies: [P002_GameConfig, P002_GameEvents]
+
+  - name: P002_SkillSystem
+    path: Assets/Game/Modules/P002_SkillSystem
+    editable: true
+    risk: medium
+    dimension: both
+    genre_tags: [universal]
+    description: Playable002 스킬 시스템
+    dependencies: [P002_BattleCharacter, P002_BattleMonster, P002_GameConfig, P002_GameEvents]
+
+  - name: P002_PuzzleCore
+    path: Assets/Game/Modules/P002_PuzzleCore
+    editable: true
+    risk: medium
+    dimension: 2d
+    genre_tags: [match3, puzzle]
+    description: Playable002 퍼즐 엔진
+    dependencies: [P002_GameConfig, P002_GameEvents]
+
+  - name: P002_EndCard
+    path: Assets/Game/Modules/P002_EndCard
+    editable: true
+    risk: low
+    dimension: both
+    genre_tags: [universal]
+    description: Playable002 엔드카드
+    dependencies: [P002_GameEvents]
+
+  - name: P002_GameSound
+    path: Assets/Game/Modules/P002_GameSound
+    editable: true
+    risk: low
+    dimension: both
+    genre_tags: [universal]
+    description: Playable002 사운드 이벤트
+    dependencies: [P002_GameEvents]
+
+  - name: P002_PuzzleView
+    path: Assets/Game/Modules/P002_PuzzleView
+    editable: true
+    risk: low
+    dimension: 2d
+    genre_tags: [universal]
+    description: Playable002 퍼즐 뷰 상태
+    dependencies: [P002_PuzzleCore]
+
+  - name: P002_BattleCharacterView
+    path: Assets/Game/Modules/P002_BattleCharacterView
+    editable: true
+    risk: low
+    dimension: 2d
+    genre_tags: [universal]
+    description: Playable002 캐릭터 뷰
+    dependencies: [P002_BattleCharacter]
+
+  - name: P002_BattleMonsterView
+    path: Assets/Game/Modules/P002_BattleMonsterView
+    editable: true
+    risk: low
+    dimension: 2d
+    genre_tags: [universal]
+    description: Playable002 몬스터 뷰
+    dependencies: [P002_BattleMonster]
+
+  - name: P002_InputGuide
+    path: Assets/Game/Modules/P002_InputGuide
+    editable: true
+    risk: low
+    dimension: 2d
+    genre_tags: [universal]
+    description: Playable002 입력 가이드
+    dependencies: [P002_PuzzleCore, P002_BattleCharacterView, P002_GameConfig, P002_GameEvents]
+
+  - name: P002_BattleEffect
+    path: Assets/Game/Modules/P002_BattleEffect
+    editable: true
+    risk: medium
+    dimension: 2d
+    genre_tags: [universal]
+    description: Playable002 전투 이펙트
+    dependencies: [P002_BattleCharacterView, P002_BattleMonsterView, P002_GameEvents]
+
+  - name: P002_GameFlow
+    path: Assets/Game/Modules/P002_GameFlow
+    editable: true
+    risk: medium
+    dimension: both
+    genre_tags: [universal]
+    description: Playable002 게임 플로우
+    dependencies: [P002_PuzzleCore, P002_BattleCharacter, P002_BattleMonster, P002_SkillSystem, P002_GameConfig, P002_GameEvents]
+
+  - name: P002_Utils
+    path: Assets/Game/Shared/P002_Utils
+    editable: true
+    risk: low
+    dimension: both
+    genre_tags: [universal]
+    description: Playable002 유틸리티
+    dependencies: []

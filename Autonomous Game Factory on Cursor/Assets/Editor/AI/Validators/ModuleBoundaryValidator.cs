@@ -70,21 +70,48 @@ namespace Game.Editor.AI
 
         static bool IsAllowedRootFile(string fileNameWithoutExt, string moduleName)
         {
-            if (fileNameWithoutExt == "I" + moduleName)
-                return true;
-            if (fileNameWithoutExt == moduleName + "Config")
-                return true;
-            if (fileNameWithoutExt == moduleName + "Runtime")
-                return true;
-            if (fileNameWithoutExt == moduleName + "Factory")
-                return true;
-            if (fileNameWithoutExt == moduleName + "Instance")
-                return true;
-            if (fileNameWithoutExt == moduleName + "Bootstrap")
-                return true;
-            if (fileNameWithoutExt.StartsWith("E" + moduleName))
+            if (IsAllowedForName(fileNameWithoutExt, moduleName))
                 return true;
 
+            string compactName = moduleName.Replace("_", "");
+            if (compactName != moduleName && IsAllowedForName(fileNameWithoutExt, compactName))
+                return true;
+
+            string modulePrefix = ExtractModulePrefix(moduleName);
+            if (modulePrefix != null)
+            {
+                if (fileNameWithoutExt.StartsWith("E" + modulePrefix)
+                    || fileNameWithoutExt.StartsWith(modulePrefix))
+                    return true;
+            }
+
+            return false;
+        }
+
+        static string ExtractModulePrefix(string moduleName)
+        {
+            int idx = moduleName.IndexOf('_');
+            if (idx > 0 && idx < moduleName.Length - 1)
+                return moduleName.Substring(0, idx);
+            return null;
+        }
+
+        static bool IsAllowedForName(string fileNameWithoutExt, string name)
+        {
+            if (fileNameWithoutExt == "I" + name)
+                return true;
+            if (fileNameWithoutExt == name + "Config")
+                return true;
+            if (fileNameWithoutExt == name + "Runtime")
+                return true;
+            if (fileNameWithoutExt == name + "Factory")
+                return true;
+            if (fileNameWithoutExt == name + "Instance")
+                return true;
+            if (fileNameWithoutExt == name + "Bootstrap")
+                return true;
+            if (fileNameWithoutExt.StartsWith("E" + name))
+                return true;
             return false;
         }
 
@@ -118,13 +145,14 @@ namespace Game.Editor.AI
 
         void CheckSuspiciousGameplayFile(string fileName, string moduleName, string reportPath, ValidationReport report)
         {
-            if (fileName == "I" + moduleName)
+            string compactName = moduleName.Replace("_", "");
+            if (fileName == "I" + moduleName || fileName == "I" + compactName)
                 return;
 
             for (int i = 0; i < SUSPICIOUS_GAMEPLAY_SUFFIXES.Length; i++)
             {
                 string suffix = SUSPICIOUS_GAMEPLAY_SUFFIXES[i];
-                if (fileName.EndsWith(suffix) && !fileName.StartsWith(moduleName))
+                if (fileName.EndsWith(suffix) && !fileName.StartsWith(moduleName) && !fileName.StartsWith(compactName))
                 {
                     report.AddWarning(VALIDATOR_NAME,
                         "Suspicious gameplay file '" + fileName + ".cs' in module '" + moduleName + "'. File name does not start with module name — might belong elsewhere.",

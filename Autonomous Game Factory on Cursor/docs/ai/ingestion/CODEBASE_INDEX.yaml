@@ -1,0 +1,413 @@
+# Codebase Index — MatchClash Playable002
+# 구조화된 인덱스 (기계 판독용)
+
+scan_date: "2026-03-19"
+scan_target: Assets/Supercent/MatchClash/Playable002/Scripts/
+total_files: 49
+total_lines: 13122
+
+files:
+
+  # ── Core ──
+  - path: Core/GameFlowController.cs
+    lines: 1032
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.Core
+    drift: [GodClass, LogicInMonoBehaviour]
+    module_candidate: MC-09
+    depends_on: [Config, Events, Character.Controller, Character.Model, Character.View, Combat.Controller, Combat.View, Puzzle.Controller, Puzzle.Model, Puzzle.View, Skill, Sound, Input, VFX, EndCard, Utils]
+
+  - path: Core/GameSceneInitializer.cs
+    lines: 87
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.Core
+    drift: []
+    module_candidate: MC-09
+    depends_on: [Config, Events]
+
+  - path: Core/StageController.cs
+    lines: 76
+    type: PureCSharp
+    namespace: Supercent.MatchClash.Playable002.Core
+    drift: []
+    module_candidate: MC-09
+    depends_on: [Combat.Controller, Config, Events]
+
+  # ── Config ──
+  - path: Config/GameBalanceConfig.cs
+    lines: 160
+    type: ScriptableObject
+    namespace: Supercent.MatchClash.Playable002.Config
+    drift: []
+    module_candidate: MC-10
+    depends_on: []
+
+  # ── Events ──
+  - path: Events/GameEvents.cs
+    lines: 219
+    type: StaticUtility
+    namespace: Supercent.MatchClash.Playable002.Events
+    drift: [GlobalStaticState]
+    module_candidate: MC-11
+    depends_on: []
+
+  # ── Character ──
+  - path: Character/Controller/CharacterController.cs
+    lines: 143
+    type: PureCSharp
+    namespace: Supercent.MatchClash.Playable002.Character.Controller
+    drift: []
+    module_candidate: MC-03
+    depends_on: [Character.Model, Character.View, Config, Events]
+
+  - path: Character/Controller/SkillGauge.cs
+    lines: 80
+    type: PureCSharp
+    namespace: Supercent.MatchClash.Playable002.Character.Controller
+    drift: []
+    module_candidate: MC-03
+    depends_on: [Character.Model, Config, Events]
+
+  - path: Character/Model/CharacterModel.cs
+    lines: 75
+    type: PureCSharp
+    namespace: Supercent.MatchClash.Playable002.Character.Model
+    drift: []
+    module_candidate: MC-03
+    depends_on: []
+
+  - path: Character/Model/EWeaponType.cs
+    lines: 15
+    type: Enum
+    namespace: Supercent.MatchClash.Playable002.Character.Model
+    drift: []
+    module_candidate: MC-03
+    depends_on: []
+
+  - path: Character/View/CharacterView.cs
+    lines: 314
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.Character.View
+    drift: []
+    module_candidate: MC-04
+    depends_on: []
+
+  - path: Character/View/SkillAnimationPlayer.cs
+    lines: 65
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.Character.View
+    drift: []
+    module_candidate: MC-04
+    depends_on: []
+
+  # ── Combat ──
+  - path: Combat/Controller/CombatController.cs
+    lines: 150
+    type: PureCSharp
+    namespace: Supercent.MatchClash.Playable002.Combat.Controller
+    drift: []
+    module_candidate: MC-05
+    depends_on: [Combat.Model, Config, Events]
+
+  - path: Combat/Controller/DamageCalculator.cs
+    lines: 39
+    type: PureCSharp
+    namespace: Supercent.MatchClash.Playable002.Combat.Controller
+    drift: []
+    module_candidate: MC-05
+    depends_on: [Config]
+
+  - path: Combat/Model/MonsterModel.cs
+    lines: 68
+    type: PureCSharp
+    namespace: Supercent.MatchClash.Playable002.Combat.Model
+    drift: []
+    module_candidate: MC-05
+    depends_on: []
+
+  - path: Combat/View/CombatVFX.cs
+    lines: 1428
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.Combat.View
+    drift: [GodClass, LogicInMonoBehaviour]
+    module_candidate: MC-07
+    depends_on: [Character.View, Config, Events, Puzzle.Model, Utils, VFX]
+
+  - path: Combat/View/MonsterView.cs
+    lines: 803
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.Combat.View
+    drift: [GodClass]
+    module_candidate: MC-06
+    depends_on: []
+
+  - path: Combat/View/DamageText.cs
+    lines: 192
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.Combat.View
+    drift: []
+    module_candidate: MC-06
+    depends_on: []
+
+  # ── Puzzle ──
+  - path: Puzzle/Controller/PuzzleController.cs
+    lines: 273
+    type: PureCSharp
+    namespace: Supercent.MatchClash.Playable002.Puzzle.Controller
+    drift: []
+    module_candidate: MC-01
+    depends_on: [Config, Events, Puzzle.Model]
+
+  - path: Puzzle/Controller/PuzzleInputHandler.cs
+    lines: 299
+    type: PureCSharp
+    namespace: Supercent.MatchClash.Playable002.Puzzle.Controller
+    drift: []
+    module_candidate: MC-01
+    depends_on: [Config]
+
+  - path: Puzzle/Controller/PuzzleMatcher.cs
+    lines: 823
+    type: PureCSharp
+    namespace: Supercent.MatchClash.Playable002.Puzzle.Controller
+    drift: [GodClass]
+    module_candidate: MC-01
+    depends_on: [Puzzle.Model]
+
+  - path: Puzzle/Controller/PuzzleRefill.cs
+    lines: 229
+    type: PureCSharp
+    namespace: Supercent.MatchClash.Playable002.Puzzle.Controller
+    drift: []
+    module_candidate: MC-01
+    depends_on: [Puzzle.Model]
+
+  - path: Puzzle/Controller/SpecialBlockActivator.cs
+    lines: 310
+    type: PureCSharp
+    namespace: Supercent.MatchClash.Playable002.Puzzle.Controller
+    drift: []
+    module_candidate: MC-01
+    depends_on: [Puzzle.Model]
+
+  - path: Puzzle/Model/PuzzleBoard.cs
+    lines: 169
+    type: PureCSharp
+    namespace: Supercent.MatchClash.Playable002.Puzzle.Model
+    drift: []
+    module_candidate: MC-01
+    depends_on: []
+
+  - path: Puzzle/Model/BlockData.cs
+    lines: 57
+    type: Struct
+    namespace: Supercent.MatchClash.Playable002.Puzzle.Model
+    drift: []
+    module_candidate: MC-01
+    depends_on: []
+
+  - path: Puzzle/Model/MatchResult.cs
+    lines: 72
+    type: Struct
+    namespace: Supercent.MatchClash.Playable002.Puzzle.Model
+    drift: []
+    module_candidate: MC-01
+    depends_on: []
+
+  - path: Puzzle/Model/EBlockType.cs
+    lines: 23
+    type: Enum
+    namespace: Supercent.MatchClash.Playable002.Puzzle.Model
+    drift: []
+    module_candidate: MC-01
+    depends_on: []
+
+  - path: Puzzle/View/PuzzleBoardView.cs
+    lines: 1714
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.Puzzle.View
+    drift: [GodClass, LogicInMonoBehaviour]
+    module_candidate: MC-02
+    depends_on: []
+
+  - path: Puzzle/View/BlockView.cs
+    lines: 874
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.Puzzle.View
+    drift: [GodClass]
+    module_candidate: MC-02
+    depends_on: []
+
+  - path: Puzzle/View/PuzzleCameraAspectFitter.cs
+    lines: 87
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.Puzzle.View
+    drift: []
+    module_candidate: MC-02
+    depends_on: []
+
+  # ── Skill ──
+  - path: Skill/SkillController.cs
+    lines: 244
+    type: PureCSharp
+    namespace: Supercent.MatchClash.Playable002.Skill
+    drift: []
+    module_candidate: MC-08
+    depends_on: [Character.Controller, Character.Model, Config, Events]
+
+  - path: Skill/SkillExecutor.cs
+    lines: 88
+    type: PureCSharp
+    namespace: Supercent.MatchClash.Playable002.Skill
+    drift: []
+    module_candidate: MC-08
+    depends_on: [Combat.Controller, Events]
+
+  # ── Sound ──
+  - path: Sound/GameSoundController.cs
+    lines: 193
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.Sound
+    drift: []
+    module_candidate: MC-13
+    depends_on: [Events, Puzzle.Model]
+
+  # ── EndCard ──
+  - path: EndCard/EndCardController.cs
+    lines: 95
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.EndCard
+    drift: []
+    module_candidate: MC-14
+    depends_on: [Events]
+
+  # ── Input ──
+  - path: Input/InputGuideController.cs
+    lines: 557
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.Input
+    drift: [GodClass, LogicInMonoBehaviour]
+    module_candidate: MC-12
+    depends_on: [Config, Events, Puzzle.Controller, Character.View, Utils]
+
+  # ── VFX ──
+  - path: VFX/ProjectileEffect.cs
+    lines: 127
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.VFX
+    drift: []
+    module_candidate: MC-07
+    depends_on: []
+
+  - path: VFX/ManaProjectile.cs
+    lines: 170
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.VFX
+    drift: []
+    module_candidate: MC-07
+    depends_on: []
+
+  - path: VFX/SwordProjectile.cs
+    lines: 149
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.VFX
+    drift: []
+    module_candidate: MC-07
+    depends_on: []
+
+  - path: VFX/BombProjectile.cs
+    lines: 146
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.VFX
+    drift: []
+    module_candidate: MC-07
+    depends_on: []
+
+  - path: VFX/LightningProjectile.cs
+    lines: 461
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.VFX
+    drift: []
+    module_candidate: MC-07
+    depends_on: []
+
+  - path: VFX/HitEffect.cs
+    lines: 82
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.VFX
+    drift: []
+    module_candidate: MC-07
+    depends_on: []
+
+  - path: VFX/HitEffectPool.cs
+    lines: 105
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.VFX
+    drift: []
+    module_candidate: MC-07
+    depends_on: []
+
+  - path: VFX/BlockMatchParticle.cs
+    lines: 83
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.VFX
+    drift: []
+    module_candidate: MC-07
+    depends_on: []
+
+  - path: VFX/BlockMatchParticlePool.cs
+    lines: 109
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.VFX
+    drift: []
+    module_candidate: MC-07
+    depends_on: []
+
+  - path: VFX/CameraShake.cs
+    lines: 136
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.VFX
+    drift: []
+    module_candidate: MC-07
+    depends_on: [Events]
+
+  - path: VFX/VFXEventListener.cs
+    lines: 149
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.VFX
+    drift: []
+    module_candidate: MC-07
+    depends_on: [Character.View, Combat.View, Events]
+
+  - path: VFX/EProjectileType.cs
+    lines: 12
+    type: Enum
+    namespace: Supercent.MatchClash.Playable002.VFX
+    drift: []
+    module_candidate: MC-07
+    depends_on: []
+
+  - path: VFX/LightningDebugHelper.cs
+    lines: 69
+    type: MonoBehaviour
+    namespace: Supercent.MatchClash.Playable002.VFX
+    drift: []
+    module_candidate: MC-07
+    depends_on: []
+
+  # ── Utils ──
+  - path: Utils/CoordinateConverter.cs
+    lines: 148
+    type: PureCSharp
+    namespace: Supercent.MatchClash.Playable002.Utils
+    drift: []
+    module_candidate: MC-15
+    depends_on: []
+
+  - path: Utils/AutoBindHelper.cs
+    lines: 123
+    type: StaticUtility
+    namespace: Supercent.MatchClash.Playable002.Utils
+    drift: []
+    module_candidate: MC-15
+    depends_on: []

@@ -1,885 +1,849 @@
 {
-    "Timestamp": "2026-03-19T05:02:37.7600310Z",
-    "ScannedFileCount": 1344,
-    "ErrorCount": 0,
-    "WarningCount": 146,
-    "Passed": true,
+    "Timestamp": "2026-03-19T07:09:40.9464500Z",
+    "ScannedFileCount": 847,
+    "ErrorCount": 96,
+    "WarningCount": 44,
+    "Passed": false,
     "Entries": [
         {
-            "Message": "Instantiate detected — consider object pooling: BattleEffectBootstrap.cs",
-            "Path": "Game/Modules/BattleEffect/BattleEffectBootstrap.cs",
-            "Severity": "Warning",
-            "ValidatorName": "Performance"
+            "Message": "Script compilation has errors. Check Unity Console for details.",
+            "Path": "",
+            "Severity": "Error",
+            "ValidatorName": "CompileError"
         },
         {
-            "Message": "Instantiate detected — consider object pooling: PuzzleBoardBootstrap.cs",
-            "Path": "Game/Modules/PuzzleBoard/PuzzleBoardBootstrap.cs",
+            "Message": "Module folder missing: Assets/Game/Modules/DynamicConfig",
+            "Path": "Assets/Game/Modules/DynamicConfig",
             "Severity": "Warning",
-            "ValidatorName": "Performance"
+            "ValidatorName": "ModuleStructure"
         },
         {
-            "Message": "Config conflict: duplicate source-of-truth detected. InventorySystemConfig._maxStackSizePerSlot vs ItemStackingConfig._maxStackSize (similarity: 0.80). Preferred source: ItemStackingConfig",
-            "Path": "Assets/Game/Modules/InventorySystem/InventorySystemConfig.cs",
+            "Message": "Module folder missing: Assets/Game/Modules/StatusEffect",
+            "Path": "Assets/Game/Modules/StatusEffect",
             "Severity": "Warning",
-            "ValidatorName": "ConfigConflict"
+            "ValidatorName": "ModuleStructure"
         },
         {
-            "Message": "Config conflict: duplicate source-of-truth detected. PuzzleBoardConfig._destroyDuration vs PuzzleBlockConfig._destroyDuration (similarity: 1.00). Preferred source: PuzzleBlockConfig",
-            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
+            "Message": "Module folder missing: Assets/Game/Modules/Economy",
+            "Path": "Assets/Game/Modules/Economy",
             "Severity": "Warning",
-            "ValidatorName": "ConfigConflict"
+            "ValidatorName": "ModuleStructure"
         },
         {
-            "Message": "[empty_interface] IStatusEffect has no methods but 1 modules depend on it",
-            "Path": "StatusEffect",
+            "Message": "Module folder missing: Assets/Game/Modules/Pickups",
+            "Path": "Assets/Game/Modules/Pickups",
             "Severity": "Warning",
-            "ValidatorName": "RegressionGuardian"
+            "ValidatorName": "ModuleStructure"
         },
         {
-            "Message": "[empty_interface] IEconomy has no methods but 8 modules depend on it",
-            "Path": "Economy",
+            "Message": "Module folder missing: Assets/Game/Modules/Player",
+            "Path": "Assets/Game/Modules/Player",
             "Severity": "Warning",
-            "ValidatorName": "RegressionGuardian"
+            "ValidatorName": "ModuleStructure"
         },
         {
-            "Message": "[empty_interface] IPlayer has no methods but 1 modules depend on it",
-            "Path": "Player",
+            "Message": "Module folder missing: Assets/Game/Modules/Enemies",
+            "Path": "Assets/Game/Modules/Enemies",
             "Severity": "Warning",
-            "ValidatorName": "RegressionGuardian"
+            "ValidatorName": "ModuleStructure"
         },
         {
-            "Message": "[empty_interface] IEnemies has no methods but 1 modules depend on it",
-            "Path": "Enemies",
+            "Message": "Module folder missing: Assets/Game/Modules/Warriors",
+            "Path": "Assets/Game/Modules/Warriors",
             "Severity": "Warning",
-            "ValidatorName": "RegressionGuardian"
+            "ValidatorName": "ModuleStructure"
         },
         {
-            "Message": "[empty_interface] IWarriors has no methods but 2 modules depend on it",
-            "Path": "Warriors",
+            "Message": "Module folder missing: Assets/Game/Modules/DefenseTowers",
+            "Path": "Assets/Game/Modules/DefenseTowers",
             "Severity": "Warning",
-            "ValidatorName": "RegressionGuardian"
+            "ValidatorName": "ModuleStructure"
         },
         {
-            "Message": "[empty_interface] IItemStacking has no methods but 1 modules depend on it",
-            "Path": "ItemStacking",
+            "Message": "Module folder missing: Assets/Game/Modules/Fortress",
+            "Path": "Assets/Game/Modules/Fortress",
             "Severity": "Warning",
-            "ValidatorName": "RegressionGuardian"
+            "ValidatorName": "ModuleStructure"
         },
         {
-            "Message": "[empty_interface] IPuzzleBlock has no methods but 2 modules depend on it",
-            "Path": "PuzzleBlock",
+            "Message": "Module folder missing: Assets/Game/Modules/HireNodes",
+            "Path": "Assets/Game/Modules/HireNodes",
             "Severity": "Warning",
-            "ValidatorName": "RegressionGuardian"
+            "ValidatorName": "ModuleStructure"
         },
         {
-            "Message": "[empty_interface] IPuzzleBoard has no methods but 1 modules depend on it",
-            "Path": "PuzzleBoard",
+            "Message": "Module folder missing: Assets/Game/Modules/Blacksmith",
+            "Path": "Assets/Game/Modules/Blacksmith",
             "Severity": "Warning",
-            "ValidatorName": "RegressionGuardian"
+            "ValidatorName": "ModuleStructure"
         },
         {
-            "Message": "[empty_interface] IBattleCharacter has no methods but 1 modules depend on it",
-            "Path": "BattleCharacter",
+            "Message": "Module folder missing: Assets/Game/Modules/ItemStacking",
+            "Path": "Assets/Game/Modules/ItemStacking",
             "Severity": "Warning",
-            "ValidatorName": "RegressionGuardian"
+            "ValidatorName": "ModuleStructure"
         },
         {
-            "Message": "[empty_interface] IBattleMonster has no methods but 1 modules depend on it",
-            "Path": "BattleMonster",
+            "Message": "Module folder missing: Assets/Game/Modules/InventorySystem",
+            "Path": "Assets/Game/Modules/InventorySystem",
             "Severity": "Warning",
-            "ValidatorName": "RegressionGuardian"
+            "ValidatorName": "ModuleStructure"
         },
         {
-            "Message": "Responsibility duplication: BattleMonster and Blacksmith have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
-            "Path": "Assets/Game/Modules/BattleMonster/IBattleMonster.cs",
+            "Message": "Module folder missing: Assets/Game/Modules/Guide",
+            "Path": "Assets/Game/Modules/Guide",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleStructure"
+        },
+        {
+            "Message": "Module folder missing: Assets/Game/Modules/BuffIconUI",
+            "Path": "Assets/Game/Modules/BuffIconUI",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleStructure"
+        },
+        {
+            "Message": "Module folder missing: Assets/Game/Modules/UI",
+            "Path": "Assets/Game/Modules/UI",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleStructure"
+        },
+        {
+            "Message": "Module folder missing: Assets/Game/Modules/EndCard",
+            "Path": "Assets/Game/Modules/EndCard",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleStructure"
+        },
+        {
+            "Message": "Module folder missing: Assets/Game/Modules/GameManager",
+            "Path": "Assets/Game/Modules/GameManager",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleStructure"
+        },
+        {
+            "Message": "Module folder missing: Assets/Game/Modules/PuzzleBlock",
+            "Path": "Assets/Game/Modules/PuzzleBlock",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleStructure"
+        },
+        {
+            "Message": "Module folder missing: Assets/Game/Modules/PuzzleBoard",
+            "Path": "Assets/Game/Modules/PuzzleBoard",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleStructure"
+        },
+        {
+            "Message": "Module folder missing: Assets/Game/Modules/BattleCharacter",
+            "Path": "Assets/Game/Modules/BattleCharacter",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleStructure"
+        },
+        {
+            "Message": "Module folder missing: Assets/Game/Modules/BattleMonster",
+            "Path": "Assets/Game/Modules/BattleMonster",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleStructure"
+        },
+        {
+            "Message": "Module folder missing: Assets/Game/Modules/BattleEffect",
+            "Path": "Assets/Game/Modules/BattleEffect",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleStructure"
+        },
+        {
+            "Message": "Module folder missing: Assets/Game/Modules/MatchClashUI",
+            "Path": "Assets/Game/Modules/MatchClashUI",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleStructure"
+        },
+        {
+            "Message": "Module folder missing: Assets/Game/Modules/SpecialBlock",
+            "Path": "Assets/Game/Modules/SpecialBlock",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleStructure"
+        },
+        {
+            "Message": "Unrecognized file in module root: EP002WeaponType.cs (expected pattern: IP002_BattleCharacter / P002_BattleCharacterConfig / P002_BattleCharacterRuntime / P002_BattleCharacterFactory / P002_BattleCharacterInstance / EP002_BattleCharacter*)",
+            "Path": "Assets/Game/Modules/P002_BattleCharacter/EP002WeaponType.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: IP002BattleCharacter.cs (expected pattern: IP002_BattleCharacter / P002_BattleCharacterConfig / P002_BattleCharacterRuntime / P002_BattleCharacterFactory / P002_BattleCharacterInstance / EP002_BattleCharacter*)",
+            "Path": "Assets/Game/Modules/P002_BattleCharacter/IP002BattleCharacter.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleCharacterBootstrap.cs (expected pattern: IP002_BattleCharacter / P002_BattleCharacterConfig / P002_BattleCharacterRuntime / P002_BattleCharacterFactory / P002_BattleCharacterInstance / EP002_BattleCharacter*)",
+            "Path": "Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterBootstrap.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleCharacterConfig.cs (expected pattern: IP002_BattleCharacter / P002_BattleCharacterConfig / P002_BattleCharacterRuntime / P002_BattleCharacterFactory / P002_BattleCharacterInstance / EP002_BattleCharacter*)",
+            "Path": "Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterConfig.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleCharacterFactory.cs (expected pattern: IP002_BattleCharacter / P002_BattleCharacterConfig / P002_BattleCharacterRuntime / P002_BattleCharacterFactory / P002_BattleCharacterInstance / EP002_BattleCharacter*)",
+            "Path": "Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterFactory.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleCharacterRuntime.cs (expected pattern: IP002_BattleCharacter / P002_BattleCharacterConfig / P002_BattleCharacterRuntime / P002_BattleCharacterFactory / P002_BattleCharacterInstance / EP002_BattleCharacter*)",
+            "Path": "Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterRuntime.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: IP002BattleCharacterView.cs (expected pattern: IP002_BattleCharacterView / P002_BattleCharacterViewConfig / P002_BattleCharacterViewRuntime / P002_BattleCharacterViewFactory / P002_BattleCharacterViewInstance / EP002_BattleCharacterView*)",
+            "Path": "Assets/Game/Modules/P002_BattleCharacterView/IP002BattleCharacterView.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleCharacterViewBootstrap.cs (expected pattern: IP002_BattleCharacterView / P002_BattleCharacterViewConfig / P002_BattleCharacterViewRuntime / P002_BattleCharacterViewFactory / P002_BattleCharacterViewInstance / EP002_BattleCharacterView*)",
+            "Path": "Assets/Game/Modules/P002_BattleCharacterView/P002BattleCharacterViewBootstrap.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleCharacterViewConfig.cs (expected pattern: IP002_BattleCharacterView / P002_BattleCharacterViewConfig / P002_BattleCharacterViewRuntime / P002_BattleCharacterViewFactory / P002_BattleCharacterViewInstance / EP002_BattleCharacterView*)",
+            "Path": "Assets/Game/Modules/P002_BattleCharacterView/P002BattleCharacterViewConfig.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleCharacterViewFactory.cs (expected pattern: IP002_BattleCharacterView / P002_BattleCharacterViewConfig / P002_BattleCharacterViewRuntime / P002_BattleCharacterViewFactory / P002_BattleCharacterViewInstance / EP002_BattleCharacterView*)",
+            "Path": "Assets/Game/Modules/P002_BattleCharacterView/P002BattleCharacterViewFactory.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleCharacterViewRuntime.cs (expected pattern: IP002_BattleCharacterView / P002_BattleCharacterViewConfig / P002_BattleCharacterViewRuntime / P002_BattleCharacterViewFactory / P002_BattleCharacterViewInstance / EP002_BattleCharacterView*)",
+            "Path": "Assets/Game/Modules/P002_BattleCharacterView/P002BattleCharacterViewRuntime.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: EP002ProjectileType.cs (expected pattern: IP002_BattleEffect / P002_BattleEffectConfig / P002_BattleEffectRuntime / P002_BattleEffectFactory / P002_BattleEffectInstance / EP002_BattleEffect*)",
+            "Path": "Assets/Game/Modules/P002_BattleEffect/EP002ProjectileType.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: IP002BattleEffect.cs (expected pattern: IP002_BattleEffect / P002_BattleEffectConfig / P002_BattleEffectRuntime / P002_BattleEffectFactory / P002_BattleEffectInstance / EP002_BattleEffect*)",
+            "Path": "Assets/Game/Modules/P002_BattleEffect/IP002BattleEffect.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleEffectBootstrap.cs (expected pattern: IP002_BattleEffect / P002_BattleEffectConfig / P002_BattleEffectRuntime / P002_BattleEffectFactory / P002_BattleEffectInstance / EP002_BattleEffect*)",
+            "Path": "Assets/Game/Modules/P002_BattleEffect/P002BattleEffectBootstrap.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleEffectConfig.cs (expected pattern: IP002_BattleEffect / P002_BattleEffectConfig / P002_BattleEffectRuntime / P002_BattleEffectFactory / P002_BattleEffectInstance / EP002_BattleEffect*)",
+            "Path": "Assets/Game/Modules/P002_BattleEffect/P002BattleEffectConfig.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleEffectFactory.cs (expected pattern: IP002_BattleEffect / P002_BattleEffectConfig / P002_BattleEffectRuntime / P002_BattleEffectFactory / P002_BattleEffectInstance / EP002_BattleEffect*)",
+            "Path": "Assets/Game/Modules/P002_BattleEffect/P002BattleEffectFactory.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleEffectRuntime.cs (expected pattern: IP002_BattleEffect / P002_BattleEffectConfig / P002_BattleEffectRuntime / P002_BattleEffectFactory / P002_BattleEffectInstance / EP002_BattleEffect*)",
+            "Path": "Assets/Game/Modules/P002_BattleEffect/P002BattleEffectRuntime.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: IP002BattleMonster.cs (expected pattern: IP002_BattleMonster / P002_BattleMonsterConfig / P002_BattleMonsterRuntime / P002_BattleMonsterFactory / P002_BattleMonsterInstance / EP002_BattleMonster*)",
+            "Path": "Assets/Game/Modules/P002_BattleMonster/IP002BattleMonster.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleMonsterBootstrap.cs (expected pattern: IP002_BattleMonster / P002_BattleMonsterConfig / P002_BattleMonsterRuntime / P002_BattleMonsterFactory / P002_BattleMonsterInstance / EP002_BattleMonster*)",
+            "Path": "Assets/Game/Modules/P002_BattleMonster/P002BattleMonsterBootstrap.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleMonsterConfig.cs (expected pattern: IP002_BattleMonster / P002_BattleMonsterConfig / P002_BattleMonsterRuntime / P002_BattleMonsterFactory / P002_BattleMonsterInstance / EP002_BattleMonster*)",
+            "Path": "Assets/Game/Modules/P002_BattleMonster/P002BattleMonsterConfig.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleMonsterFactory.cs (expected pattern: IP002_BattleMonster / P002_BattleMonsterConfig / P002_BattleMonsterRuntime / P002_BattleMonsterFactory / P002_BattleMonsterInstance / EP002_BattleMonster*)",
+            "Path": "Assets/Game/Modules/P002_BattleMonster/P002BattleMonsterFactory.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleMonsterRuntime.cs (expected pattern: IP002_BattleMonster / P002_BattleMonsterConfig / P002_BattleMonsterRuntime / P002_BattleMonsterFactory / P002_BattleMonsterInstance / EP002_BattleMonster*)",
+            "Path": "Assets/Game/Modules/P002_BattleMonster/P002BattleMonsterRuntime.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: IP002BattleMonsterView.cs (expected pattern: IP002_BattleMonsterView / P002_BattleMonsterViewConfig / P002_BattleMonsterViewRuntime / P002_BattleMonsterViewFactory / P002_BattleMonsterViewInstance / EP002_BattleMonsterView*)",
+            "Path": "Assets/Game/Modules/P002_BattleMonsterView/IP002BattleMonsterView.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleMonsterViewBootstrap.cs (expected pattern: IP002_BattleMonsterView / P002_BattleMonsterViewConfig / P002_BattleMonsterViewRuntime / P002_BattleMonsterViewFactory / P002_BattleMonsterViewInstance / EP002_BattleMonsterView*)",
+            "Path": "Assets/Game/Modules/P002_BattleMonsterView/P002BattleMonsterViewBootstrap.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleMonsterViewConfig.cs (expected pattern: IP002_BattleMonsterView / P002_BattleMonsterViewConfig / P002_BattleMonsterViewRuntime / P002_BattleMonsterViewFactory / P002_BattleMonsterViewInstance / EP002_BattleMonsterView*)",
+            "Path": "Assets/Game/Modules/P002_BattleMonsterView/P002BattleMonsterViewConfig.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleMonsterViewFactory.cs (expected pattern: IP002_BattleMonsterView / P002_BattleMonsterViewConfig / P002_BattleMonsterViewRuntime / P002_BattleMonsterViewFactory / P002_BattleMonsterViewInstance / EP002_BattleMonsterView*)",
+            "Path": "Assets/Game/Modules/P002_BattleMonsterView/P002BattleMonsterViewFactory.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BattleMonsterViewRuntime.cs (expected pattern: IP002_BattleMonsterView / P002_BattleMonsterViewConfig / P002_BattleMonsterViewRuntime / P002_BattleMonsterViewFactory / P002_BattleMonsterViewInstance / EP002_BattleMonsterView*)",
+            "Path": "Assets/Game/Modules/P002_BattleMonsterView/P002BattleMonsterViewRuntime.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: IP002EndCard.cs (expected pattern: IP002_EndCard / P002_EndCardConfig / P002_EndCardRuntime / P002_EndCardFactory / P002_EndCardInstance / EP002_EndCard*)",
+            "Path": "Assets/Game/Modules/P002_EndCard/IP002EndCard.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002EndCardBootstrap.cs (expected pattern: IP002_EndCard / P002_EndCardConfig / P002_EndCardRuntime / P002_EndCardFactory / P002_EndCardInstance / EP002_EndCard*)",
+            "Path": "Assets/Game/Modules/P002_EndCard/P002EndCardBootstrap.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002EndCardConfig.cs (expected pattern: IP002_EndCard / P002_EndCardConfig / P002_EndCardRuntime / P002_EndCardFactory / P002_EndCardInstance / EP002_EndCard*)",
+            "Path": "Assets/Game/Modules/P002_EndCard/P002EndCardConfig.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002EndCardFactory.cs (expected pattern: IP002_EndCard / P002_EndCardConfig / P002_EndCardRuntime / P002_EndCardFactory / P002_EndCardInstance / EP002_EndCard*)",
+            "Path": "Assets/Game/Modules/P002_EndCard/P002EndCardFactory.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002EndCardRuntime.cs (expected pattern: IP002_EndCard / P002_EndCardConfig / P002_EndCardRuntime / P002_EndCardFactory / P002_EndCardInstance / EP002_EndCard*)",
+            "Path": "Assets/Game/Modules/P002_EndCard/P002EndCardRuntime.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: EP002PuzzleBoardSize.cs (expected pattern: IP002_GameConfig / P002_GameConfigConfig / P002_GameConfigRuntime / P002_GameConfigFactory / P002_GameConfigInstance / EP002_GameConfig*)",
+            "Path": "Assets/Game/Modules/P002_GameConfig/EP002PuzzleBoardSize.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: EP002SkillAttackMode.cs (expected pattern: IP002_GameConfig / P002_GameConfigConfig / P002_GameConfigRuntime / P002_GameConfigFactory / P002_GameConfigInstance / EP002_GameConfig*)",
+            "Path": "Assets/Game/Modules/P002_GameConfig/EP002SkillAttackMode.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: EP002SkillMode.cs (expected pattern: IP002_GameConfig / P002_GameConfigConfig / P002_GameConfigRuntime / P002_GameConfigFactory / P002_GameConfigInstance / EP002_GameConfig*)",
+            "Path": "Assets/Game/Modules/P002_GameConfig/EP002SkillMode.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: IP002GameConfig.cs (expected pattern: IP002_GameConfig / P002_GameConfigConfig / P002_GameConfigRuntime / P002_GameConfigFactory / P002_GameConfigInstance / EP002_GameConfig*)",
+            "Path": "Assets/Game/Modules/P002_GameConfig/IP002GameConfig.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002GameConfigBootstrap.cs (expected pattern: IP002_GameConfig / P002_GameConfigConfig / P002_GameConfigRuntime / P002_GameConfigFactory / P002_GameConfigInstance / EP002_GameConfig*)",
+            "Path": "Assets/Game/Modules/P002_GameConfig/P002GameConfigBootstrap.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002GameConfigConfig.cs (expected pattern: IP002_GameConfig / P002_GameConfigConfig / P002_GameConfigRuntime / P002_GameConfigFactory / P002_GameConfigInstance / EP002_GameConfig*)",
+            "Path": "Assets/Game/Modules/P002_GameConfig/P002GameConfigConfig.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002GameConfigFactory.cs (expected pattern: IP002_GameConfig / P002_GameConfigConfig / P002_GameConfigRuntime / P002_GameConfigFactory / P002_GameConfigInstance / EP002_GameConfig*)",
+            "Path": "Assets/Game/Modules/P002_GameConfig/P002GameConfigFactory.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002GameConfigRuntime.cs (expected pattern: IP002_GameConfig / P002_GameConfigConfig / P002_GameConfigRuntime / P002_GameConfigFactory / P002_GameConfigInstance / EP002_GameConfig*)",
+            "Path": "Assets/Game/Modules/P002_GameConfig/P002GameConfigRuntime.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: IP002GameEvents.cs (expected pattern: IP002_GameEvents / P002_GameEventsConfig / P002_GameEventsRuntime / P002_GameEventsFactory / P002_GameEventsInstance / EP002_GameEvents*)",
+            "Path": "Assets/Game/Modules/P002_GameEvents/IP002GameEvents.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002GameEventsBootstrap.cs (expected pattern: IP002_GameEvents / P002_GameEventsConfig / P002_GameEventsRuntime / P002_GameEventsFactory / P002_GameEventsInstance / EP002_GameEvents*)",
+            "Path": "Assets/Game/Modules/P002_GameEvents/P002GameEventsBootstrap.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002GameEventsConfig.cs (expected pattern: IP002_GameEvents / P002_GameEventsConfig / P002_GameEventsRuntime / P002_GameEventsFactory / P002_GameEventsInstance / EP002_GameEvents*)",
+            "Path": "Assets/Game/Modules/P002_GameEvents/P002GameEventsConfig.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002GameEventsFactory.cs (expected pattern: IP002_GameEvents / P002_GameEventsConfig / P002_GameEventsRuntime / P002_GameEventsFactory / P002_GameEventsInstance / EP002_GameEvents*)",
+            "Path": "Assets/Game/Modules/P002_GameEvents/P002GameEventsFactory.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002GameEventsRuntime.cs (expected pattern: IP002_GameEvents / P002_GameEventsConfig / P002_GameEventsRuntime / P002_GameEventsFactory / P002_GameEventsInstance / EP002_GameEvents*)",
+            "Path": "Assets/Game/Modules/P002_GameEvents/P002GameEventsRuntime.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: EP002GameState.cs (expected pattern: IP002_GameFlow / P002_GameFlowConfig / P002_GameFlowRuntime / P002_GameFlowFactory / P002_GameFlowInstance / EP002_GameFlow*)",
+            "Path": "Assets/Game/Modules/P002_GameFlow/EP002GameState.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: IP002GameFlow.cs (expected pattern: IP002_GameFlow / P002_GameFlowConfig / P002_GameFlowRuntime / P002_GameFlowFactory / P002_GameFlowInstance / EP002_GameFlow*)",
+            "Path": "Assets/Game/Modules/P002_GameFlow/IP002GameFlow.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002GameFlowBootstrap.cs (expected pattern: IP002_GameFlow / P002_GameFlowConfig / P002_GameFlowRuntime / P002_GameFlowFactory / P002_GameFlowInstance / EP002_GameFlow*)",
+            "Path": "Assets/Game/Modules/P002_GameFlow/P002GameFlowBootstrap.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002GameFlowConfig.cs (expected pattern: IP002_GameFlow / P002_GameFlowConfig / P002_GameFlowRuntime / P002_GameFlowFactory / P002_GameFlowInstance / EP002_GameFlow*)",
+            "Path": "Assets/Game/Modules/P002_GameFlow/P002GameFlowConfig.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002GameFlowFactory.cs (expected pattern: IP002_GameFlow / P002_GameFlowConfig / P002_GameFlowRuntime / P002_GameFlowFactory / P002_GameFlowInstance / EP002_GameFlow*)",
+            "Path": "Assets/Game/Modules/P002_GameFlow/P002GameFlowFactory.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002GameFlowRuntime.cs (expected pattern: IP002_GameFlow / P002_GameFlowConfig / P002_GameFlowRuntime / P002_GameFlowFactory / P002_GameFlowInstance / EP002_GameFlow*)",
+            "Path": "Assets/Game/Modules/P002_GameFlow/P002GameFlowRuntime.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: IP002GameSound.cs (expected pattern: IP002_GameSound / P002_GameSoundConfig / P002_GameSoundRuntime / P002_GameSoundFactory / P002_GameSoundInstance / EP002_GameSound*)",
+            "Path": "Assets/Game/Modules/P002_GameSound/IP002GameSound.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002GameSoundBootstrap.cs (expected pattern: IP002_GameSound / P002_GameSoundConfig / P002_GameSoundRuntime / P002_GameSoundFactory / P002_GameSoundInstance / EP002_GameSound*)",
+            "Path": "Assets/Game/Modules/P002_GameSound/P002GameSoundBootstrap.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002GameSoundConfig.cs (expected pattern: IP002_GameSound / P002_GameSoundConfig / P002_GameSoundRuntime / P002_GameSoundFactory / P002_GameSoundInstance / EP002_GameSound*)",
+            "Path": "Assets/Game/Modules/P002_GameSound/P002GameSoundConfig.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002GameSoundFactory.cs (expected pattern: IP002_GameSound / P002_GameSoundConfig / P002_GameSoundRuntime / P002_GameSoundFactory / P002_GameSoundInstance / EP002_GameSound*)",
+            "Path": "Assets/Game/Modules/P002_GameSound/P002GameSoundFactory.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002GameSoundRuntime.cs (expected pattern: IP002_GameSound / P002_GameSoundConfig / P002_GameSoundRuntime / P002_GameSoundFactory / P002_GameSoundInstance / EP002_GameSound*)",
+            "Path": "Assets/Game/Modules/P002_GameSound/P002GameSoundRuntime.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: IP002InputGuide.cs (expected pattern: IP002_InputGuide / P002_InputGuideConfig / P002_InputGuideRuntime / P002_InputGuideFactory / P002_InputGuideInstance / EP002_InputGuide*)",
+            "Path": "Assets/Game/Modules/P002_InputGuide/IP002InputGuide.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002InputGuideBootstrap.cs (expected pattern: IP002_InputGuide / P002_InputGuideConfig / P002_InputGuideRuntime / P002_InputGuideFactory / P002_InputGuideInstance / EP002_InputGuide*)",
+            "Path": "Assets/Game/Modules/P002_InputGuide/P002InputGuideBootstrap.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002InputGuideConfig.cs (expected pattern: IP002_InputGuide / P002_InputGuideConfig / P002_InputGuideRuntime / P002_InputGuideFactory / P002_InputGuideInstance / EP002_InputGuide*)",
+            "Path": "Assets/Game/Modules/P002_InputGuide/P002InputGuideConfig.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002InputGuideFactory.cs (expected pattern: IP002_InputGuide / P002_InputGuideConfig / P002_InputGuideRuntime / P002_InputGuideFactory / P002_InputGuideInstance / EP002_InputGuide*)",
+            "Path": "Assets/Game/Modules/P002_InputGuide/P002InputGuideFactory.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002InputGuideRuntime.cs (expected pattern: IP002_InputGuide / P002_InputGuideConfig / P002_InputGuideRuntime / P002_InputGuideFactory / P002_InputGuideInstance / EP002_InputGuide*)",
+            "Path": "Assets/Game/Modules/P002_InputGuide/P002InputGuideRuntime.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: EP002BlockType.cs (expected pattern: IP002_PuzzleCore / P002_PuzzleCoreConfig / P002_PuzzleCoreRuntime / P002_PuzzleCoreFactory / P002_PuzzleCoreInstance / EP002_PuzzleCore*)",
+            "Path": "Assets/Game/Modules/P002_PuzzleCore/EP002BlockType.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: EP002SpecialBlockType.cs (expected pattern: IP002_PuzzleCore / P002_PuzzleCoreConfig / P002_PuzzleCoreRuntime / P002_PuzzleCoreFactory / P002_PuzzleCoreInstance / EP002_PuzzleCore*)",
+            "Path": "Assets/Game/Modules/P002_PuzzleCore/EP002SpecialBlockType.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: IP002PuzzleCore.cs (expected pattern: IP002_PuzzleCore / P002_PuzzleCoreConfig / P002_PuzzleCoreRuntime / P002_PuzzleCoreFactory / P002_PuzzleCoreInstance / EP002_PuzzleCore*)",
+            "Path": "Assets/Game/Modules/P002_PuzzleCore/IP002PuzzleCore.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002BlockData.cs (expected pattern: IP002_PuzzleCore / P002_PuzzleCoreConfig / P002_PuzzleCoreRuntime / P002_PuzzleCoreFactory / P002_PuzzleCoreInstance / EP002_PuzzleCore*)",
+            "Path": "Assets/Game/Modules/P002_PuzzleCore/P002BlockData.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002MatchResult.cs (expected pattern: IP002_PuzzleCore / P002_PuzzleCoreConfig / P002_PuzzleCoreRuntime / P002_PuzzleCoreFactory / P002_PuzzleCoreInstance / EP002_PuzzleCore*)",
+            "Path": "Assets/Game/Modules/P002_PuzzleCore/P002MatchResult.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002PuzzleCoreBootstrap.cs (expected pattern: IP002_PuzzleCore / P002_PuzzleCoreConfig / P002_PuzzleCoreRuntime / P002_PuzzleCoreFactory / P002_PuzzleCoreInstance / EP002_PuzzleCore*)",
+            "Path": "Assets/Game/Modules/P002_PuzzleCore/P002PuzzleCoreBootstrap.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002PuzzleCoreConfig.cs (expected pattern: IP002_PuzzleCore / P002_PuzzleCoreConfig / P002_PuzzleCoreRuntime / P002_PuzzleCoreFactory / P002_PuzzleCoreInstance / EP002_PuzzleCore*)",
+            "Path": "Assets/Game/Modules/P002_PuzzleCore/P002PuzzleCoreConfig.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002PuzzleCoreFactory.cs (expected pattern: IP002_PuzzleCore / P002_PuzzleCoreConfig / P002_PuzzleCoreRuntime / P002_PuzzleCoreFactory / P002_PuzzleCoreInstance / EP002_PuzzleCore*)",
+            "Path": "Assets/Game/Modules/P002_PuzzleCore/P002PuzzleCoreFactory.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002PuzzleCoreRuntime.cs (expected pattern: IP002_PuzzleCore / P002_PuzzleCoreConfig / P002_PuzzleCoreRuntime / P002_PuzzleCoreFactory / P002_PuzzleCoreInstance / EP002_PuzzleCore*)",
+            "Path": "Assets/Game/Modules/P002_PuzzleCore/P002PuzzleCoreRuntime.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: IP002PuzzleView.cs (expected pattern: IP002_PuzzleView / P002_PuzzleViewConfig / P002_PuzzleViewRuntime / P002_PuzzleViewFactory / P002_PuzzleViewInstance / EP002_PuzzleView*)",
+            "Path": "Assets/Game/Modules/P002_PuzzleView/IP002PuzzleView.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002PuzzleViewBootstrap.cs (expected pattern: IP002_PuzzleView / P002_PuzzleViewConfig / P002_PuzzleViewRuntime / P002_PuzzleViewFactory / P002_PuzzleViewInstance / EP002_PuzzleView*)",
+            "Path": "Assets/Game/Modules/P002_PuzzleView/P002PuzzleViewBootstrap.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002PuzzleViewConfig.cs (expected pattern: IP002_PuzzleView / P002_PuzzleViewConfig / P002_PuzzleViewRuntime / P002_PuzzleViewFactory / P002_PuzzleViewInstance / EP002_PuzzleView*)",
+            "Path": "Assets/Game/Modules/P002_PuzzleView/P002PuzzleViewConfig.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002PuzzleViewFactory.cs (expected pattern: IP002_PuzzleView / P002_PuzzleViewConfig / P002_PuzzleViewRuntime / P002_PuzzleViewFactory / P002_PuzzleViewInstance / EP002_PuzzleView*)",
+            "Path": "Assets/Game/Modules/P002_PuzzleView/P002PuzzleViewFactory.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002PuzzleViewRuntime.cs (expected pattern: IP002_PuzzleView / P002_PuzzleViewConfig / P002_PuzzleViewRuntime / P002_PuzzleViewFactory / P002_PuzzleViewInstance / EP002_PuzzleView*)",
+            "Path": "Assets/Game/Modules/P002_PuzzleView/P002PuzzleViewRuntime.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: IP002SkillSystem.cs (expected pattern: IP002_SkillSystem / P002_SkillSystemConfig / P002_SkillSystemRuntime / P002_SkillSystemFactory / P002_SkillSystemInstance / EP002_SkillSystem*)",
+            "Path": "Assets/Game/Modules/P002_SkillSystem/IP002SkillSystem.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Suspicious gameplay file 'IP002SkillSystem.cs' in module 'P002_SkillSystem'. File name does not start with module name — might belong elsewhere.",
+            "Path": "Assets/Game/Modules/P002_SkillSystem/IP002SkillSystem.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002SkillSystemBootstrap.cs (expected pattern: IP002_SkillSystem / P002_SkillSystemConfig / P002_SkillSystemRuntime / P002_SkillSystemFactory / P002_SkillSystemInstance / EP002_SkillSystem*)",
+            "Path": "Assets/Game/Modules/P002_SkillSystem/P002SkillSystemBootstrap.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002SkillSystemConfig.cs (expected pattern: IP002_SkillSystem / P002_SkillSystemConfig / P002_SkillSystemRuntime / P002_SkillSystemFactory / P002_SkillSystemInstance / EP002_SkillSystem*)",
+            "Path": "Assets/Game/Modules/P002_SkillSystem/P002SkillSystemConfig.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002SkillSystemFactory.cs (expected pattern: IP002_SkillSystem / P002_SkillSystemConfig / P002_SkillSystemRuntime / P002_SkillSystemFactory / P002_SkillSystemInstance / EP002_SkillSystem*)",
+            "Path": "Assets/Game/Modules/P002_SkillSystem/P002SkillSystemFactory.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Unrecognized file in module root: P002SkillSystemRuntime.cs (expected pattern: IP002_SkillSystem / P002_SkillSystemConfig / P002_SkillSystemRuntime / P002_SkillSystemFactory / P002_SkillSystemInstance / EP002_SkillSystem*)",
+            "Path": "Assets/Game/Modules/P002_SkillSystem/P002SkillSystemRuntime.cs",
+            "Severity": "Error",
+            "ValidatorName": "ModuleBoundary"
+        },
+        {
+            "Message": "Public field exposed directly — use property or '=>' instead: P002BattleEffectRuntime.cs",
+            "Path": "Game/Modules/P002_BattleEffect/P002BattleEffectRuntime.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ArchitecturePattern"
+        },
+        {
+            "Message": "Public field exposed directly — use property or '=>' instead: P002BlockData.cs",
+            "Path": "Game/Modules/P002_PuzzleCore/P002BlockData.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ArchitecturePattern"
+        },
+        {
+            "Message": "Public field exposed directly — use property or '=>' instead: P002MatchResult.cs",
+            "Path": "Game/Modules/P002_PuzzleCore/P002MatchResult.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ArchitecturePattern"
+        },
+        {
+            "Message": "Task 'P002_GameConfig' in TASK_QUEUE.yaml has no matching entry in MODULE_REGISTRY.yaml",
+            "Path": "TASK_QUEUE.yaml",
+            "Severity": "Error",
+            "ValidatorName": "Dependency"
+        },
+        {
+            "Message": "Task 'P002_GameEvents' in TASK_QUEUE.yaml has no matching entry in MODULE_REGISTRY.yaml",
+            "Path": "TASK_QUEUE.yaml",
+            "Severity": "Error",
+            "ValidatorName": "Dependency"
+        },
+        {
+            "Message": "Task 'P002_BattleCharacter' in TASK_QUEUE.yaml has no matching entry in MODULE_REGISTRY.yaml",
+            "Path": "TASK_QUEUE.yaml",
+            "Severity": "Error",
+            "ValidatorName": "Dependency"
+        },
+        {
+            "Message": "Task 'P002_BattleMonster' in TASK_QUEUE.yaml has no matching entry in MODULE_REGISTRY.yaml",
+            "Path": "TASK_QUEUE.yaml",
+            "Severity": "Error",
+            "ValidatorName": "Dependency"
+        },
+        {
+            "Message": "Task 'P002_SkillSystem' in TASK_QUEUE.yaml has no matching entry in MODULE_REGISTRY.yaml",
+            "Path": "TASK_QUEUE.yaml",
+            "Severity": "Error",
+            "ValidatorName": "Dependency"
+        },
+        {
+            "Message": "Task 'P002_PuzzleCore' in TASK_QUEUE.yaml has no matching entry in MODULE_REGISTRY.yaml",
+            "Path": "TASK_QUEUE.yaml",
+            "Severity": "Error",
+            "ValidatorName": "Dependency"
+        },
+        {
+            "Message": "Task 'P002_EndCard' in TASK_QUEUE.yaml has no matching entry in MODULE_REGISTRY.yaml",
+            "Path": "TASK_QUEUE.yaml",
+            "Severity": "Error",
+            "ValidatorName": "Dependency"
+        },
+        {
+            "Message": "Task 'P002_GameSound' in TASK_QUEUE.yaml has no matching entry in MODULE_REGISTRY.yaml",
+            "Path": "TASK_QUEUE.yaml",
+            "Severity": "Error",
+            "ValidatorName": "Dependency"
+        },
+        {
+            "Message": "Task 'P002_InputGuide' in TASK_QUEUE.yaml has no matching entry in MODULE_REGISTRY.yaml",
+            "Path": "TASK_QUEUE.yaml",
+            "Severity": "Error",
+            "ValidatorName": "Dependency"
+        },
+        {
+            "Message": "Task 'P002_PuzzleView' in TASK_QUEUE.yaml has no matching entry in MODULE_REGISTRY.yaml",
+            "Path": "TASK_QUEUE.yaml",
+            "Severity": "Error",
+            "ValidatorName": "Dependency"
+        },
+        {
+            "Message": "Task 'P002_BattleCharacterView' in TASK_QUEUE.yaml has no matching entry in MODULE_REGISTRY.yaml",
+            "Path": "TASK_QUEUE.yaml",
+            "Severity": "Error",
+            "ValidatorName": "Dependency"
+        },
+        {
+            "Message": "Task 'P002_BattleMonsterView' in TASK_QUEUE.yaml has no matching entry in MODULE_REGISTRY.yaml",
+            "Path": "TASK_QUEUE.yaml",
+            "Severity": "Error",
+            "ValidatorName": "Dependency"
+        },
+        {
+            "Message": "Task 'P002_BattleEffect' in TASK_QUEUE.yaml has no matching entry in MODULE_REGISTRY.yaml",
+            "Path": "TASK_QUEUE.yaml",
+            "Severity": "Error",
+            "ValidatorName": "Dependency"
+        },
+        {
+            "Message": "Task 'P002_GameFlow' in TASK_QUEUE.yaml has no matching entry in MODULE_REGISTRY.yaml",
+            "Path": "TASK_QUEUE.yaml",
+            "Severity": "Error",
+            "ValidatorName": "Dependency"
+        },
+        {
+            "Message": "Task 'P002_Utils' in TASK_QUEUE.yaml has no matching entry in MODULE_REGISTRY.yaml",
+            "Path": "TASK_QUEUE.yaml",
+            "Severity": "Error",
+            "ValidatorName": "Dependency"
+        },
+        {
+            "Message": "Reuse metadata gap: Task 'P002_GameConfig' has integration_strategy=reuse but existing_module_candidates is empty. Non-create strategies should reference target modules.",
+            "Path": "docs/ai/TASK_QUEUE.yaml",
             "Severity": "Warning",
             "ValidatorName": "ModuleReuseIntegrity"
         },
         {
-            "Message": "Responsibility duplication: BattleMonster and EndCard have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
-            "Path": "Assets/Game/Modules/BattleMonster/IBattleMonster.cs",
+            "Message": "Reuse metadata gap: Task 'P002_GameEvents' has integration_strategy=leave but existing_module_candidates is empty. Non-create strategies should reference target modules.",
+            "Path": "docs/ai/TASK_QUEUE.yaml",
             "Severity": "Warning",
             "ValidatorName": "ModuleReuseIntegrity"
         },
         {
-            "Message": "Responsibility duplication: BattleMonster and Fortress have 60% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
-            "Path": "Assets/Game/Modules/BattleMonster/IBattleMonster.cs",
+            "Message": "Reuse metadata gap: Task 'P002_BattleCharacter' has integration_strategy=adapt but existing_module_candidates is empty. Non-create strategies should reference target modules.",
+            "Path": "docs/ai/TASK_QUEUE.yaml",
             "Severity": "Warning",
             "ValidatorName": "ModuleReuseIntegrity"
         },
         {
-            "Message": "Responsibility duplication: BattleMonster and Pickups have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
-            "Path": "Assets/Game/Modules/BattleMonster/IBattleMonster.cs",
+            "Message": "Reuse metadata gap: Task 'P002_BattleMonster' has integration_strategy=adapt but existing_module_candidates is empty. Non-create strategies should reference target modules.",
+            "Path": "docs/ai/TASK_QUEUE.yaml",
             "Severity": "Warning",
             "ValidatorName": "ModuleReuseIntegrity"
         },
         {
-            "Message": "Responsibility duplication: BattleMonster and SpecialBlock have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
-            "Path": "Assets/Game/Modules/BattleMonster/IBattleMonster.cs",
+            "Message": "Reuse metadata gap: Task 'P002_SkillSystem' has integration_strategy=extract but existing_module_candidates is empty. Non-create strategies should reference target modules.",
+            "Path": "docs/ai/TASK_QUEUE.yaml",
             "Severity": "Warning",
             "ValidatorName": "ModuleReuseIntegrity"
         },
         {
-            "Message": "Responsibility duplication: Blacksmith and EndCard have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
-            "Path": "Assets/Game/Modules/Blacksmith/IBlacksmith.cs",
+            "Message": "Reuse metadata gap: Task 'P002_PuzzleCore' has integration_strategy=adapt but existing_module_candidates is empty. Non-create strategies should reference target modules.",
+            "Path": "docs/ai/TASK_QUEUE.yaml",
             "Severity": "Warning",
             "ValidatorName": "ModuleReuseIntegrity"
         },
         {
-            "Message": "Responsibility duplication: Blacksmith and Pickups have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
-            "Path": "Assets/Game/Modules/Blacksmith/IBlacksmith.cs",
+            "Message": "Reuse metadata gap: Task 'P002_EndCard' has integration_strategy=adapt but existing_module_candidates is empty. Non-create strategies should reference target modules.",
+            "Path": "docs/ai/TASK_QUEUE.yaml",
             "Severity": "Warning",
             "ValidatorName": "ModuleReuseIntegrity"
         },
         {
-            "Message": "Responsibility duplication: Blacksmith and SpecialBlock have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
-            "Path": "Assets/Game/Modules/Blacksmith/IBlacksmith.cs",
+            "Message": "Reuse metadata gap: Task 'P002_GameSound' has integration_strategy=wrap but existing_module_candidates is empty. Non-create strategies should reference target modules.",
+            "Path": "docs/ai/TASK_QUEUE.yaml",
             "Severity": "Warning",
             "ValidatorName": "ModuleReuseIntegrity"
         },
         {
-            "Message": "Responsibility duplication: EndCard and Pickups have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
-            "Path": "Assets/Game/Modules/EndCard/IEndCard.cs",
+            "Message": "Reuse metadata gap: Task 'P002_InputGuide' has integration_strategy=adapt but existing_module_candidates is empty. Non-create strategies should reference target modules.",
+            "Path": "docs/ai/TASK_QUEUE.yaml",
             "Severity": "Warning",
             "ValidatorName": "ModuleReuseIntegrity"
         },
         {
-            "Message": "Responsibility duplication: EndCard and SpecialBlock have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
-            "Path": "Assets/Game/Modules/EndCard/IEndCard.cs",
+            "Message": "Reuse metadata gap: Task 'P002_PuzzleView' has integration_strategy=wrap but existing_module_candidates is empty. Non-create strategies should reference target modules.",
+            "Path": "docs/ai/TASK_QUEUE.yaml",
             "Severity": "Warning",
             "ValidatorName": "ModuleReuseIntegrity"
         },
         {
-            "Message": "Responsibility duplication: EndCard and UI have 57% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
-            "Path": "Assets/Game/Modules/EndCard/IEndCard.cs",
+            "Message": "Reuse metadata gap: Task 'P002_BattleCharacterView' has integration_strategy=wrap but existing_module_candidates is empty. Non-create strategies should reference target modules.",
+            "Path": "docs/ai/TASK_QUEUE.yaml",
             "Severity": "Warning",
             "ValidatorName": "ModuleReuseIntegrity"
         },
         {
-            "Message": "Responsibility duplication: Pickups and SpecialBlock have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
-            "Path": "Assets/Game/Modules/Pickups/IPickups.cs",
+            "Message": "Reuse metadata gap: Task 'P002_BattleMonsterView' has integration_strategy=wrap but existing_module_candidates is empty. Non-create strategies should reference target modules.",
+            "Path": "docs/ai/TASK_QUEUE.yaml",
             "Severity": "Warning",
             "ValidatorName": "ModuleReuseIntegrity"
         },
         {
-            "Message": "Configuration authority conflict: Pickups._maxPendingPickups (Config_Serialized) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PickupsConfig. Architectural fix: consolidate this config field into PickupsConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Pickups/PickupsConfig.cs",
+            "Message": "Reuse metadata gap: Task 'P002_BattleEffect' has integration_strategy=adapt but existing_module_candidates is empty. Non-create strategies should reference target modules.",
+            "Path": "docs/ai/TASK_QUEUE.yaml",
             "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
+            "ValidatorName": "ModuleReuseIntegrity"
         },
         {
-            "Message": "Configuration authority conflict: Pickups._maxPendingPickups (Config_Serialized) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PickupsConfig. Architectural fix: consolidate this config field into PickupsConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Pickups/PickupsConfig.cs",
+            "Message": "Reuse metadata gap: Task 'P002_GameFlow' has integration_strategy=split but existing_module_candidates is empty. Non-create strategies should reference target modules.",
+            "Path": "docs/ai/TASK_QUEUE.yaml",
             "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
+            "ValidatorName": "ModuleReuseIntegrity"
         },
         {
-            "Message": "Configuration authority conflict: Pickups.MaxPendingPickups (Config_Public) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PickupsConfig. Architectural fix: consolidate this config field into PickupsConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Pickups/PickupsConfig.cs",
+            "Message": "Reuse metadata gap: Task 'P002_Utils' has integration_strategy=leave but existing_module_candidates is empty. Non-create strategies should reference target modules.",
+            "Path": "docs/ai/TASK_QUEUE.yaml",
             "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Pickups.MaxPendingPickups (Config_Public) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PickupsConfig. Architectural fix: consolidate this config field into PickupsConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Pickups/PickupsConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Warriors._maxWarriors (Config_Serialized) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: WarriorsConfig. Architectural fix: consolidate this config field into WarriorsConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Warriors/WarriorsConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Warriors._maxWarriors (Config_Serialized) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: WarriorsConfig. Architectural fix: consolidate this config field into WarriorsConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Warriors/WarriorsConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Warriors._hireCostMax (Config_Serialized) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: WarriorsConfig. Architectural fix: consolidate this config field into WarriorsConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Warriors/WarriorsConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Warriors._hireCostMax (Config_Serialized) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: WarriorsConfig. Architectural fix: consolidate this config field into WarriorsConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Warriors/WarriorsConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Warriors.MaxWarriors (Config_Public) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: WarriorsConfig. Architectural fix: consolidate this config field into WarriorsConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Warriors/WarriorsConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Warriors.MaxWarriors (Config_Public) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: WarriorsConfig. Architectural fix: consolidate this config field into WarriorsConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Warriors/WarriorsConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Warriors.HireCostMax (Config_Public) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: WarriorsConfig. Architectural fix: consolidate this config field into WarriorsConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Warriors/WarriorsConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Warriors.HireCostMax (Config_Public) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: WarriorsConfig. Architectural fix: consolidate this config field into WarriorsConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Warriors/WarriorsConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: DefenseTowers._maxTowers (Config_Serialized) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: DefenseTowersConfig. Architectural fix: consolidate this config field into DefenseTowersConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/DefenseTowers/DefenseTowersConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: DefenseTowers._maxTowers (Config_Serialized) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: DefenseTowersConfig. Architectural fix: consolidate this config field into DefenseTowersConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/DefenseTowers/DefenseTowersConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: DefenseTowers.MaxTowers (Config_Public) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: DefenseTowersConfig. Architectural fix: consolidate this config field into DefenseTowersConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/DefenseTowers/DefenseTowersConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: DefenseTowers.MaxTowers (Config_Public) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: DefenseTowersConfig. Architectural fix: consolidate this config field into DefenseTowersConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/DefenseTowers/DefenseTowersConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Fortress._maxHp (Config_Serialized) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: FortressConfig. Architectural fix: consolidate this config field into FortressConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Fortress/FortressConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Fortress._maxHp (Config_Serialized) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: FortressConfig. Architectural fix: consolidate this config field into FortressConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Fortress/FortressConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Fortress._maxUpgradeLevel (Config_Serialized) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: FortressConfig. Architectural fix: consolidate this config field into FortressConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Fortress/FortressConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Fortress._maxUpgradeLevel (Config_Serialized) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: FortressConfig. Architectural fix: consolidate this config field into FortressConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Fortress/FortressConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Fortress.MaxHp (Config_Public) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: FortressConfig. Architectural fix: consolidate this config field into FortressConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Fortress/FortressConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Fortress.MaxHp (Config_Public) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: FortressConfig. Architectural fix: consolidate this config field into FortressConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Fortress/FortressConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Fortress.MaxUpgradeLevel (Config_Public) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: FortressConfig. Architectural fix: consolidate this config field into FortressConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Fortress/FortressConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Fortress.MaxUpgradeLevel (Config_Public) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: FortressConfig. Architectural fix: consolidate this config field into FortressConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Fortress/FortressConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: HireNodes._maxNodes (Config_Serialized) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: HireNodes._maxNodes (Config_Serialized) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: HireNodes.MaxNodes (Config_Public) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: HireNodes.MaxNodes (Config_Public) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: HireNodes._maxNodes (Config_Serialized) vs Warriors._maxWarriors (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: HireNodes._maxNodes (Config_Serialized) vs Warriors._hireCostMax (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: HireNodes._maxNodes (Config_Serialized) vs Warriors.MaxWarriors (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: HireNodes._maxNodes (Config_Serialized) vs Warriors.HireCostMax (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: HireNodes.MaxNodes (Config_Public) vs Warriors._maxWarriors (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: HireNodes.MaxNodes (Config_Public) vs Warriors._hireCostMax (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: HireNodes.MaxNodes (Config_Public) vs Warriors.MaxWarriors (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: HireNodes.MaxNodes (Config_Public) vs Warriors.HireCostMax (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith._maxForgeCount (Config_Serialized) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith._maxForgeCount (Config_Serialized) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith.MaxForgeCount (Config_Public) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith.MaxForgeCount (Config_Public) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith._forgeCost (Config_Serialized) vs Warriors._hireCostBase (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith._forgeCost (Config_Serialized) vs Warriors._hireCostIncrement (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith._forgeCost (Config_Serialized) vs Warriors._hireCostMax (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith._forgeCost (Config_Serialized) vs Warriors.HireCostBase (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith._forgeCost (Config_Serialized) vs Warriors.HireCostIncrement (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith._forgeCost (Config_Serialized) vs Warriors.HireCostMax (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith._maxForgeCount (Config_Serialized) vs Warriors._maxWarriors (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith._maxForgeCount (Config_Serialized) vs Warriors.MaxWarriors (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith.ForgeCost (Config_Public) vs Warriors._hireCostBase (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith.ForgeCost (Config_Public) vs Warriors._hireCostIncrement (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith.ForgeCost (Config_Public) vs Warriors._hireCostMax (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith.ForgeCost (Config_Public) vs Warriors.HireCostBase (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith.ForgeCost (Config_Public) vs Warriors.HireCostIncrement (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith.ForgeCost (Config_Public) vs Warriors.HireCostMax (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith.MaxForgeCount (Config_Public) vs Warriors._maxWarriors (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Blacksmith.MaxForgeCount (Config_Public) vs Warriors.MaxWarriors (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: InventorySystem._maxStackSizePerSlot (Config_Serialized) vs ItemStacking._maxStackSize (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: InventorySystemConfig. Architectural fix: consolidate this config field into InventorySystemConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/InventorySystem/InventorySystemConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: InventorySystem._maxStackSizePerSlot (Config_Serialized) vs ItemStacking.MaxStackSize (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: InventorySystemConfig. Architectural fix: consolidate this config field into InventorySystemConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/InventorySystem/InventorySystemConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: InventorySystem.MaxStackSizePerSlot (Config_Public) vs ItemStacking._maxStackSize (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: InventorySystemConfig. Architectural fix: consolidate this config field into InventorySystemConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/InventorySystem/InventorySystemConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: InventorySystem.MaxStackSizePerSlot (Config_Public) vs ItemStacking.MaxStackSize (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: InventorySystemConfig. Architectural fix: consolidate this config field into InventorySystemConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/InventorySystem/InventorySystemConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: BuffIconUI._maxIcons (Config_Serialized) vs StatusEffect._maxActiveEffects (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BuffIconUIConfig. Architectural fix: consolidate this config field into BuffIconUIConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/BuffIconUI/BuffIconUIConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: BuffIconUI._maxIcons (Config_Serialized) vs StatusEffect.MaxActiveEffects (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BuffIconUIConfig. Architectural fix: consolidate this config field into BuffIconUIConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/BuffIconUI/BuffIconUIConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: BuffIconUI.MaxIcons (Config_Public) vs StatusEffect._maxActiveEffects (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BuffIconUIConfig. Architectural fix: consolidate this config field into BuffIconUIConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/BuffIconUI/BuffIconUIConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: BuffIconUI.MaxIcons (Config_Public) vs StatusEffect.MaxActiveEffects (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BuffIconUIConfig. Architectural fix: consolidate this config field into BuffIconUIConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/BuffIconUI/BuffIconUIConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: PuzzleBoard._swapDuration (Config_Serialized) vs PuzzleBlock._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: PuzzleBoard._swapDuration (Config_Serialized) vs PuzzleBlock.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: PuzzleBoard._destroyDuration (Config_Serialized) vs PuzzleBlock._destroyDuration (Config_Serialized). Exact duplicate config field name across dependent modules. Only one module should be source-of-truth for 'destroy_duration'. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: PuzzleBoard._destroyDuration (Config_Serialized) vs PuzzleBlock.DestroyDuration (Config_Public). Exact duplicate config field name across dependent modules. Only one module should be source-of-truth for 'destroy_duration'. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: PuzzleBoard._fallDuration (Config_Serialized) vs PuzzleBlock._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: PuzzleBoard._fallDuration (Config_Serialized) vs PuzzleBlock.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: PuzzleBoard.SwapDuration (Config_Public) vs PuzzleBlock._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: PuzzleBoard.SwapDuration (Config_Public) vs PuzzleBlock.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: PuzzleBoard.DestroyDuration (Config_Public) vs PuzzleBlock._destroyDuration (Config_Serialized). Exact duplicate config field name across dependent modules. Only one module should be source-of-truth for 'destroy_duration'. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: PuzzleBoard.DestroyDuration (Config_Public) vs PuzzleBlock.DestroyDuration (Config_Public). Exact duplicate config field name across dependent modules. Only one module should be source-of-truth for 'destroy_duration'. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: PuzzleBoard.FallDuration (Config_Public) vs PuzzleBlock._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: PuzzleBoard.FallDuration (Config_Public) vs PuzzleBlock.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock._bombEffectDuration (Config_Serialized) vs PuzzleBlock._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock._bombEffectDuration (Config_Serialized) vs PuzzleBlock.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock._sameColorClearEffectDuration (Config_Serialized) vs PuzzleBlock._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock._sameColorClearEffectDuration (Config_Serialized) vs PuzzleBlock.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock.BombEffectDuration (Config_Public) vs PuzzleBlock._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock.BombEffectDuration (Config_Public) vs PuzzleBlock.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock.SameColorClearEffectDuration (Config_Public) vs PuzzleBlock._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock.SameColorClearEffectDuration (Config_Public) vs PuzzleBlock.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock._bombEffectDuration (Config_Serialized) vs PuzzleBoard._swapDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock._bombEffectDuration (Config_Serialized) vs PuzzleBoard._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock._bombEffectDuration (Config_Serialized) vs PuzzleBoard._fallDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock._bombEffectDuration (Config_Serialized) vs PuzzleBoard.SwapDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock._bombEffectDuration (Config_Serialized) vs PuzzleBoard.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock._bombEffectDuration (Config_Serialized) vs PuzzleBoard.FallDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock._sameColorClearEffectDuration (Config_Serialized) vs PuzzleBoard._swapDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock._sameColorClearEffectDuration (Config_Serialized) vs PuzzleBoard._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock._sameColorClearEffectDuration (Config_Serialized) vs PuzzleBoard._fallDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock._sameColorClearEffectDuration (Config_Serialized) vs PuzzleBoard.SwapDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock._sameColorClearEffectDuration (Config_Serialized) vs PuzzleBoard.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock._sameColorClearEffectDuration (Config_Serialized) vs PuzzleBoard.FallDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock.BombEffectDuration (Config_Public) vs PuzzleBoard._swapDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock.BombEffectDuration (Config_Public) vs PuzzleBoard._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock.BombEffectDuration (Config_Public) vs PuzzleBoard._fallDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock.BombEffectDuration (Config_Public) vs PuzzleBoard.SwapDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock.BombEffectDuration (Config_Public) vs PuzzleBoard.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock.BombEffectDuration (Config_Public) vs PuzzleBoard.FallDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock.SameColorClearEffectDuration (Config_Public) vs PuzzleBoard._swapDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock.SameColorClearEffectDuration (Config_Public) vs PuzzleBoard._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock.SameColorClearEffectDuration (Config_Public) vs PuzzleBoard._fallDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock.SameColorClearEffectDuration (Config_Public) vs PuzzleBoard.SwapDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock.SameColorClearEffectDuration (Config_Public) vs PuzzleBoard.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: SpecialBlock.SameColorClearEffectDuration (Config_Public) vs PuzzleBoard.FallDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Player._moveSpeed (Config_Serialized) vs Warriors._moveSpeed (Config_Serialized). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Player._moveSpeed (Config_Serialized) vs Warriors.MoveSpeed (Config_Public). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Player._attackSpeed (Config_Serialized) vs Warriors._attackSpeed (Config_Serialized). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Player._attackSpeed (Config_Serialized) vs Warriors.AttackSpeed (Config_Public). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Player._attackDamage (Config_Serialized) vs Warriors._attackDamage (Config_Serialized). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Player._attackDamage (Config_Serialized) vs Warriors.AttackDamage (Config_Public). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Player.MoveSpeed (Config_Public) vs Warriors._moveSpeed (Config_Serialized). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Player.MoveSpeed (Config_Public) vs Warriors.MoveSpeed (Config_Public). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Player.AttackSpeed (Config_Public) vs Warriors._attackSpeed (Config_Serialized). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Player.AttackSpeed (Config_Public) vs Warriors.AttackSpeed (Config_Public). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Player.AttackDamage (Config_Public) vs Warriors._attackDamage (Config_Serialized). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
-        },
-        {
-            "Message": "Configuration authority conflict: Player.AttackDamage (Config_Public) vs Warriors.AttackDamage (Config_Public). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
-            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
-            "Severity": "Warning",
-            "ValidatorName": "ConfigurationAuthority"
+            "ValidatorName": "ModuleReuseIntegrity"
         }
     ]
 }

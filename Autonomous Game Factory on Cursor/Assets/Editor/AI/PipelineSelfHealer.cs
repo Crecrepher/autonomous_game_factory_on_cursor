@@ -245,12 +245,10 @@ namespace Game.Editor.AI
                 for (int d = 0; d < task.DependsOn.Length; d++)
                 {
                     string dep = task.DependsOn[d];
-                    bool depDone = false;
                     for (int t = 0; t < graph.Tasks.Length; t++)
                     {
                         if (graph.Tasks[t].Name == dep && graph.Tasks[t].Status == "done")
                         {
-                            depDone = true;
                             break;
                         }
                     }

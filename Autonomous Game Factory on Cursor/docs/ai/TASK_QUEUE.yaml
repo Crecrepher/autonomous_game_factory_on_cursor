@@ -463,3 +463,381 @@ modules:
     arch_diff_blocked: false
     review_report: "Reviewer PASS — AIValidationReport Passed:true, Errors:0. Human validated. Builder self-check 10/10."
     commit_hash: "264b70d74"
+
+  # ══════════════════════════════════════════════════════════════
+  # Playable002 Ingestion — 기존 코드 모듈화 (feature_group: p002-ingestion)
+  # 소스: Assets/Supercent/MatchClash/Playable002/Scripts/
+  # 원본 코드 무수정. 어댑터 우선 마이그레이션.
+  # ══════════════════════════════════════════════════════════════
+
+  - name: P002_GameConfig
+    status: in_progress
+    priority: high
+    owner: builder_ai
+    role: builder
+    depends_on: []
+    module_path: Assets/Game/Modules/P002_GameConfig
+    feature_group: p002-ingestion
+    dimension: both
+    genre_tags: [universal]
+    description: >
+      Playable002 게임 설정 — GameBalanceConfig. ScriptableObject, AGF Config 패턴 부합.
+      ReuseAsIs.
+    integration_strategy: reuse
+    existing_module_candidates: ["Assets/Supercent/MatchClash/Playable002/Scripts/Config/GameBalanceConfig.cs"]
+    ingestion_source: MC-10
+    source_lines: 160
+    human_state: pending
+    learning_state: none
+    commit_state: none
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T20:00:00"
+    updated_at: "2026-03-19T21:00:00"
+
+  - name: P002_GameEvents
+    status: in_progress
+    priority: high
+    owner: builder_ai
+    role: builder
+    depends_on: []
+    module_path: Assets/Game/Modules/P002_GameEvents
+    feature_group: p002-ingestion
+    dimension: both
+    genre_tags: [universal]
+    description: >
+      Playable002 이벤트 정의 — GameEvents static class. GlobalStaticState 드리프트.
+      초기에는 유지, 점진적으로 직접 이벤트로 전환.
+    integration_strategy: leave
+    existing_module_candidates: ["Assets/Supercent/MatchClash/Playable002/Scripts/Events/GameEvents.cs"]
+    ingestion_source: MC-11
+    source_lines: 219
+    human_state: pending
+    learning_state: none
+    commit_state: none
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T20:00:00"
+    updated_at: "2026-03-19T21:00:00"
+
+  - name: P002_BattleCharacter
+    status: in_progress
+    priority: high
+    owner: builder_ai
+    role: builder
+    depends_on: [P002_GameConfig, P002_GameEvents]
+    module_path: Assets/Game/Modules/P002_BattleCharacter
+    feature_group: p002-ingestion
+    dimension: both
+    genre_tags: [rpg, puzzle, combat]
+    description: >
+      Playable002 캐릭터 모듈화 — CharacterController, SkillGauge, CharacterModel, EWeaponType.
+      Pure C# 기반, AGF 패턴에 가까움.
+    integration_strategy: adapt
+    existing_module_candidates: ["Assets/Supercent/MatchClash/Playable002/Scripts/Character/Controller/CharacterController.cs", "Assets/Supercent/MatchClash/Playable002/Scripts/Character/Model/CharacterModel.cs", "Assets/Supercent/MatchClash/Playable002/Scripts/Character/Model/SkillGauge.cs"]
+    ingestion_source: MC-03
+    source_lines: 313
+    human_state: pending
+    learning_state: none
+    commit_state: none
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T20:00:00"
+    updated_at: "2026-03-19T21:00:00"
+
+  - name: P002_BattleMonster
+    status: in_progress
+    priority: high
+    owner: builder_ai
+    role: builder
+    depends_on: [P002_GameConfig, P002_GameEvents]
+    module_path: Assets/Game/Modules/P002_BattleMonster
+    feature_group: p002-ingestion
+    dimension: both
+    genre_tags: [rpg, puzzle, combat]
+    description: >
+      Playable002 몬스터 모듈화 — CombatController, DamageCalculator, MonsterModel.
+      Pure C# 기반, AGF 패턴에 가까움.
+    integration_strategy: adapt
+    existing_module_candidates: ["Assets/Supercent/MatchClash/Playable002/Scripts/Combat/Controller/CombatController.cs", "Assets/Supercent/MatchClash/Playable002/Scripts/Combat/Controller/DamageCalculator.cs", "Assets/Supercent/MatchClash/Playable002/Scripts/Combat/Model/MonsterModel.cs"]
+    ingestion_source: MC-05
+    source_lines: 257
+    human_state: pending
+    learning_state: none
+    commit_state: none
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T20:00:00"
+    updated_at: "2026-03-19T21:00:00"
+
+  - name: P002_SkillSystem
+    status: in_progress
+    priority: high
+    owner: builder_ai
+    role: builder
+    depends_on: [P002_BattleCharacter, P002_BattleMonster, P002_GameConfig, P002_GameEvents]
+    module_path: Assets/Game/Modules/P002_SkillSystem
+    feature_group: p002-ingestion
+    dimension: both
+    genre_tags: [rpg, puzzle, combat]
+    description: >
+      Playable002 스킬 시스템 모듈화 — SkillController, SkillExecutor.
+      수동/자동 모드, 데미지 버스트 분할. Pure C# 기반.
+    integration_strategy: extract
+    existing_module_candidates: ["Assets/Supercent/MatchClash/Playable002/Scripts/Skill/SkillController.cs", "Assets/Supercent/MatchClash/Playable002/Scripts/Skill/SkillExecutor.cs"]
+    ingestion_source: MC-08
+    source_lines: 332
+    human_state: pending
+    learning_state: none
+    commit_state: none
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T20:00:00"
+    updated_at: "2026-03-19T21:00:00"
+
+  - name: P002_PuzzleCore
+    status: in_progress
+    priority: high
+    owner: builder_ai
+    role: builder
+    depends_on: [P002_GameConfig, P002_GameEvents]
+    module_path: Assets/Game/Modules/P002_PuzzleCore
+    feature_group: p002-ingestion
+    dimension: 2d
+    genre_tags: [match3, puzzle]
+    description: >
+      Playable002 퍼즐 엔진 모듈화 — PuzzleController, PuzzleMatcher, PuzzleRefill,
+      PuzzleInputHandler, SpecialBlockActivator, PuzzleBoard, BlockData, MatchResult, EBlockType.
+      기존 Registry의 PuzzleBlock+PuzzleBoard+SpecialBlock 통합 대응.
+    integration_strategy: adapt
+    existing_module_candidates: ["Assets/Supercent/MatchClash/Playable002/Scripts/Puzzle/Controller/PuzzleController.cs", "Assets/Supercent/MatchClash/Playable002/Scripts/Puzzle/Controller/PuzzleMatcher.cs", "Assets/Supercent/MatchClash/Playable002/Scripts/Puzzle/Controller/PuzzleRefill.cs"]
+    ingestion_source: MC-01
+    source_lines: 2255
+    human_state: pending
+    learning_state: none
+    commit_state: none
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T20:00:00"
+    updated_at: "2026-03-19T21:00:00"
+
+  - name: P002_EndCard
+    status: in_progress
+    priority: low
+    owner: builder_ai
+    role: builder
+    depends_on: [P002_GameEvents]
+    module_path: Assets/Game/Modules/P002_EndCard
+    feature_group: p002-ingestion
+    dimension: both
+    genre_tags: [universal]
+    description: >
+      Playable002 엔드카드 모듈화 — EndCardController. Registry EndCard 대응.
+    integration_strategy: adapt
+    existing_module_candidates: ["Assets/Supercent/MatchClash/Playable002/Scripts/EndCard/EndCardController.cs"]
+    ingestion_source: MC-14
+    source_lines: 95
+    human_state: pending
+    learning_state: none
+    commit_state: none
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T20:00:00"
+    updated_at: "2026-03-19T21:00:00"
+
+  - name: P002_GameSound
+    status: in_progress
+    priority: low
+    owner: builder_ai
+    role: builder
+    depends_on: [P002_GameEvents]
+    module_path: Assets/Game/Modules/P002_GameSound
+    feature_group: p002-ingestion
+    dimension: both
+    genre_tags: [universal]
+    description: >
+      Playable002 사운드 모듈화 — GameSoundController. 이벤트 구독 → AudioManager 호출.
+    integration_strategy: wrap
+    existing_module_candidates: ["Assets/Supercent/MatchClash/Playable002/Scripts/Sound/GameSoundController.cs"]
+    ingestion_source: MC-13
+    source_lines: 193
+    human_state: pending
+    learning_state: none
+    commit_state: none
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T20:00:00"
+    updated_at: "2026-03-19T21:00:00"
+
+  - name: P002_InputGuide
+    status: in_progress
+    priority: medium
+    owner: builder_ai
+    role: builder
+    depends_on: [P002_PuzzleCore, P002_BattleCharacterView, P002_GameConfig, P002_GameEvents]
+    module_path: Assets/Game/Modules/P002_InputGuide
+    feature_group: p002-ingestion
+    dimension: 2d
+    genre_tags: [universal, match3]
+    description: >
+      Playable002 입력 가이드 모듈화 — InputGuideController(557줄).
+      GodClass. Registry Guide 모듈 확장.
+    integration_strategy: adapt
+    existing_module_candidates: ["Assets/Supercent/MatchClash/Playable002/Scripts/Input/InputGuideController.cs"]
+    ingestion_source: MC-12
+    source_lines: 557
+    human_state: pending
+    learning_state: none
+    commit_state: none
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T20:00:00"
+    updated_at: "2026-03-19T21:00:00"
+
+  - name: P002_PuzzleView
+    status: in_progress
+    priority: medium
+    owner: builder_ai
+    role: builder
+    depends_on: [P002_PuzzleCore]
+    module_path: Assets/Game/Modules/P002_PuzzleView
+    feature_group: p002-ingestion
+    dimension: 2d
+    genre_tags: [match3, puzzle, ui]
+    description: >
+      Playable002 퍼즐 뷰 모듈화 — PuzzleBoardView(1714줄), BlockView(874줄), PuzzleCameraAspectFitter.
+      GodClass 리팩토링 필요.
+    integration_strategy: wrap
+    existing_module_candidates: ["Assets/Supercent/MatchClash/Playable002/Scripts/Puzzle/View/PuzzleBoardView.cs", "Assets/Supercent/MatchClash/Playable002/Scripts/Puzzle/View/BlockView.cs"]
+    ingestion_source: MC-02
+    source_lines: 2675
+    human_state: pending
+    learning_state: none
+    commit_state: none
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T20:00:00"
+    updated_at: "2026-03-19T21:00:00"
+
+  - name: P002_BattleCharacterView
+    status: in_progress
+    priority: low
+    owner: builder_ai
+    role: builder
+    depends_on: [P002_BattleCharacter]
+    module_path: Assets/Game/Modules/P002_BattleCharacterView
+    feature_group: p002-ingestion
+    dimension: 2d
+    genre_tags: [rpg, puzzle, ui]
+    description: >
+      Playable002 캐릭터 뷰 모듈화 — CharacterView, SkillAnimationPlayer.
+    integration_strategy: wrap
+    existing_module_candidates: ["Assets/Supercent/MatchClash/Playable002/Scripts/Character/View/CharacterView.cs", "Assets/Supercent/MatchClash/Playable002/Scripts/Character/View/SkillAnimationPlayer.cs"]
+    ingestion_source: MC-04
+    source_lines: 379
+    human_state: pending
+    learning_state: none
+    commit_state: none
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T20:00:00"
+    updated_at: "2026-03-19T21:00:00"
+
+  - name: P002_BattleMonsterView
+    status: in_progress
+    priority: low
+    owner: builder_ai
+    role: builder
+    depends_on: [P002_BattleMonster]
+    module_path: Assets/Game/Modules/P002_BattleMonsterView
+    feature_group: p002-ingestion
+    dimension: 2d
+    genre_tags: [rpg, puzzle, ui]
+    description: >
+      Playable002 몬스터 뷰 모듈화 — MonsterView(803줄), DamageText. GodClass 리팩토링 필요.
+    integration_strategy: wrap
+    existing_module_candidates: ["Assets/Supercent/MatchClash/Playable002/Scripts/Combat/View/MonsterView.cs", "Assets/Supercent/MatchClash/Playable002/Scripts/Combat/View/DamageText.cs"]
+    ingestion_source: MC-06
+    source_lines: 995
+    human_state: pending
+    learning_state: none
+    commit_state: none
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T20:00:00"
+    updated_at: "2026-03-19T21:00:00"
+
+  - name: P002_BattleEffect
+    status: in_progress
+    priority: medium
+    owner: builder_ai
+    role: builder
+    depends_on: [P002_BattleCharacterView, P002_BattleMonsterView, P002_GameEvents]
+    module_path: Assets/Game/Modules/P002_BattleEffect
+    feature_group: p002-ingestion
+    dimension: 2d
+    genre_tags: [rpg, puzzle, combat, effect]
+    description: >
+      Playable002 전투 이펙트 모듈화 — CombatVFX(1428줄), 투사체 5종, HitEffect/Pool,
+      BlockMatchParticle/Pool, CameraShake, VFXEventListener.
+      CombatVFX GodClass 분할 필요.
+    integration_strategy: adapt
+    existing_module_candidates: ["Assets/Supercent/MatchClash/Playable002/Scripts/Combat/View/CombatVFX.cs"]
+    ingestion_source: MC-07
+    source_lines: 3226
+    human_state: pending
+    learning_state: none
+    commit_state: none
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T20:00:00"
+    updated_at: "2026-03-19T21:00:00"
+
+  - name: P002_GameFlow
+    status: in_progress
+    priority: high
+    owner: builder_ai
+    role: builder
+    depends_on: [P002_PuzzleCore, P002_BattleCharacter, P002_BattleMonster, P002_SkillSystem, P002_GameConfig, P002_GameEvents]
+    module_path: Assets/Game/Modules/P002_GameFlow
+    feature_group: p002-ingestion
+    dimension: both
+    genre_tags: [universal]
+    description: >
+      Playable002 게임 플로우 모듈화 — GameFlowController(1032줄), GameSceneInitializer,
+      StageController. GodClass 분할 필요.
+    integration_strategy: split
+    existing_module_candidates: ["Assets/Supercent/MatchClash/Playable002/Scripts/Core/GameFlowController.cs", "Assets/Supercent/MatchClash/Playable002/Scripts/Core/GameSceneInitializer.cs"]
+    ingestion_source: MC-09
+    source_lines: 1195
+    human_state: pending
+    learning_state: none
+    commit_state: none
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T20:00:00"
+    updated_at: "2026-03-19T21:00:00"
+
+  - name: P002_Utils
+    status: in_progress
+    priority: low
+    owner: builder_ai
+    role: builder
+    depends_on: []
+    module_path: Assets/Game/Shared/P002_Utils
+    feature_group: p002-ingestion
+    dimension: both
+    genre_tags: [universal]
+    description: >
+      Playable002 유틸리티 — CoordinateConverter, AutoBindHelper(Editor전용). Shared 배치.
+    integration_strategy: leave
+    existing_module_candidates: ["Assets/Supercent/MatchClash/Playable002/Scripts/Utils/CoordinateConverter.cs"]
+    ingestion_source: MC-15
+    source_lines: 271
+    human_state: pending
+    learning_state: none
+    commit_state: none
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T20:00:00"
+    updated_at: "2026-03-19T21:00:00"

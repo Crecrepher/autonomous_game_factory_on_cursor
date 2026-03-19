@@ -1,21 +1,21 @@
 # Framework Export Report
 
-- **Timestamp**: 2026-03-19 05:08:09 UTC
-- **Mode**: Framework
+- **Timestamp**: 2026-03-19 10:05:36 UTC
+- **Mode**: Full
 - **Dry Run**: No
 - **Changed-only filter**: False
-- **Export Path**: `/Users/supercent/luna_lumberchopper/Tools/FrameworkExporter/ExportPackage`
+- **Export Path**: `/Users/supercent/luna_matchclash/Tools/FrameworkExporter/ExportPackage`
 
 ## Summary
 
 | Category | Count |
 |----------|------:|
-| Total files scanned | 47986 |
-| **Exported** | **216** |
-| Risky (included, flagged) | 64 |
-| Unknown (NOT exported) | 3 |
-| Skipped (outside paths) | 10143 |
-| Denied (blocked) | 37624 |
+| Total files scanned | 22143 |
+| **Exported** | **454** |
+| Risky (included, flagged) | 201 |
+| Unknown (NOT exported) | 1 |
+| Skipped (outside paths) | 2325 |
+| Denied (blocked) | 19363 |
 | Git-filtered (unchanged) | 0 |
 | Errors | 0 |
 | Total export size | 1.00 MB |
@@ -76,7 +76,15 @@
 - `docs/ai/CODING_RULES.md`
 - `docs/ai/TASK_QUEUE.yaml`
 - `docs/ai/INTEGRATION_STRATEGY.md`
+- `Assets/Game/Modules.meta`
 - `Assets/Editor/AI.meta`
+- `docs/ai/ingestion/MODULE_CANDIDATES.md`
+- `docs/ai/ingestion/MODULE_CANDIDATES.yaml`
+- `docs/ai/ingestion/CODEBASE_INVENTORY.md`
+- `docs/ai/ingestion/MIGRATION_PLAN.md`
+- `docs/ai/ingestion/CODEBASE_INDEX.yaml`
+- `docs/ai/ingestion/MODULARIZATION_PLAN.md`
+- `docs/ai/ingestion/DEPENDENCY_GRAPH.md`
 - `docs/ai/global_learning/GLOBAL_LEARNING_LOG.md`
 - `docs/ai/global_learning/GLOBAL_FAILURE_PATTERNS.md`
 - `docs/ai/global_learning/GLOBAL_RULE_MEMORY.yaml`
@@ -117,7 +125,21 @@
 - `docs/ai/architecture_memory/ANTI_PATTERNS.yaml`
 - `docs/ai/architecture_memory/MODULE_EVOLUTION_LOG.md`
 - `docs/ai/runs/RUN_LOG.md`
+- `Assets/Game/Modules/P002_BattleMonster.meta`
+- `Assets/Game/Modules/P002_PuzzleCore.meta`
+- `Assets/Game/Modules/P002_GameSound.meta`
+- `Assets/Game/Modules/P002_InputGuide.meta`
+- `Assets/Game/Modules/P002_BattleCharacter.meta`
+- `Assets/Game/Modules/P002_BattleEffect.meta`
+- `Assets/Game/Modules/P002_SkillSystem.meta`
+- `Assets/Game/Modules/P002_GameEvents.meta`
+- `Assets/Game/Modules/P002_BattleCharacterView.meta`
 - `Assets/Game/Modules/Template.meta`
+- `Assets/Game/Modules/P002_PuzzleView.meta`
+- `Assets/Game/Modules/P002_EndCard.meta`
+- `Assets/Game/Modules/P002_GameFlow.meta`
+- `Assets/Game/Modules/P002_GameConfig.meta`
+- `Assets/Game/Modules/P002_BattleMonsterView.meta`
 - `Assets/Editor/AI/FeatureIntake.cs.meta`
 - `Assets/Editor/AI/LearningRecorderWriter.cs`
 - `Assets/Editor/AI/IntelligentDecomposer.cs.meta`
@@ -176,53 +198,31 @@
 - `Assets/Editor/AI/FeatureDecomposer.cs.meta`
 - `Assets/Editor/AI/PipelineSelfHealer.cs.meta`
 - `Assets/Editor/AI/FeatureGroupTracker.cs.meta`
-- `Assets/Game/Modules/Template/TemplateRuntime.cs`
-- `Assets/Game/Modules/Template/TemplateFactory.cs`
-- `Assets/Game/Modules/Template/TemplateBootstrap.cs.meta`
-- `Assets/Game/Modules/Template/TemplateFactory.cs.meta`
-- `Assets/Game/Modules/Template/TemplateRuntime.cs.meta`
-- `Assets/Game/Modules/Template/ITemplate.cs`
-- `Assets/Game/Modules/Template/TemplateConfig.cs.meta`
-- `Assets/Game/Modules/Template/TemplateConfig.cs`
-- `Assets/Game/Modules/Template/TemplateBootstrap.cs`
-- `Assets/Game/Modules/Template/Tests.meta`
-- `Assets/Game/Modules/Template/ITemplate.cs.meta`
-- `Assets/Editor/AI/Validators/ForbiddenFolderValidator.cs`
-- `Assets/Editor/AI/Validators/PerformanceValidator.cs`
-- `Assets/Editor/AI/Validators/ModuleReuseIntegrityValidator.cs.meta`
-- `Assets/Editor/AI/Validators/ArchitectureDiffValidator.cs`
-- `Assets/Editor/AI/Validators/ModuleStructureValidator.cs`
-- `Assets/Editor/AI/Validators/ConfigurationAuthorityValidator.cs.meta`
-- `Assets/Editor/AI/Validators/ModuleBoundaryValidator.cs`
-- `Assets/Editor/AI/Validators/CircularDependencyValidator.cs.meta`
-- `Assets/Editor/AI/Validators/CodingStyleValidator.cs.meta`
-- `Assets/Editor/AI/Validators/ArchitectureDiffValidator.cs.meta`
-- `Assets/Editor/AI/Validators/ValidatorRegistrationValidator.cs`
-- `Assets/Editor/AI/Validators/ArchitectureRuleValidator.cs.meta`
-- `Assets/Editor/AI/Validators/IntegrationStrategyValidator.cs.meta`
-- `Assets/Editor/AI/Validators/CompileErrorValidator.cs.meta`
-- `Assets/Editor/AI/Validators/CompileErrorValidator.cs`
-- `Assets/Editor/AI/Validators/PipelineTruthValidator.cs.meta`
-- `Assets/Editor/AI/Validators/StringAndAnimatorValidator.cs`
-- `Assets/Editor/AI/Validators/ArchitecturePatternValidator.cs.meta`
-- `Assets/Editor/AI/Validators/DependencyValidator.cs`
-- `Assets/Editor/AI/Validators/ValidatorRegistrationValidator.cs.meta`
-- `Assets/Editor/AI/Validators/ConfigurationAuthorityValidator.cs`
-- `Assets/Editor/AI/Validators/CircularDependencyValidator.cs`
-- `Assets/Editor/AI/Validators/CodingStyleValidator.cs`
-- `Assets/Editor/AI/Validators/ModuleStructureValidator.cs.meta`
-- `Assets/Editor/AI/Validators/ConfigConflictValidator.cs.meta`
-- `Assets/Editor/AI/Validators/PipelineTruthValidator.cs`
-- `Assets/Editor/AI/Validators/ArchitecturePatternValidator.cs`
-- `Assets/Editor/AI/Validators/ConfigConflictValidator.cs`
-- `Assets/Editor/AI/Validators/ModuleReuseIntegrityValidator.cs`
-- `Assets/Editor/AI/Validators/PerformanceValidator.cs.meta`
-- `Assets/Editor/AI/Validators/ArchitectureRuleValidator.cs`
-- `Assets/Editor/AI/Validators/StringAndAnimatorValidator.cs.meta`
-- `Assets/Editor/AI/Validators/ForbiddenFolderValidator.cs.meta`
-- `Assets/Editor/AI/Validators/IntegrationStrategyValidator.cs`
-- `Assets/Editor/AI/Validators/ModuleBoundaryValidator.cs.meta`
-- ... and 16 more
+- `Assets/Game/Modules/P002_BattleMonsterView/P002BattleMonsterViewBootstrap.cs`
+- `Assets/Game/Modules/P002_BattleMonsterView/IP002BattleMonsterView.cs`
+- `Assets/Game/Modules/P002_BattleMonsterView/P002BattleMonsterViewConfig.cs`
+- `Assets/Game/Modules/P002_BattleMonsterView/IP002BattleMonsterView.cs.meta`
+- `Assets/Game/Modules/P002_BattleMonsterView/P002BattleMonsterViewRuntime.cs.meta`
+- `Assets/Game/Modules/P002_BattleMonsterView/P002BattleMonsterViewConfig.cs.meta`
+- `Assets/Game/Modules/P002_BattleMonsterView/P002BattleMonsterViewFactory.cs.meta`
+- `Assets/Game/Modules/P002_BattleMonsterView/P002BattleMonsterViewRuntime.cs`
+- `Assets/Game/Modules/P002_BattleMonsterView/P002BattleMonsterViewFactory.cs`
+- `Assets/Game/Modules/P002_BattleMonsterView/P002BattleMonsterViewBootstrap.cs.meta`
+- `Assets/Game/Modules/P002_BattleMonsterView/Tests.meta`
+- `Assets/Game/Modules/P002_BattleCharacter/EP002WeaponType.cs.meta`
+- `Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterFactory.cs.meta`
+- `Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterBootstrap.cs`
+- `Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterRuntime.cs.meta`
+- `Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterFactory.cs`
+- `Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterRuntime.cs`
+- `Assets/Game/Modules/P002_BattleCharacter/EP002WeaponType.cs`
+- `Assets/Game/Modules/P002_BattleCharacter/IP002BattleCharacter.cs`
+- `Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterConfig.cs`
+- `Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterBootstrap.cs.meta`
+- `Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterConfig.cs.meta`
+- `Assets/Game/Modules/P002_BattleCharacter/Tests.meta`
+- `Assets/Game/Modules/P002_BattleCharacter/IP002BattleCharacter.cs.meta`
+- ... and 254 more
 
 ## Risky Files (Review Before Applying!)
 
@@ -230,8 +230,23 @@
 > They can cause merge conflicts, break scene references, or alter project structure.
 > Review each one carefully before applying to the original project.
 
+- **Assets/Game/Modules.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
 - **Assets/Editor/AI.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
+- **Assets/Game/Modules/P002_BattleMonster.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleCore.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameSound.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_InputGuide.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacter.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleEffect.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_SkillSystem.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameEvents.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacterView.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
 - **Assets/Game/Modules/Template.meta** — Risky extension '.meta' under 'Assets/Game/Modules/Template'
+- **Assets/Game/Modules/P002_PuzzleView.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_EndCard.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameFlow.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameConfig.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleMonsterView.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
 - **Assets/Editor/AI/FeatureIntake.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
 - **Assets/Editor/AI/IntelligentDecomposer.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
 - **Assets/Editor/AI/ArchitectureKnowledgeMemory.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
@@ -262,12 +277,106 @@
 - **Assets/Editor/AI/FeatureDecomposer.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
 - **Assets/Editor/AI/PipelineSelfHealer.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
 - **Assets/Editor/AI/FeatureGroupTracker.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
+- **Assets/Game/Modules/P002_BattleMonsterView/IP002BattleMonsterView.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleMonsterView/P002BattleMonsterViewRuntime.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleMonsterView/P002BattleMonsterViewConfig.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleMonsterView/P002BattleMonsterViewFactory.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleMonsterView/P002BattleMonsterViewBootstrap.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleMonsterView/Tests.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacter/EP002WeaponType.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterFactory.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterRuntime.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterBootstrap.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterConfig.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacter/Tests.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacter/IP002BattleCharacter.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleView/P002PuzzleViewConfig.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleView/P002PuzzleViewFactory.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleView/P002PuzzleViewRuntime.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleView/Tests.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleView/IP002PuzzleView.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleView/P002PuzzleViewBootstrap.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacterView/P002BattleCharacterViewRuntime.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacterView/P002BattleCharacterViewConfig.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacterView/P002BattleCharacterViewFactory.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacterView/P002BattleCharacterViewBootstrap.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacterView/Tests.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacterView/IP002BattleCharacterView.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_InputGuide/P002InputGuideFactory.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_InputGuide/IP002InputGuide.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_InputGuide/P002InputGuideBootstrap.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_InputGuide/P002InputGuideRuntime.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_InputGuide/Tests.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_InputGuide/P002InputGuideConfig.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
 - **Assets/Game/Modules/Template/TemplateBootstrap.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules/Template'
 - **Assets/Game/Modules/Template/TemplateFactory.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules/Template'
 - **Assets/Game/Modules/Template/TemplateRuntime.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules/Template'
 - **Assets/Game/Modules/Template/TemplateConfig.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules/Template'
 - **Assets/Game/Modules/Template/Tests.meta** — Risky extension '.meta' under 'Assets/Game/Modules/Template'
 - **Assets/Game/Modules/Template/ITemplate.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules/Template'
+- **Assets/Game/Modules/P002_BattleMonster/IP002BattleMonster.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleMonster/P002BattleMonsterFactory.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleMonster/P002BattleMonsterConfig.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleMonster/P002BattleMonsterRuntime.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleMonster/Tests.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleMonster/P002BattleMonsterBootstrap.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameEvents/P002GameEventsBootstrap.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameEvents/IP002GameEvents.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameEvents/P002GameEventsConfig.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameEvents/P002GameEventsFactory.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameEvents/Tests.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameEvents/P002GameEventsRuntime.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameFlow/P002GameFlowFactory.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameFlow/P002GameFlowRuntime.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameFlow/P002GameFlowBootstrap.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameFlow/EP002GameState.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameFlow/P002GameFlowConfig.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameFlow/Tests.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameFlow/IP002GameFlow.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameConfig/EP002PuzzleBoardSize.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameConfig/P002GameConfigRuntime.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameConfig/EP002SkillMode.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameConfig/P002GameConfigFactory.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameConfig/IP002GameConfig.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameConfig/P002GameConfigConfig.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameConfig/P002GameConfigBootstrap.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameConfig/EP002SkillAttackMode.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameConfig/Tests.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleEffect/EP002ProjectileType.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleEffect/P002BattleEffectConfig.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleEffect/Tests.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleEffect/P002BattleEffectRuntime.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleEffect/P002BattleEffectBootstrap.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleEffect/IP002BattleEffect.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleEffect/P002BattleEffectFactory.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_SkillSystem/IP002SkillSystem.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_SkillSystem/P002SkillSystemConfig.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_SkillSystem/P002SkillSystemFactory.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_SkillSystem/P002SkillSystemBootstrap.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_SkillSystem/Tests.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_SkillSystem/P002SkillSystemRuntime.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_EndCard/P002EndCardConfig.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_EndCard/IP002EndCard.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_EndCard/P002EndCardBootstrap.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_EndCard/P002EndCardRuntime.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_EndCard/Tests.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_EndCard/P002EndCardFactory.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleCore/IP002PuzzleCore.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleCore/P002BlockData.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleCore/EP002SpecialBlockType.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleCore/P002PuzzleCoreFactory.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleCore/P002PuzzleCoreRuntime.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleCore/EP002BlockType.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleCore/P002PuzzleCoreConfig.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleCore/Tests.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleCore/P002MatchResult.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleCore/P002PuzzleCoreBootstrap.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameSound/P002GameSoundConfig.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameSound/Tests.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameSound/P002GameSoundFactory.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameSound/IP002GameSound.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameSound/P002GameSoundBootstrap.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameSound/P002GameSoundRuntime.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
 - **Assets/Editor/AI/Validators/ModuleReuseIntegrityValidator.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
 - **Assets/Editor/AI/Validators/ConfigurationAuthorityValidator.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
 - **Assets/Editor/AI/Validators/CircularDependencyValidator.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
@@ -292,95 +401,58 @@
 - **Assets/Editor/AI/CrossProject/PatternRecognitionEngine.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
 - **Assets/Editor/AI/CrossProject/ProjectBootstrapGenerator.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
 - **Assets/Editor/AI/CrossProject/CrossProjectLearning.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
+- **Assets/Game/Modules/P002_BattleMonsterView/Tests/Editor.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacter/Tests/Editor.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleView/Tests/Editor.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacterView/Tests/Editor.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_InputGuide/Tests/Editor.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
 - **Assets/Game/Modules/Template/Tests/Editor.meta** — Risky extension '.meta' under 'Assets/Game/Modules/Template'
+- **Assets/Game/Modules/P002_BattleMonster/Tests/Editor.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameEvents/Tests/Editor.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameFlow/Tests/Editor.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameConfig/Tests/Editor.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleEffect/Tests/Editor.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_SkillSystem/Tests/Editor.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_EndCard/Tests/Editor.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleCore/Tests/Editor.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameSound/Tests/Editor.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleMonsterView/Tests/Editor/P002BattleMonsterViewTests.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacter/Tests/Editor/P002BattleCharacterTests.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleView/Tests/Editor/P002PuzzleViewTests.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleCharacterView/Tests/Editor/P002BattleCharacterViewTests.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_InputGuide/Tests/Editor/P002InputGuideTests.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
 - **Assets/Game/Modules/Template/Tests/Editor/TemplateTests.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules/Template'
+- **Assets/Game/Modules/P002_BattleMonster/Tests/Editor/P002BattleMonsterTests.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameEvents/Tests/Editor/P002GameEventsTests.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameFlow/Tests/Editor/P002GameFlowTests.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_GameConfig/Tests/Editor/P002GameConfigTests.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_BattleEffect/Tests/Editor/P002BattleEffectTests.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_SkillSystem/Tests/Editor/P002SkillSystemTests.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_EndCard/Tests/Editor/P002EndCardTests.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- **Assets/Game/Modules/P002_PuzzleCore/Tests/Editor/P002PuzzleCoreTests.cs.meta** — Risky extension '.meta' under 'Assets/Game/Modules'
+- ... and 1 more
 
 ## Unknown Files (NOT Exported)
 
 > These files have unrecognized extensions and were NOT included in the export.
 > If any should be included, add their extension to a known list or use `--allow`.
 
-- `docs/ai/diff_reports/.gitkeep` — Unknown extension '.gitkeep' under 'Docs/ai'
-- `docs/ai/runs/.gitkeep` — Unknown extension '.gitkeep' under 'Docs/ai'
-- `docs/ai/reviews/.gitkeep` — Unknown extension '.gitkeep' under 'Docs/ai'
+- `docs/ai/.DS_Store` — Unknown extension '.DS_Store' under 'Docs/ai'
 
 ## Skipped Files (Outside Allowed Paths)
 
-_10143 files were outside the allowed paths._
+_2325 files were outside the allowed paths._
 
-- `omnisharp.json`
-- `Unity.ProBuilder.Csg.csproj`
-- `KinoBloom.Runtime.csproj`
 - `.DS_Store`
 - `ToonyColorsPro.Runtime.csproj`
-- `ToonyColorsPro.Demo.Editor.csproj`
-- `debris.unitypackage`
 - `Assembly-CSharp-Editor.csproj`
-- `ToonyColorsPro2.Demo.csproj`
-- `luna_lumberchopper.sln`
-- `.editorconfig`
-- `a.unitypackage`
 - `.gitignore`
-- `Plugins.Baedrick.ColoredHeaderCreator.Editor.csproj`
-- `Plugins.Baedrick.ColoredHeaderCreator.csproj`
 - `ToonyColorsPro.Editor.csproj`
-- `mono_crash.210de743d8.0.json`
+- `luna_matchclash.sln`
 - `Assembly-CSharp.csproj`
-- `Parabox.CSG.Demo.csproj`
 - `luna.json`
-- `GlobalModules/GLOBAL_MODULE_CATALOG.yaml`
-- `Recordings/Movie_087.mp4`
-- `Recordings/Movie_093.mp4`
-- `Recordings/Movie_044.mp4`
-- `Recordings/Movie_050.mp4`
-- `Recordings/Movie_078.mp4`
-- `Recordings/Movie_079.mp4`
-- `Recordings/Movie_051.mp4`
-- `Recordings/Movie_045.mp4`
-- `Recordings/Movie_092.mp4`
-- `Recordings/Movie_086.mp4`
-- `Recordings/Movie_090.mp4`
-- `Recordings/Movie_084.mp4`
-- `Recordings/Movie_053.mp4`
-- `Recordings/Movie_047.mp4`
-- `Recordings/Movie_046.mp4`
-- `Recordings/Movie_052.mp4`
-- `Recordings/Movie_085.mp4`
-- `Recordings/Movie_091.mp4`
-- `Recordings/Movie_081.mp4`
-- `Recordings/Movie_056.mp4`
-- `Recordings/.DS_Store`
-- `Recordings/Movie_057.mp4`
-- `Recordings/Movie_080.mp4`
-- `Recordings/Movie_082.mp4`
-- `Recordings/Movie_069.mp4`
-- `Recordings/Movie_055.mp4`
-- `Recordings/Movie_054.mp4`
-- `Recordings/Movie_068.mp4`
-- `Recordings/Movie_083.mp4`
-- `Recordings/Movie_065.mp4`
-- `Recordings/Movie_071.mp4`
-- `Recordings/Movie_059.mp4`
-- `Recordings/Movie_058.mp4`
-- `Recordings/Movie_070.mp4`
-- `Recordings/Movie_064.mp4`
-- `Recordings/Movie_072.mp4`
-- `Recordings/Movie_066.mp4`
-- `Recordings/Movie_067.mp4`
-- `Recordings/Movie_073.mp4`
-- `Recordings/Movie_088.mp4`
-- `Recordings/Movie_077.mp4`
-- `Recordings/Movie_063.mp4`
-- `Recordings/Movie_062.mp4`
-- `Recordings/Movie_076.mp4`
-- `Recordings/Movie_089.mp4`
-- `Recordings/Movie_048.mp4`
-- `Recordings/Movie_060.mp4`
-- `Recordings/Movie_074.mp4`
-- `Recordings/Movie_075.mp4`
-- `Recordings/Movie_061.mp4`
-- `Recordings/Movie_049.mp4`
-- `ProjectSettings/ShaderGraphSettings.asset`
+- `NightCoder/luna_matchclash_playable002_20260219_161838.html`
+- `tasks/task_queue.json`
 - `ProjectSettings/ProjectSettings.asset`
 - `ProjectSettings/InputManager.asset`
 - `ProjectSettings/TimeManager.asset`
@@ -397,7 +469,6 @@ _10143 files were outside the allowed paths._
 - `ProjectSettings/TagManager.asset`
 - `ProjectSettings/NavMeshAreas.asset`
 - `ProjectSettings/Physics2DSettings.asset`
-- `ProjectSettings/URPProjectSettings.asset`
 - `ProjectSettings/PackageManagerSettings.asset`
 - `ProjectSettings/AudioManager.asset`
 - `ProjectSettings/VFXManager.asset`
@@ -406,66 +477,29 @@ _10143 files were outside the allowed paths._
 - `ProjectSettings/MemorySettings.asset`
 - `ProjectSettings/ProjectVersion.txt`
 - `docs/.DS_Store`
-- `Assets/ColliderViewer.cs.meta`
+- `docs/change_request.md`
 - `Assets/TextMesh Pro.meta`
+- `Assets/.DS_Store`
 - `Assets/SVC_Luna.asset.meta`
-- `Assets/New Terrain.asset`
 - `Assets/SVC_Luna.asset`
-- `Assets/UniversalRenderPipelineGlobalSettings.asset`
 - `Assets/Editor.meta`
-- `Assets/ColliderViewer.cs`
 - `Assets/Supercent.meta`
-- `Assets/New Terrain.asset.meta`
-- `Assets/UniversalRenderPipelineGlobalSettings.asset.meta`
-- `Assets/Hovl Studio.meta`
 - `Assets/Game.meta`
-- `Assets/WaterShallow.meta`
-- `Assets/EditorPhysicsSimulator.cs.meta`
-- `Assets/EditorPhysicsSimulator.cs`
-- `Assets/Easy performant outline.meta`
-- `Assets/Planar Shadow.meta`
-- `Assets/Planar Shadow/Shaders.meta`
-- `Assets/Planar Shadow/Scripts.meta`
-- `Assets/Planar Shadow/Editor.meta`
-- `Assets/Planar Shadow/Resources.meta`
+- `reports/ChainB_build.md`
+- `reports/plan.md`
+- `reports/ChainA_build.md`
 - `Assets/TextMesh Pro/Documentation.meta`
 - `Assets/TextMesh Pro/Fonts.meta`
 - `Assets/TextMesh Pro/Shaders.meta`
 - `Assets/TextMesh Pro/Resources.meta`
 - `Assets/TextMesh Pro/Sprites.meta`
-- `Assets/Hovl Studio/HSFiles.meta`
-- `Assets/Hovl Studio/3D Fire and Explosions.meta`
-- `Assets/WaterShallow/Textures.meta`
-- `Assets/WaterShallow/Materials.meta`
-- `Assets/WaterShallow/Prefabs.meta`
-- `Assets/WaterShallow/Sprites.meta`
-- `Assets/Game/Modules.meta`
-- `Assets/Game/Prefabs.meta`
-- `Assets/Game/ScriptableObjects.meta`
-- `Assets/Game/Scenes.meta`
+- `Assets/Game/Shared.meta`
 - `Assets/Supercent/Luna.meta`
 - `Assets/Supercent/Toony Colors Pro 2.meta`
-- `Assets/Supercent/JMO Assets.meta`
-- `Assets/Supercent/LumberChopper.meta`
-- `Assets/Supercent/Slime.meta`
-- `Assets/Editor/GameFactory.meta`
-- `Assets/Editor/.DS_Store`
-- `Assets/Easy performant outline/Documentation.meta`
-- `Assets/Easy performant outline/Scripts.meta`
-- `Assets/Easy performant outline/Resources.meta`
-- `Assets/Easy performant outline/Editor resources.meta`
-- `Assets/Easy performant outline/Demo.meta`
+- `Assets/Supercent/AllIn1VfxToolkit.meta`
+- `Assets/Supercent/NightCoder.meta`
+- `Assets/Supercent/MatchClash.meta`
 - `ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json`
-- `Assets/Planar Shadow/Resources/PlanarShadowMat.mat`
-- `Assets/Planar Shadow/Resources/PlanarShadowMat.mat.meta`
-- `Assets/Planar Shadow/Scripts/PlanarShadowEditorWindow.cs`
-- `Assets/Planar Shadow/Scripts/PlanarShadow.cs.meta`
-- `Assets/Planar Shadow/Scripts/PlanarShadow.cs`
-- `Assets/Planar Shadow/Scripts/PlanarShadowEditorWindow.cs.meta`
-- `Assets/Planar Shadow/Shaders/PlanarShadow.shader`
-- `Assets/Planar Shadow/Shaders/PlanarShadow.shader.meta`
-- `Assets/Planar Shadow/Editor/Textures.meta`
-- `Assets/Planar Shadow/Editor/Scripts.meta`
 - `Assets/TextMesh Pro/Documentation/TextMesh Pro User Guide 2016.pdf`
 - `Assets/TextMesh Pro/Documentation/TextMesh Pro User Guide 2016.pdf.meta`
 - `Assets/TextMesh Pro/Resources/TMP Settings.asset`
@@ -508,17 +542,118 @@ _10143 files were outside the allowed paths._
 - `Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader`
 - `Assets/TextMesh Pro/Shaders/TMPro.cginc`
 - `Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader.meta`
-- ... and 9943 more
+- `Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader`
+- `Assets/TextMesh Pro/Shaders/TMP_SDF.shader`
+- `Assets/TextMesh Pro/Shaders/TMPro.cginc.meta`
+- `Assets/TextMesh Pro/Sprites/EmojiOne.json`
+- `Assets/TextMesh Pro/Sprites/EmojiOne.json.meta`
+- `Assets/TextMesh Pro/Sprites/EmojiOne.png.meta`
+- `Assets/TextMesh Pro/Sprites/EmojiOne.png`
+- `Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt`
+- `Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt.meta`
+- `Assets/TextMesh Pro/Fonts/LiberationSans.ttf.meta`
+- `Assets/TextMesh Pro/Fonts/LiberationSans.ttf`
+- `Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt.meta`
+- `Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt`
+- `Assets/Game/Shared/P002_Utils.meta`
+- `Assets/Supercent/NightCoder/Plugins.meta`
+- `Assets/Supercent/NightCoder/V2.meta`
+- `Assets/Supercent/MatchClash/Playable002.meta`
+- `Assets/Supercent/MatchClash/Playable001.meta`
+- `Assets/Supercent/Luna/Util.meta`
+- `Assets/Supercent/Luna/Base.meta`
+- `Assets/Supercent/Luna/UI.meta`
+- `Assets/Supercent/Luna/.git`
+- `Assets/Supercent/AllIn1VfxToolkit/Shaders.meta`
+- `Assets/Supercent/AllIn1VfxToolkit/Greyscale Gradients.meta`
+- `Assets/Supercent/Toony Colors Pro 2/Shader Templates 2.meta`
+- `Assets/Supercent/Toony Colors Pro 2/Shaders.meta`
+- `Assets/Supercent/Toony Colors Pro 2/Scripts.meta`
+- `Assets/Supercent/Toony Colors Pro 2/Editor.meta`
+- `NightCoder/luna_matchclash/playable002/review_20260219_161838/Controller_PuzzleInputHandler.cs.html`
+- `NightCoder/luna_matchclash/playable002/review_20260219_161838/Controller_PuzzleInputHandler.cs_0002.html`
+- `NightCoder/luna_matchclash/playable002/review_20260219_161838/Controller_PuzzleInputHandler.cs_0001.html`
+- `Assets/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset`
+- `Assets/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset.meta`
+- `Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset`
+- `Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset.meta`
+- `Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset.meta`
+- `Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset`
+- `Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Outline.mat.meta`
+- `Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat.meta`
+- `Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat`
+- `Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset`
+- `Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset.meta`
+- `Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Outline.mat`
+- `Assets/Game/Shared/P002_Utils/P002CoordinateConverter.cs.meta`
+- `Assets/Game/Shared/P002_Utils/P002CoordinateConverter.cs`
+- `Assets/Supercent/NightCoder/Plugins/Editor.meta`
+- `Assets/Supercent/NightCoder/V2/Editor.meta`
+- `Assets/Supercent/MatchClash/Playable001/Textures.meta`
+- `Assets/Supercent/MatchClash/Playable001/Fonts.meta`
+- `Assets/Supercent/MatchClash/Playable001/FBXs.meta`
+- `Assets/Supercent/MatchClash/Playable001/Shaders.meta`
+- `Assets/Supercent/MatchClash/Playable001/Scripts.meta`
+- `Assets/Supercent/MatchClash/Playable001/Materials.meta`
+- `Assets/Supercent/MatchClash/Playable001/Prefabs.meta`
+- `Assets/Supercent/MatchClash/Playable001/Data.meta`
+- `Assets/Supercent/MatchClash/Playable001/Sprites.meta`
+- `Assets/Supercent/MatchClash/Playable001/Animations.meta`
+- `Assets/Supercent/MatchClash/Playable001/Scenes.meta`
+- `Assets/Supercent/MatchClash/Playable002/Textures.meta`
+- `Assets/Supercent/MatchClash/Playable002/Fbx.meta`
+- `Assets/Supercent/MatchClash/Playable002/Sounds.meta`
+- `Assets/Supercent/MatchClash/Playable002/Shader.meta`
+- `Assets/Supercent/MatchClash/Playable002/Scripts.meta`
+- `Assets/Supercent/MatchClash/Playable002/Materials.meta`
+- `Assets/Supercent/MatchClash/Playable002/Prefabs.meta`
+- `Assets/Supercent/MatchClash/Playable002/Data.meta`
+- `Assets/Supercent/MatchClash/Playable002/Sprites.meta`
+- `Assets/Supercent/MatchClash/Playable002/Animations.meta`
+- `Assets/Supercent/MatchClash/Playable002/Scenes.meta`
+- `Assets/Supercent/Luna/UI/CurrencyParticle.cs`
+- `Assets/Supercent/Luna/UI/CurrencyEffector.cs.meta`
+- `Assets/Supercent/Luna/UI/v2.meta`
+- `Assets/Supercent/Luna/UI/CurrencyParticle.cs.meta`
+- `Assets/Supercent/Luna/UI/CurrencyEffector.cs`
+- `Assets/Supercent/Luna/UI/CurrencyHUDBase.cs.meta`
+- `Assets/Supercent/Luna/UI/CurrencyHUDBase.cs`
+- `Assets/Supercent/Luna/Util/CoroutineUtil.cs.meta`
+- `Assets/Supercent/Luna/Util/BufferedValue.cs`
+- `Assets/Supercent/Luna/Util/SimpleTF.meta`
+- `Assets/Supercent/Luna/Util/CoroutineUtil.cs`
+- `Assets/Supercent/Luna/Util/PrefabLoader.cs`
+- `Assets/Supercent/Luna/Util/SimpleCC.meta`
+- `Assets/Supercent/Luna/Util/EnumeratorUtil.cs`
+- `Assets/Supercent/Luna/Util/ObjectUtil.cs`
+- `Assets/Supercent/Luna/Util/Editor.meta`
+- `Assets/Supercent/Luna/Util/MathUtil.cs.meta`
+- `Assets/Supercent/Luna/Util/SimpleMouseInput.cs.meta`
+- `Assets/Supercent/Luna/Util/AssetPackage.cs`
+- `Assets/Supercent/Luna/Util/AssetPackage.cs.meta`
+- `Assets/Supercent/Luna/Util/SimpleMouseInput.cs`
+- `Assets/Supercent/Luna/Util/BehaviourBase.cs.meta`
+- `Assets/Supercent/Luna/Util/Extensions.meta`
+- `Assets/Supercent/Luna/Util/SimpleSpline.cs.meta`
+- `Assets/Supercent/Luna/Util/Animation.meta`
+- `Assets/Supercent/Luna/Util/SimpleSpline.cs`
+- `Assets/Supercent/Luna/Util/BehaviourBase.cs`
+- `Assets/Supercent/Luna/Util/EnumeratorUtil.cs.meta`
+- `Assets/Supercent/Luna/Util/CameraScaler.cs`
+- `Assets/Supercent/Luna/Util/AssetPackageEditBase.cs.meta`
+- `Assets/Supercent/Luna/Util/Repository.meta`
+- `Assets/Supercent/Luna/Util/AssetPackageEditBase.cs`
+- ... and 2125 more
 
 ## Denied Files (Blocked by Rules)
 
-_37624 files were blocked by deny rules._
+_19363 files were blocked by deny rules._
 
-- `Temp/FSTimeGet-926b23c6e98464dc58a09c98bf035c73` — Path in deny list
-- `Temp/FSTimeGet-86f41c057a2e34e918730a320a539241` — Path in deny list
+- `Temp/FSTimeGet-7161e169061514d3d9f4e729af87ff21` — Path in deny list
 - `Temp/UnityLockfile` — Path in deny list
+- `Temp/FSTimeGet-dd9da46378e9b4d298551ad615084dfa` — Path in deny list
+- `Temp/FSTimeGet-a5245fb2483984fda817e1fad59071a1` — Path in deny list
 - `Temp/workerlic` — Path in deny list
-- `Temp/FSTimeGet-12198c0cc85684093aacb60d052cad7e` — Path in deny list
 - `Library/SourceAssetDB-lock` — Path in deny list
 - `Library/EditorOnlyVirtualTextureState.json` — Path in deny list
 - `Library/Style.catalog` — Path in deny list
@@ -548,12 +683,20 @@ _37624 files were blocked by deny rules._
 - `Logs/AssetImportWorker1.log` — Path in deny list
 - `Logs/AssetImportWorker0.log` — Path in deny list
 - `Logs/shadercompiler-UnityShaderCompiler0.log` — Path in deny list
+- `Logs/shadercompiler-UnityShaderCompiler1.log` — Path in deny list
 - `Logs/AssetImportWorker1-prev.log` — Path in deny list
 - `Logs/AssetImportWorker0-prev.log` — Path in deny list
+- `Logs/shadercompiler-UnityShaderCompiler3.log` — Path in deny list
+- `Logs/shadercompiler-UnityShaderCompiler2.log` — Path in deny list
+- `Logs/shadercompiler-UnityShaderCompiler5.log` — Path in deny list
+- `Logs/shadercompiler-UnityShaderCompiler4.log` — Path in deny list
 - `Packages/manifest.json` — Path in deny list
 - `Packages/packages-lock.json` — Path in deny list
-- `LunaTemp/PROJECTID` — Path in deny list
+- `LunaTemp/luna.log` — Path in deny list
 - `LunaTemp/luna-cache.json` — Path in deny list
+- `LunaTemp/diagnostics-bc1b3caf-f22e-45f7-b2bb-3c36c9ce568e.sent.json` — Path in deny list
+- `LunaTemp/project-config.json` — Path in deny list
+- `LunaTemp/.buildID` — Path in deny list
 - `.vscode/settings.json` — Path in deny list
 - `.vscode/extensions.json` — Path in deny list
 - `.vscode/launch.json` — Path in deny list
@@ -590,131 +733,123 @@ _37624 files were blocked by deny rules._
 - `Library/Search/propertyAliases.db.st` — Path in deny list
 - `Library/Search/propertyAliases.db` — Path in deny list
 - `Library/Search/transactions.db` — Path in deny list
-- `Library/GridBrush/UnityEditor.Tilemaps.GridBrush.asset` — Path in deny list
-- `Library/GridBrush/UnityEditor.Tilemaps.GameObjectBrush.asset` — Path in deny list
-- `Library/GridBrush/UnityEditor.Tilemaps.LineBrush.asset` — Path in deny list
-- `Library/GridBrush/UnityEditor.Tilemaps.GroupBrush.asset` — Path in deny list
-- `Library/GridBrush/UnityEditor.Tilemaps.RandomBrush.asset` — Path in deny list
-- `Library/Recorder/recorder.pref` — Path in deny list
-- `Library/ScriptAssemblies/PPv2URPConverters.dll` — Path in deny list
+- `Library/PlayModeViewStates/953afb81b43774abd9644aa650dfe05d` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.Rider.Editor.dll` — Path in deny list
-- `Library/ScriptAssemblies/ToonyColorsPro2.Demo.dll` — Path in deny list
-- `Library/ScriptAssemblies/KinoBloom.Runtime.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualScripting.Shared.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/UnityEngine.TestRunner.pdb` — Path in deny list
-- `Library/ScriptAssemblies/ToonyColorsPro.Demo.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualScripting.Core.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualStudio.Editor.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Recorder.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Plugins.Baedrick.ColoredHeaderCreator.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.EditorCoroutines.Editor.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Recorder.Base.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.TextMeshPro.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll` — Path in deny list
+- `Library/ScriptAssemblies/Unity.PlasticSCM.Editor.Entities.pdb` — Path in deny list
 - `Library/ScriptAssemblies/ToonyColorsPro.Runtime.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualScripting.Core.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.Performance.Profile-Analyzer.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.TestTools.CodeCoverage.Editor.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.2D.Common.Editor.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Burst.CodeGen.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/ToonyColorsPro.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualScripting.State.pdb` — Path in deny list
 - `Library/ScriptAssemblies/UnityEditor.UI.dll` — Path in deny list
 - `Library/ScriptAssemblies/Assembly-CSharp.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Postprocessing.Editor.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Mathematics.Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/UnityEditor.TestRunner.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Postprocessing.Runtime.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.Cursor.Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll` — Path in deny list
-- `Library/ScriptAssemblies/Plugins.Baedrick.ColoredHeaderCreator.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Recorder.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Recorder.Base.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.EditorCoroutines.Editor.pdb` — Path in deny list
-- `Library/ScriptAssemblies/ToonyColorsPro2.Demo.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.Rider.Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.CollabProxy.Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualScripting.Flow.pdb` — Path in deny list
-- `Library/ScriptAssemblies/PPv2URPConverters.pdb` — Path in deny list
-- `Library/ScriptAssemblies/ToonyColorsPro.Demo.Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/UnityEngine.TestRunner.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualScripting.Shared.Editor.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.pdb` — Path in deny list
-- `Library/ScriptAssemblies/KinoBloom.Runtime.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualScripting.Core.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Assembly-CSharp.pdb` — Path in deny list
 - `Library/ScriptAssemblies/UnityEditor.UI.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualScripting.State.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll` — Path in deny list
 - `Library/ScriptAssemblies/UnityEditor.TestRunner.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Mathematics.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/Assembly-CSharp-Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.Cursor.Editor.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualScripting.Core.Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/ToonyColorsPro.Runtime.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.2D.Common.Runtime.pdb` — Path in deny list
+- `Library/ScriptAssemblies/Unity.PlasticSCM.Editor.Entities.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.TextMeshPro.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.Performance.Profile-Analyzer.Editor.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.2D.Common.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.TestTools.CodeCoverage.Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/ToonyColorsPro.Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.PlasticSCM.Editor.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Burst.CodeGen.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Recorder.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualScripting.State.Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll` — Path in deny list
-- `Library/ScriptAssemblies/Plugins.Baedrick.ColoredHeaderCreator.Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.2D.Sprite.Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VSCode.Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.Timeline.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Mathematics.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.pdb` — Path in deny list
 - `Library/ScriptAssemblies/UnityEngine.UI.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Burst.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.Timeline.Editor.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Burst.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.Settings.Editor.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.2D.Common.Path.Editor.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualScripting.SettingsProvider.Editor.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.ShaderGraph.Utilities.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Searcher.Editor.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Config.Runtime.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Mathematics.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.Timeline.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll` — Path in deny list
 - `Library/ScriptAssemblies/UnityEngine.UI.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Burst.Editor.pdb` — Path in deny list
-- `Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll` — Path in deny list
-- `Library/ScriptAssemblies/Unity.Recorder.Editor.pdb` — Path in deny list
-- ... and 37424 more
+- `Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll` — Path in deny list
+- `Library/ScriptAssemblies/Unity.TextMeshPro.Editor.pdb` — Path in deny list
+- `Library/ScriptAssemblies/Unity.VisualScripting.State.Editor.dll` — Path in deny list
+- `Library/ScriptAssemblies/Unity.VSCode.Editor.dll` — Path in deny list
+- `Library/ScriptAssemblies/Unity.Timeline.Editor.pdb` — Path in deny list
+- `Library/ScriptAssemblies/Unity.Settings.Editor.dll` — Path in deny list
+- `Library/ScriptAssemblies/Unity.VisualScripting.SettingsProvider.Editor.dll` — Path in deny list
+- `UserSettings/Layouts/CurrentMaximizeLayout.dwlt` — Path in deny list
+- `UserSettings/Layouts/default-2022.dwlt` — Path in deny list
+- `LunaTemp/Assemblies/scriptData.json` — Path in deny list
+- `LunaTemp/stage3/deps.json` — Path in deny list
+- `Temp/obj/Assembly-CSharp/project.nuget.cache` — Path in deny list
+- `Temp/obj/Assembly-CSharp/Assembly-CSharp.csproj.nuget.g.props` — Path in deny list
+- `Temp/obj/Assembly-CSharp/Assembly-CSharp.csproj.nuget.g.targets` — Path in deny list
+- `Temp/obj/Assembly-CSharp/project.assets.json` — Path in deny list
+- `Temp/obj/Assembly-CSharp/Assembly-CSharp.csproj.nuget.dgspec.json` — Path in deny list
+- `Temp/obj/ToonyColorsPro.Editor/ToonyColorsPro.Editor.csproj.nuget.g.props` — Path in deny list
+- `Temp/obj/ToonyColorsPro.Editor/project.nuget.cache` — Path in deny list
+- `Temp/obj/ToonyColorsPro.Editor/ToonyColorsPro.Editor.csproj.nuget.dgspec.json` — Path in deny list
+- `Temp/obj/ToonyColorsPro.Editor/project.assets.json` — Path in deny list
+- `Temp/obj/ToonyColorsPro.Editor/ToonyColorsPro.Editor.csproj.nuget.g.targets` — Path in deny list
+- `Temp/obj/ToonyColorsPro.Runtime/ToonyColorsPro.Runtime.csproj.nuget.g.targets` — Path in deny list
+- `Temp/obj/ToonyColorsPro.Runtime/ToonyColorsPro.Runtime.csproj.nuget.g.props` — Path in deny list
+- `Temp/obj/ToonyColorsPro.Runtime/project.nuget.cache` — Path in deny list
+- `Temp/obj/ToonyColorsPro.Runtime/ToonyColorsPro.Runtime.csproj.nuget.dgspec.json` — Path in deny list
+- `Temp/obj/ToonyColorsPro.Runtime/project.assets.json` — Path in deny list
+- `Temp/obj/Assembly-CSharp-Editor/Assembly-CSharp-Editor.csproj.nuget.g.props` — Path in deny list
+- `Temp/obj/Assembly-CSharp-Editor/project.nuget.cache` — Path in deny list
+- `Temp/obj/Assembly-CSharp-Editor/Assembly-CSharp-Editor.csproj.nuget.g.targets` — Path in deny list
+- `Temp/obj/Assembly-CSharp-Editor/project.assets.json` — Path in deny list
+- `Temp/obj/Assembly-CSharp-Editor/Assembly-CSharp-Editor.csproj.nuget.dgspec.json` — Path in deny list
+- `Library/Artifacts/61/6180df54c1264e540aa65ddef76b2614` — Path in deny list
+- `Library/Artifacts/61/61baacea04bee22d06caee8259ad9baa` — Path in deny list
+- `Library/Artifacts/61/6199f3eecd5e383f953c8490de5ee7f5` — Path in deny list
+- `Library/Artifacts/61/61d16d6a1efdc1474ec18b4052cbc78a` — Path in deny list
+- `Library/Artifacts/61/61bec7ebb790c32154bb214acaee2fe5` — Path in deny list
+- `Library/Artifacts/61/619ed8c74fe388bc6c492007cb6f7052` — Path in deny list
+- `Library/Artifacts/61/611e448b897cf2846aa11cdb61dd46df` — Path in deny list
+- `Library/Artifacts/61/6128c112d670791b21154427b6788b2d` — Path in deny list
+- `Library/Artifacts/61/615062154f2c75e01121c86e145b2c10` — Path in deny list
+- `Library/Artifacts/61/61a42f66113b4ac3ef77361c143c2368` — Path in deny list
+- `Library/Artifacts/61/6190b19b673abc1183675c4191e667b0` — Path in deny list
+- `Library/Artifacts/61/6117aa9c601c19c415ecea279f5e69cb` — Path in deny list
+- `Library/Artifacts/61/6109a5adcfb2819311b25aedded219e4` — Path in deny list
+- `Library/Artifacts/61/615b495ce6b9c104ca083cf78743f77e` — Path in deny list
+- `Library/Artifacts/61/61bbbf76bdf0e41cc49f952be8ae7a37` — Path in deny list
+- `Library/Artifacts/61/617a97f13f400fe2693fbd66317a4c10` — Path in deny list
+- `Library/Artifacts/61/614759d9ca001d14ab750e46cc91cee7` — Path in deny list
+- `Library/Artifacts/61/61034f3dfa267e0d11ab604a61efb3de` — Path in deny list
+- `Library/Artifacts/61/61a40248a33522a21875a7172da453eb` — Path in deny list
+- `Library/Artifacts/61/61005b7353c63c105f2df18200591415` — Path in deny list
+- `Library/Artifacts/61/6114434687510544f8d8e36363f02375` — Path in deny list
+- `Library/Artifacts/61/61eae26116a48bcb3309bd2f04c9211e` — Path in deny list
+- `Library/Artifacts/61/61e3154bb5b33537024deedc73f15c36` — Path in deny list
+- ... and 19163 more
 
 ## Errors
 
@@ -732,9 +867,9 @@ git checkout -b backport/framework-update
 
 # 2. Copy exported files (preserves relative paths)
 # Windows:
-xcopy /E /Y "/Users/supercent/luna_lumberchopper/Tools/FrameworkExporter/ExportPackage\*" ".\"
+xcopy /E /Y "/Users/supercent/luna_matchclash/Tools/FrameworkExporter/ExportPackage\*" ".\"
 # macOS/Linux:
-cp -R /Users/supercent/luna_lumberchopper/Tools/FrameworkExporter/ExportPackage/* .
+cp -R /Users/supercent/luna_matchclash/Tools/FrameworkExporter/ExportPackage/* .
 
 # 3. Remove the manifest/report (they're for review only)
 del manifest.json export_report.md

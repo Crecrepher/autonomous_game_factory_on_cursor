@@ -1,0 +1,220 @@
+# Module Candidates — 구조화된 후보 목록 (기계 판독용)
+
+scan_date: "2026-03-19"
+total_candidates: 15
+
+candidates:
+
+  - id: MC-01
+    name: PuzzleCore
+    strategy: AdaptExistingModule
+    risk: medium
+    registry_match: [PuzzleBlock, PuzzleBoard, SpecialBlock]
+    similarity_score: 0.75
+    source_files:
+      - Puzzle/Controller/PuzzleController.cs
+      - Puzzle/Controller/PuzzleMatcher.cs
+      - Puzzle/Controller/PuzzleRefill.cs
+      - Puzzle/Controller/PuzzleInputHandler.cs
+      - Puzzle/Controller/SpecialBlockActivator.cs
+      - Puzzle/Model/PuzzleBoard.cs
+      - Puzzle/Model/BlockData.cs
+      - Puzzle/Model/MatchResult.cs
+      - Puzzle/Model/EBlockType.cs
+    total_lines: 2255
+    drift: [GodClass]
+    phase: 2
+
+  - id: MC-02
+    name: PuzzleView
+    strategy: WrapWithModuleInterface
+    risk: high
+    registry_match: []
+    similarity_score: 0.0
+    source_files:
+      - Puzzle/View/PuzzleBoardView.cs
+      - Puzzle/View/BlockView.cs
+      - Puzzle/View/PuzzleCameraAspectFitter.cs
+    total_lines: 2675
+    drift: [GodClass, LogicInMonoBehaviour]
+    phase: 3
+
+  - id: MC-03
+    name: BattleCharacter
+    strategy: AdaptExistingModule
+    risk: low
+    registry_match: [BattleCharacter]
+    similarity_score: 0.9
+    source_files:
+      - Character/Controller/CharacterController.cs
+      - Character/Controller/SkillGauge.cs
+      - Character/Model/CharacterModel.cs
+      - Character/Model/EWeaponType.cs
+    total_lines: 313
+    drift: []
+    phase: 1
+
+  - id: MC-04
+    name: BattleCharacterView
+    strategy: WrapWithModuleInterface
+    risk: low
+    registry_match: [MatchClashUI]
+    similarity_score: 0.5
+    source_files:
+      - Character/View/CharacterView.cs
+      - Character/View/SkillAnimationPlayer.cs
+    total_lines: 379
+    drift: []
+    phase: 3
+
+  - id: MC-05
+    name: BattleMonster
+    strategy: AdaptExistingModule
+    risk: low
+    registry_match: [BattleMonster]
+    similarity_score: 0.9
+    source_files:
+      - Combat/Controller/CombatController.cs
+      - Combat/Controller/DamageCalculator.cs
+      - Combat/Model/MonsterModel.cs
+    total_lines: 257
+    drift: []
+    phase: 1
+
+  - id: MC-06
+    name: BattleMonsterView
+    strategy: WrapWithModuleInterface
+    risk: medium
+    registry_match: [MatchClashUI]
+    similarity_score: 0.4
+    source_files:
+      - Combat/View/MonsterView.cs
+      - Combat/View/DamageText.cs
+    total_lines: 995
+    drift: [GodClass]
+    phase: 3
+
+  - id: MC-07
+    name: BattleEffect
+    strategy: AdaptExistingModule
+    risk: high
+    registry_match: [BattleEffect]
+    similarity_score: 0.7
+    source_files:
+      - Combat/View/CombatVFX.cs
+      - VFX/ProjectileEffect.cs
+      - VFX/ManaProjectile.cs
+      - VFX/SwordProjectile.cs
+      - VFX/BombProjectile.cs
+      - VFX/LightningProjectile.cs
+      - VFX/HitEffect.cs
+      - VFX/HitEffectPool.cs
+      - VFX/BlockMatchParticle.cs
+      - VFX/BlockMatchParticlePool.cs
+      - VFX/CameraShake.cs
+      - VFX/VFXEventListener.cs
+      - VFX/EProjectileType.cs
+      - VFX/LightningDebugHelper.cs
+    total_lines: 3226
+    drift: [GodClass, LogicInMonoBehaviour]
+    phase: 3
+
+  - id: MC-08
+    name: SkillSystem
+    strategy: ExtractRuntimeModule
+    risk: low
+    registry_match: []
+    similarity_score: 0.0
+    source_files:
+      - Skill/SkillController.cs
+      - Skill/SkillExecutor.cs
+    total_lines: 332
+    drift: []
+    phase: 1
+
+  - id: MC-09
+    name: GameFlow
+    strategy: SplitIntoMultipleModules
+    risk: high
+    registry_match: [GameManager]
+    similarity_score: 0.6
+    source_files:
+      - Core/GameFlowController.cs
+      - Core/GameSceneInitializer.cs
+      - Core/StageController.cs
+    total_lines: 1195
+    drift: [GodClass, LogicInMonoBehaviour]
+    phase: 3
+
+  - id: MC-10
+    name: GameConfig
+    strategy: ReuseAsIs
+    risk: low
+    registry_match: []
+    similarity_score: 0.0
+    source_files:
+      - Config/GameBalanceConfig.cs
+    total_lines: 160
+    drift: []
+    phase: 1
+
+  - id: MC-11
+    name: GameEvents
+    strategy: LeaveUnclassified
+    risk: medium
+    registry_match: []
+    similarity_score: 0.0
+    source_files:
+      - Events/GameEvents.cs
+    total_lines: 219
+    drift: [GlobalStaticState]
+    phase: 1
+
+  - id: MC-12
+    name: InputGuide
+    strategy: AdaptExistingModule
+    risk: medium
+    registry_match: [Guide]
+    similarity_score: 0.5
+    source_files:
+      - Input/InputGuideController.cs
+    total_lines: 557
+    drift: [GodClass, LogicInMonoBehaviour]
+    phase: 2
+
+  - id: MC-13
+    name: GameSound
+    strategy: WrapWithModuleInterface
+    risk: low
+    registry_match: []
+    similarity_score: 0.0
+    source_files:
+      - Sound/GameSoundController.cs
+    total_lines: 193
+    drift: []
+    phase: 1
+
+  - id: MC-14
+    name: EndCard
+    strategy: AdaptExistingModule
+    risk: low
+    registry_match: [EndCard]
+    similarity_score: 0.8
+    source_files:
+      - EndCard/EndCardController.cs
+    total_lines: 95
+    drift: []
+    phase: 1
+
+  - id: MC-15
+    name: Utils
+    strategy: LeaveUnclassified
+    risk: low
+    registry_match: []
+    similarity_score: 0.0
+    source_files:
+      - Utils/CoordinateConverter.cs
+      - Utils/AutoBindHelper.cs
+    total_lines: 271
+    drift: []
+    phase: 1

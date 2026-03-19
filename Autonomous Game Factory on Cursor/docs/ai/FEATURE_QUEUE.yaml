@@ -78,3 +78,43 @@ features:
     created_at: "2026-03-19"
     updated_at: "2026-03-19"
     commit_hash: "264b70d74"
+
+  - name: p002-code-ingestion
+    feature_group: p002-ingestion
+    status: queued
+    description: >
+      Playable002 기존 코드(49 .cs, 13,122줄) 분석 및 AGF 모듈 구조로 매핑.
+      원본 코드 무수정. 어댑터 우선 마이그레이션.
+    modules:
+      - P002_GameConfig
+      - P002_GameEvents
+      - P002_BattleCharacter
+      - P002_BattleMonster
+      - P002_SkillSystem
+      - P002_PuzzleCore
+      - P002_EndCard
+      - P002_GameSound
+      - P002_InputGuide
+      - P002_PuzzleView
+      - P002_BattleCharacterView
+      - P002_BattleMonsterView
+      - P002_BattleEffect
+      - P002_GameFlow
+      - P002_Utils
+    constraints:
+      - 원본 코드(Assets/Supercent/) 무수정
+      - 원본 코드 삭제 금지
+      - 마이그레이션 완료 주장 금지
+      - 어댑터 우선, 점진적 전환
+      - foreach/LINQ/코루틴/람다 금지
+      - MonoBehaviour는 Bootstrap/View만
+    references:
+      - docs/ai/ingestion/CODEBASE_INVENTORY.md
+      - docs/ai/ingestion/MODULE_CANDIDATES.md
+      - docs/ai/ingestion/DEPENDENCY_GRAPH.md
+      - docs/ai/ingestion/MODULARIZATION_PLAN.md
+      - docs/ai/ingestion/MIGRATION_PLAN.md
+      - docs/ai/ingestion/CODEBASE_INDEX.yaml
+      - docs/ai/ingestion/MODULE_CANDIDATES.yaml
+    created_at: "2026-03-19"
+    updated_at: "2026-03-19"
