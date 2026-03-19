@@ -1,6 +1,6 @@
 # Framework Export Report
 
-- **Timestamp**: 2026-03-18 10:04:06 UTC
+- **Timestamp**: 2026-03-19 05:08:09 UTC
 - **Mode**: Framework
 - **Dry Run**: No
 - **Changed-only filter**: False
@@ -10,12 +10,12 @@
 
 | Category | Count |
 |----------|------:|
-| Total files scanned | 47569 |
-| **Exported** | **212** |
-| Risky (included, flagged) | 63 |
+| Total files scanned | 47986 |
+| **Exported** | **216** |
+| Risky (included, flagged) | 64 |
 | Unknown (NOT exported) | 3 |
-| Skipped (outside paths) | 9995 |
-| Denied (blocked) | 37359 |
+| Skipped (outside paths) | 10143 |
+| Denied (blocked) | 37624 |
 | Git-filtered (unchanged) | 0 |
 | Errors | 0 |
 | Total export size | 1.00 MB |
@@ -37,6 +37,7 @@
 - `docs/ai/AGENT_ROLES.md`
 - `docs/ai/PROJECT_OVERVIEW.example.md`
 - `docs/ai/PROJECT_OVERVIEW.md`
+- `docs/ai/ENTRYPOINT_GDD_EXECUTION.md`
 - `docs/ai/COMMAND_PROFILES.yaml`
 - `docs/ai/MODULE_REGISTRY.yaml`
 - `docs/ai/FEATURE_QUEUE.yaml`
@@ -59,6 +60,7 @@
 - `docs/ai/CONFIG_RULES.md`
 - `docs/ai/HOW_TO_APPLY_TO_PROJECT.md`
 - `docs/ai/AI_DEVELOPMENT_LOOP.example.md`
+- `docs/ai/COMPLETION_CRITERIA.md`
 - `docs/ai/PIPELINE_AUTOMATION.md`
 - `docs/ai/ORCHESTRATION_RULES.md`
 - `docs/ai/MODULE_TEMPLATES.md`
@@ -70,6 +72,7 @@
 - `docs/ai/KNOWN_FAILURE_PATTERNS.md`
 - `docs/ai/AUTO_CONTEXT_RULES.md`
 - `docs/ai/GLOBAL_LEARNING_SYSTEM.md`
+- `docs/ai/PARALLEL_EXECUTION_PROOF.md`
 - `docs/ai/CODING_RULES.md`
 - `docs/ai/TASK_QUEUE.yaml`
 - `docs/ai/INTEGRATION_STRATEGY.md`
@@ -121,6 +124,7 @@
 - `Assets/Editor/AI/FeatureDecomposer.cs`
 - `Assets/Editor/AI/FeatureIntake.cs`
 - `Assets/Editor/AI/ArchitectureKnowledgeMemory.cs.meta`
+- `Assets/Editor/AI/TaskExecutionEngine.cs.meta`
 - `Assets/Editor/AI/LearningRecorderWriter.cs.meta`
 - `Assets/Editor/AI/ArchitectureDiffAnalyzer.cs.meta`
 - `Assets/Editor/AI/TaskExecutionEngine.cs`
@@ -218,11 +222,7 @@
 - `Assets/Editor/AI/Validators/ForbiddenFolderValidator.cs.meta`
 - `Assets/Editor/AI/Validators/IntegrationStrategyValidator.cs`
 - `Assets/Editor/AI/Validators/ModuleBoundaryValidator.cs.meta`
-- `Assets/Editor/AI/Validators/DependencyValidator.cs.meta`
-- `Assets/Editor/AI/Validators/RegressionGuardianValidator.cs`
-- `Assets/Editor/AI/Validators/RegressionGuardianValidator.cs.meta`
-- `Assets/Editor/AI/CrossProject/GlobalModuleLibrary.cs`
-- ... and 12 more
+- ... and 16 more
 
 ## Risky Files (Review Before Applying!)
 
@@ -235,6 +235,7 @@
 - **Assets/Editor/AI/FeatureIntake.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
 - **Assets/Editor/AI/IntelligentDecomposer.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
 - **Assets/Editor/AI/ArchitectureKnowledgeMemory.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
+- **Assets/Editor/AI/TaskExecutionEngine.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
 - **Assets/Editor/AI/LearningRecorderWriter.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
 - **Assets/Editor/AI/ArchitectureDiffAnalyzer.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
 - **Assets/Editor/AI/IntegrationStrategyEngine.cs.meta** — Risky extension '.meta' under 'Assets/Editor/AI'
@@ -305,7 +306,7 @@
 
 ## Skipped Files (Outside Allowed Paths)
 
-_9995 files were outside the allowed paths._
+_10143 files were outside the allowed paths._
 
 - `omnisharp.json`
 - `Unity.ProBuilder.Csg.csproj`
@@ -439,6 +440,9 @@ _9995 files were outside the allowed paths._
 - `Assets/WaterShallow/Prefabs.meta`
 - `Assets/WaterShallow/Sprites.meta`
 - `Assets/Game/Modules.meta`
+- `Assets/Game/Prefabs.meta`
+- `Assets/Game/ScriptableObjects.meta`
+- `Assets/Game/Scenes.meta`
 - `Assets/Supercent/Luna.meta`
 - `Assets/Supercent/Toony Colors Pro 2.meta`
 - `Assets/Supercent/JMO Assets.meta`
@@ -504,20 +508,17 @@ _9995 files were outside the allowed paths._
 - `Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader`
 - `Assets/TextMesh Pro/Shaders/TMPro.cginc`
 - `Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader.meta`
-- `Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader`
-- `Assets/TextMesh Pro/Shaders/TMP_SDF.shader`
-- `Assets/TextMesh Pro/Shaders/TMPro.cginc.meta`
-- ... and 9795 more
+- ... and 9943 more
 
 ## Denied Files (Blocked by Rules)
 
-_37359 files were blocked by deny rules._
+_37624 files were blocked by deny rules._
 
-- `Temp/FSTimeGet-c74da095ed0934bf2bf3ac1b82a5e866` — Path in deny list
+- `Temp/FSTimeGet-926b23c6e98464dc58a09c98bf035c73` — Path in deny list
+- `Temp/FSTimeGet-86f41c057a2e34e918730a320a539241` — Path in deny list
 - `Temp/UnityLockfile` — Path in deny list
-- `Temp/FSTimeGet-31d67ff8e3d974c03adedc71aab59668` — Path in deny list
-- `Temp/FSTimeGet-c8598f74660514ba5bd3ce4e24562975` — Path in deny list
 - `Temp/workerlic` — Path in deny list
+- `Temp/FSTimeGet-12198c0cc85684093aacb60d052cad7e` — Path in deny list
 - `Library/SourceAssetDB-lock` — Path in deny list
 - `Library/EditorOnlyVirtualTextureState.json` — Path in deny list
 - `Library/Style.catalog` — Path in deny list
@@ -713,7 +714,7 @@ _37359 files were blocked by deny rules._
 - `Library/ScriptAssemblies/Unity.Burst.Editor.pdb` — Path in deny list
 - `Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.Recorder.Editor.pdb` — Path in deny list
-- ... and 37159 more
+- ... and 37424 more
 
 ## Errors
 

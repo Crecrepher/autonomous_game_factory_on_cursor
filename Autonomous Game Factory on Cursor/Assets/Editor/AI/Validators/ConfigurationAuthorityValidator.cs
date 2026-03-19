@@ -190,9 +190,9 @@ namespace Game.Editor.AI
             List<ConfigFieldInfo> allFields,
             List<ConflictPair> conflicts)
         {
-            for (int i = 0; i < graph.ModuleMap.Count; i++)
+            for (int i = 0; i < graph.Modules.Length; i++)
             {
-                DependencyGraphBuilder.RegistryModule module = graph.ModuleMap[i];
+                DependencyGraphBuilder.RegistryModule module = graph.Modules[i];
                 if (module.Dependencies == null) continue;
 
                 for (int d = 0; d < module.Dependencies.Length; d++)

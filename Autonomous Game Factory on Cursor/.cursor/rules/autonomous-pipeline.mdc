@@ -5,6 +5,10 @@ alwaysApply: true
 
 # Autonomous Pipeline Rule
 
+**범용 Playable Ad 프레임워크** — 2D / 3D / 모든 장르의 Playable Ad에 대응한다.
+기획서가 주어지면 해당 게임의 장르·메카닉에 맞는 모듈을 생성하되, MODULE_REGISTRY.yaml의 기존 모듈 카탈로그에서 `dimension`과 `genre_tags`를 기준으로 재사용 가능한 모듈을 먼저 탐색한다.
+MODULE_TEMPLATES.md의 2D/3D 클래스명 가이드를 참조하여 좌표계 종속 모듈은 `2D`/`3D` 접미사로 구분한다.
+
 사용자가 **새 기능, 모듈, 시스템, 게임 메카닉**을 요청하면 아래 파이프라인을 **처음부터 끝까지** 자동으로 실행한다.
 "만들어줘", "추가해줘", "구현해줘" 등의 요청은 이 파이프라인의 트리거다.
 

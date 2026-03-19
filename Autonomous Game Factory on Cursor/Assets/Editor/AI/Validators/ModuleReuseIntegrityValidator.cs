@@ -266,9 +266,9 @@ namespace Game.Editor.AI
 
         static bool AreRelated(string a, string b, DependencyGraphBuilder.DependencyGraph graph)
         {
-            for (int i = 0; i < graph.ModuleMap.Count; i++)
+            for (int i = 0; i < graph.Modules.Length; i++)
             {
-                DependencyGraphBuilder.RegistryModule mod = graph.ModuleMap[i];
+                DependencyGraphBuilder.RegistryModule mod = graph.Modules[i];
                 if (mod.Name != a) continue;
                 if (mod.Dependencies == null) return false;
                 for (int d = 0; d < mod.Dependencies.Length; d++)
@@ -276,9 +276,9 @@ namespace Game.Editor.AI
                     if (mod.Dependencies[d] == b) return true;
                 }
             }
-            for (int i = 0; i < graph.ModuleMap.Count; i++)
+            for (int i = 0; i < graph.Modules.Length; i++)
             {
-                DependencyGraphBuilder.RegistryModule mod = graph.ModuleMap[i];
+                DependencyGraphBuilder.RegistryModule mod = graph.Modules[i];
                 if (mod.Name != b) continue;
                 if (mod.Dependencies == null) return false;
                 for (int d = 0; d < mod.Dependencies.Length; d++)

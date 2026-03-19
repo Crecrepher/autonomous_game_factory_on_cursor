@@ -1,5 +1,8 @@
 # Economy 모듈 PLAN
 
+> **범용 모듈** — dimension: both, genre_tags: [universal, idle, arcade, rpg, tower-defense, simulation]
+> 아래 PLAN은 최초 구현 시의 컨텍스트(타워디펜스)를 포함하지만, Economy 모듈 자체는 모든 장르에서 재사용 가능하다.
+
 > Planner 에이전트 산출물 — TASK_QUEUE.yaml `Economy` 태스크
 
 ---

@@ -318,4 +318,127 @@ namespace Game
 7. Factory에 의존성 주입 파라미터 추가 (필요 시)
 8. Bootstrap에서 추가 바인딩 (필요 시)
 9. Tests에 도메인 로직 테스트 추가
-10. `MODULE_REGISTRY.yaml`에 모듈 항목 등록
+10. `MODULE_REGISTRY.yaml`에 모듈 항목 등록 (`dimension`, `genre_tags`, `reuse_hint` 포함)
+
+---
+
+## 6. 2D / 3D 구분 가이드
+
+이 프레임워크는 2D와 3D 게임 모두를 지원한다. 모듈 생성 시 아래 가이드를 따른다.
+
+### 6.1 dimension 태그 기준
+
+| dimension | 의미 | 예시 |
+|-----------|------|------|
+| `both` | 2D/3D 모두 사용 가능. 로직이 좌표계에 독립적. | Economy, ItemStacking, StatusEffect, Guide, EndCard |
+| `2d` | 2D 전용. SpriteRenderer, Collider2D, Vector2 기반. | SpriteAnimator, TilemapModule, ParallaxScroller |
+| `3d` | 3D 전용. MeshRenderer, Collider, Vector3 기반. | IsometricSorter, NavMeshAgent 래퍼, 3D 파티클 매니저 |
+
+### 6.2 클래스명 규칙 (2D/3D 구분이 필요한 경우)
+
+로직이 좌표계에 독립적이면 접미사 없이 범용 이름을 사용한다.
+좌표계에 종속적인 구현이 분리되어야 하면, 인터페이스는 공통으로 두고 Runtime에 접미사를 붙인다.
+
+| 상황 | 인터페이스 | Runtime 클래스명 | 설명 |
+|------|-----------|-----------------|------|
+| 범용 (좌표 무관) | `IEconomy` | `EconomyRuntime` | 접미사 없음 |
+| 2D 전용 구현 | `IPlayerMovement` | `PlayerMovement2DRuntime` | `2D` 접미사 |
+| 3D 전용 구현 | `IPlayerMovement` | `PlayerMovement3DRuntime` | `3D` 접미사 |
+| 2D/3D 모두 구현 | `IProjectile` | `Projectile2DRuntime`, `Projectile3DRuntime` | 각각 분리 |
+
+### 6.3 좌표계 분리 패턴 (권장)
+
+이동/충돌 등 좌표계 종속 로직은 인터페이스로 추상화하고, 2D/3D 구현을 분리한다.
+
+```csharp
+namespace Game
+{
+    public interface IMovementProvider
+    {
+        void Move(float deltaTime);
+        void SetDirection(float x, float y);
+    }
+
+    public class Movement2DProvider : IMovementProvider
+    {
+        // Transform + Vector2 기반 이동
+    }
+
+    public class Movement3DProvider : IMovementProvider
+    {
+        // Transform + Vector3 기반 이동
+    }
+}
+```
+
+Runtime은 `IMovementProvider`를 주입받아 좌표계와 무관하게 동작한다.
+
+### 6.4 모듈 카테고리별 구체적 클래스명 레퍼런스
+
+각 카테고리에서 자주 등장하는 모듈명과 클래스명 예시. 새 모듈 생성 시 참고.
+
+**[Core Infrastructure]**
+
+| 모듈명 | 인터페이스 | Runtime | Config | 용도 |
+|--------|-----------|---------|--------|------|
+| `ObjectPool` | `IObjectPool` | `ObjectPoolRuntime` | `ObjectPoolConfig` | 오브젝트 풀링 (적, 투사체, 이펙트) |
+| `Timer` | `ITimer` | `TimerRuntime` | `TimerConfig` | 쿨타임/주기 관리 |
+| `AudioManager` | `IAudioManager` | `AudioManagerRuntime` | `AudioManagerConfig` | 사운드 재생 |
+| `CameraController` | `ICameraController` | `CameraController2DRuntime` / `CameraController3DRuntime` | `CameraControllerConfig` | 카메라 제어 |
+| `InputHandler` | `IInputHandler` | `InputHandlerRuntime` | `InputHandlerConfig` | 터치/클릭 입력 처리 |
+| `SaveData` | `ISaveData` | `SaveDataRuntime` | `SaveDataConfig` | 로컬 세이브 |
+
+**[Combat & Unit]**
+
+| 모듈명 | 인터페이스 | Runtime | Config | 용도 |
+|--------|-----------|---------|--------|------|
+| `Player` | `IPlayer` | `PlayerRuntime` | `PlayerConfig` | 플레이어 캐릭터 |
+| `Enemies` | `IEnemies` | `EnemiesRuntime` | `EnemiesConfig` | 적 유닛 관리 |
+| `Warriors` | `IWarriors` | `WarriorsRuntime` | `WarriorsConfig` | 아군 유닛 관리 |
+| `Projectile` | `IProjectile` | `Projectile2DRuntime` / `Projectile3DRuntime` | `ProjectileConfig` | 투사체 (2D/3D 분리) |
+| `DamageSystem` | `IDamageSystem` | `DamageSystemRuntime` | `DamageSystemConfig` | 데미지 계산/적용 |
+| `HealthBar` | `IHealthBar` | `HealthBarRuntime` | `HealthBarConfig` | 체력바 UI |
+
+**[Economy & Resource]**
+
+| 모듈명 | 인터페이스 | Runtime | Config | 용도 |
+|--------|-----------|---------|--------|------|
+| `Economy` | `IEconomy` | `EconomyRuntime` | `EconomyConfig` | 재화 관리 |
+| `Pickups` | `IPickups` | `PickupsRuntime` | `PickupsConfig` | 필드 드롭 수집 |
+| `Rewards` | `IRewards` | `RewardsRuntime` | `RewardsConfig` | 보상 분배 |
+
+**[Building & Placement]**
+
+| 모듈명 | 인터페이스 | Runtime | Config | 용도 |
+|--------|-----------|---------|--------|------|
+| `DefenseTowers` | `IDefenseTowers` | `DefenseTowersRuntime` | `DefenseTowersConfig` | 타워/구조물 건설 |
+| `Fortress` | `IFortress` | `FortressRuntime` | `FortressConfig` | 거점/기지 |
+| `GridPlacement` | `IGridPlacement` | `GridPlacement2DRuntime` / `GridPlacement3DRuntime` | `GridPlacementConfig` | 그리드 배치 (2D/3D 분리) |
+
+**[Item & Inventory]**
+
+| 모듈명 | 인터페이스 | Runtime | Config | 용도 |
+|--------|-----------|---------|--------|------|
+| `ItemStacking` | `IItemStacking` | `ItemStackingRuntime` | `ItemStackingConfig` | 아이템 스태킹 |
+| `InventorySystem` | `IInventorySystem` | `InventorySystemRuntime` | `InventorySystemConfig` | 인벤토리 관리 |
+| `MergeBoard` | `IMergeBoard` | `MergeBoardRuntime` | `MergeBoardConfig` | 머지 게임 보드 |
+| `CraftingSystem` | `ICraftingSystem` | `CraftingSystemRuntime` | `CraftingSystemConfig` | 아이템 제작 |
+
+**[UI & UX]**
+
+| 모듈명 | 인터페이스 | Runtime | Config | 용도 |
+|--------|-----------|---------|--------|------|
+| `UI` | `IUI` | `UIRuntime` | `UIConfig` | 공통 HUD |
+| `Guide` | `IGuide` | `GuideRuntime` | `GuideConfig` | 튜토리얼/가이드 |
+| `EndCard` | `IEndCard` | `EndCardRuntime` | `EndCardConfig` | Playable Ad 엔드카드 |
+| `BuffIconUI` | `IBuffIconUI` | `BuffIconUIRuntime` | `BuffIconUIConfig` | 버프 아이콘 표시 |
+| `ProgressBar` | `IProgressBar` | `ProgressBarRuntime` | `ProgressBarConfig` | 진행률 바 |
+| `FloatingText` | `IFloatingText` | `FloatingTextRuntime` | `FloatingTextConfig` | 데미지/보상 플로팅 텍스트 |
+
+**[Game Flow]**
+
+| 모듈명 | 인터페이스 | Runtime | Config | 용도 |
+|--------|-----------|---------|--------|------|
+| `GameManager` | `IGameManager` | `GameManagerRuntime` | `GameManagerConfig` | 게임 흐름 제어 |
+| `WaveSystem` | `IWaveSystem` | `WaveSystemRuntime` | `WaveSystemConfig` | 웨이브 진행 |
+| `LevelProgress` | `ILevelProgress` | `LevelProgressRuntime` | `LevelProgressConfig` | 레벨/스테이지 진행 |

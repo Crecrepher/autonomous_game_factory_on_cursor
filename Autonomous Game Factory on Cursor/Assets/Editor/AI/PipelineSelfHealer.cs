@@ -40,19 +40,19 @@ namespace Game.Editor.AI
             CheckQueueStatusMismatch(actions, dryRun);
             CheckDependencyOrdering(actions, dryRun);
 
-            int fixed = 0;
-            int skipped = 0;
+            int fixedCount = 0;
+            int skippedCount = 0;
             for (int i = 0; i < actions.Count; i++)
             {
-                if (actions[i].Applied) fixed++;
-                else skipped++;
+                if (actions[i].Applied) fixedCount++;
+                else skippedCount++;
             }
 
             return new HealReport
             {
                 DetectedIssues = actions.Count,
-                FixedIssues = fixed,
-                SkippedIssues = skipped,
+                FixedIssues = fixedCount,
+                SkippedIssues = skippedCount,
                 Actions = actions.ToArray()
             };
         }
@@ -220,7 +220,7 @@ namespace Game.Editor.AI
             DependencyGraphBuilder.DependencyGraph graph = DependencyGraphBuilder.BuildGraph();
 
             string cycleChain;
-            if (DependencyGraphBuilder.DetectCycle(graph.ModuleMap.ToArray(), out cycleChain))
+            if (DependencyGraphBuilder.DetectCycle(graph.Modules, out cycleChain))
             {
                 actions.Add(new HealAction
                 {
@@ -232,13 +232,13 @@ namespace Game.Editor.AI
                 return;
             }
 
-            string[] sorted = DependencyGraphBuilder.TopologicalSort(graph.ModuleMap.ToArray());
+            string[] sorted = DependencyGraphBuilder.TopologicalSort(graph.Modules);
             if (sorted == null || sorted.Length == 0) return;
 
             int orderIssues = 0;
-            for (int i = 0; i < graph.TaskQueue.Count; i++)
+            for (int i = 0; i < graph.Tasks.Length; i++)
             {
-                DependencyGraphBuilder.TaskEntry task = graph.TaskQueue[i];
+                DependencyGraphBuilder.TaskEntry task = graph.Tasks[i];
                 if (task.Status == "done") continue;
                 if (task.DependsOn == null || task.DependsOn.Length == 0) continue;
 
@@ -246,9 +246,9 @@ namespace Game.Editor.AI
                 {
                     string dep = task.DependsOn[d];
                     bool depDone = false;
-                    for (int t = 0; t < graph.TaskQueue.Count; t++)
+                    for (int t = 0; t < graph.Tasks.Length; t++)
                     {
-                        if (graph.TaskQueue[t].Name == dep && graph.TaskQueue[t].Status == "done")
+                        if (graph.Tasks[t].Name == dep && graph.Tasks[t].Status == "done")
                         {
                             depDone = true;
                             break;
@@ -256,9 +256,9 @@ namespace Game.Editor.AI
                     }
 
                     bool depInRegistry = false;
-                    for (int r = 0; r < graph.ModuleMap.Count; r++)
+                    for (int r = 0; r < graph.Modules.Length; r++)
                     {
-                        if (graph.ModuleMap[r].Name == dep)
+                        if (graph.Modules[r].Name == dep)
                         {
                             depInRegistry = true;
                             break;

@@ -14,6 +14,10 @@ alwaysApply: true
 
 # Autonomous Developer Rule
 
+**이 프레임워크는 모든 장르의 Playable Ad(2D / 3D / 아이소메트릭 / 탑다운 / 사이드뷰 등)를 타겟으로 한다.**
+특정 게임에 종속되지 않으며, 기획서가 주어지면 해당 장르에 맞는 모듈을 동적으로 생성하거나 기존 모듈 카탈로그에서 재사용한다.
+MODULE_REGISTRY.yaml의 `dimension`(2d/3d/both)과 `genre_tags`를 참조하여 재사용 가능한 모듈을 우선 탐색한다.
+
 When modifying this Unity project, behave as a **safe autonomous developer**. Follow this workflow and constraints every time.
 
 ## 1. Read AI Documentation First

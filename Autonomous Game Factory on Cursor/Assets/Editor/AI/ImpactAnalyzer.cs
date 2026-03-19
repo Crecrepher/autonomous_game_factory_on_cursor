@@ -43,9 +43,9 @@ namespace Game.Editor.AI
             int highRiskCount = 0;
             List<string> blockingIssues = new List<string>();
 
-            for (int i = 0; i < graph.ModuleMap.Count; i++)
+            for (int i = 0; i < graph.Modules.Length; i++)
             {
-                DependencyGraphBuilder.RegistryModule regModule = graph.ModuleMap[i];
+                DependencyGraphBuilder.RegistryModule regModule = graph.Modules[i];
                 if (regModule.Dependencies == null) continue;
 
                 bool dependsOnTarget = false;
@@ -76,9 +76,9 @@ namespace Game.Editor.AI
                     highRiskCount++;
             }
 
-            for (int t = 0; t < graph.TaskMap.Count; t++)
+            for (int t = 0; t < graph.Tasks.Length; t++)
             {
-                DependencyGraphBuilder.TaskEntry task = graph.TaskMap[t];
+                DependencyGraphBuilder.TaskEntry task = graph.Tasks[t];
                 if (string.IsNullOrEmpty(task.FeatureGroup)) continue;
                 if (processedGroups.Contains(task.FeatureGroup)) continue;
 

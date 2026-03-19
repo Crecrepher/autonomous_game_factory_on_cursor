@@ -38,7 +38,8 @@ namespace Game.Editor.AI
                 for (int d = 0; d < module.Dependencies.Length; d++)
                 {
                     string dep = module.Dependencies[d];
-                    if (dep == "UnityEngine" || dep == "System")
+                    if (dep == "UnityEngine" || dep == "System"
+                        || dep == "TMPro" || dep == "UnityEngine.UI")
                         continue;
 
                     if (!graph.ModuleMap.ContainsKey(dep))

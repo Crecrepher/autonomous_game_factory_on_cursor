@@ -1,6 +1,8 @@
 # ── AI 모듈 생성 태스크 큐 — v2 (Human-in-the-Loop) ──
+# ── 범용 Playable Ad 프레임워크 (2D / 3D / 모든 장르) ──
 #
 # 이 파일은 병렬 AI 에이전트가 모듈을 생성할 때 작업 상태를 추적하는 단일 소스이다.
+# 모듈은 여러 게임 프로젝트에서 재사용 가능한 범용 카탈로그로 관리된다.
 #
 # ── 스키마 버전 ──
 # v2에서 4차원 상태 모델을 도입한다. 상세: STATE_MACHINE.md, TASK_SCHEMA.md
@@ -33,6 +35,10 @@
 #   recommit_ready — 재커밋 필요
 #   recommitted    — 재커밋 완료
 #
+# ── 카탈로그 메타데이터 (MODULE_REGISTRY.yaml과 동기) ──
+#   dimension: 2d | 3d | both
+#   genre_tags: [universal, arcade, idle, tower-defense, action, rpg, ...]
+#
 # ── 핵심 규칙 ──
 #   - human_state == validated 없이 status를 review로 전이 불가 (Human Validation Gate)
 #   - commit_state ∈ {committed, recommitted} + learning_state == recorded 없이 done 불가
@@ -49,12 +55,12 @@ version: 2
 modules:
 
   # ══════════════════════════════════════════════════════════════
-  # 기존 모듈 (v1 포맷 유지 — 하위 호환)
-  # 이 모듈들은 v2 도입 전에 완료됨. 암묵적으로:
-  #   human_state: validated, commit_state: committed, learning_state: none
+  # 범용 모듈 카탈로그 (v1 포맷 유지 — 하위 호환)
+  # 이 모듈들은 다양한 Playable Ad에서 재사용 가능한 범용 자산이다.
+  # 암묵적으로: human_state: validated, commit_state: committed, learning_state: none
   # ══════════════════════════════════════════════════════════════
 
-  # ── 우선순위 HIGH: 핵심 시스템 (다른 모듈의 의존 대상) ──
+  # ── [Core Infrastructure] — 거의 모든 게임에서 재사용 ──
 
   - name: Economy
     status: done
@@ -63,25 +69,9 @@ modules:
     role: null
     depends_on: []
     module_path: Assets/Game/Modules/Economy
-    description: 코인 경제 시스템 — 재화 정의, 잔고 관리, 획득/소비 이벤트
-
-  - name: Player
-    status: done
-    priority: high
-    owner: null
-    role: null
-    depends_on: []
-    module_path: Assets/Game/Modules/Player
-    description: 플레이어 이동, 자동 공격, 입력 처리
-
-  - name: Enemies
-    status: done
-    priority: high
-    owner: null
-    role: null
-    depends_on: []
-    module_path: Assets/Game/Modules/Enemies
-    description: 적 스폰, 웨이브 패턴, 일반/큰 적 AI, HP 관리
+    dimension: both
+    genre_tags: [universal, idle, arcade, rpg, tower-defense, simulation]
+    description: 재화 경제 시스템 — 재화 정의, 잔고 관리, 획득/소비 이벤트
 
   - name: StatusEffect
     status: done
@@ -90,74 +80,9 @@ modules:
     role: null
     depends_on: []
     module_path: Assets/Game/Modules/StatusEffect
-    description: 상태이상 시스템(v1) — 이미 구현 완료
-
-  # ── 우선순위 MEDIUM: 핵심 의존 모듈 완료 후 병렬 가능 ──
-
-  - name: Warriors
-    status: done
-    priority: medium
-    owner: null
-    role: null
-    depends_on: [Economy]
-    module_path: Assets/Game/Modules/Warriors
-    description: 전사 고용, 배치, 자동 전투, 장비 착용
-
-  - name: DefenseTowers
-    status: done
-    priority: medium
-    owner: null
-    role: null
-    depends_on: [Economy]
-    module_path: Assets/Game/Modules/DefenseTowers
-    description: 수비탑 건설, 인원 배치, 울타리/수비문
-
-  - name: Fortress
-    status: done
-    priority: medium
-    owner: null
-    role: null
-    depends_on: [Economy]
-    module_path: Assets/Game/Modules/Fortress
-    description: 기지 HP, 1차/2차 업그레이드
-
-  - name: Pickups
-    status: done
-    priority: medium
-    owner: null
-    role: null
-    depends_on: [Economy]
-    module_path: Assets/Game/Modules/Pickups
-    description: 코인 드롭 줍기, 자동 수집
-
-  - name: HireNodes
-    status: done
-    priority: medium
-    owner: null
-    role: null
-    depends_on: [Economy, Warriors]
-    module_path: Assets/Game/Modules/HireNodes
-    description: 고용 노드 UI/로직, 비용 관리, 일괄 고용
-
-  - name: Blacksmith
-    status: done
-    priority: medium
-    owner: null
-    role: null
-    depends_on: [Economy, Warriors]
-    module_path: Assets/Game/Modules/Blacksmith
-    description: 대장간, 장비 소환, 전사 장비 배분
-
-  # ── 우선순위 MEDIUM: UI/연출 계열 ──
-
-  - name: Guide
-    status: done
-    priority: medium
-    owner: null
-    role: null
-    depends_on: []
-    module_path: Assets/Game/Modules/Guide
-    description: 화살표 가이드, 조건부 노출, 유저 유도
+    dimension: both
+    genre_tags: [universal, action, rpg, tower-defense, arcade]
+    description: 상태이상 시스템 — 버프/디버프 효과 정의·적용·틱·만료 관리
 
   - name: DynamicConfig
     status: done
@@ -166,47 +91,105 @@ modules:
     role: null
     depends_on: []
     module_path: Assets/Game/Modules/DynamicConfig
-    description: 다이나믹 대응 설정값 관리 — 런타임 밸런스 조절
+    dimension: both
+    genre_tags: [universal]
+    description: 런타임 밸런스 조절 — 키-값 기반 동적 설정값 관리
 
-  - name: BuffIconUI
+  # ── [Combat & Unit] — 전투/유닛 관련 ──
+
+  - name: Player
+    status: done
+    priority: high
+    owner: null
+    role: null
+    depends_on: []
+    module_path: Assets/Game/Modules/Player
+    dimension: both
+    genre_tags: [universal, action, arcade, idle, runner, rpg]
+    description: 플레이어 캐릭터 — 이동, 공격, 입력 처리
+
+  - name: Enemies
+    status: done
+    priority: high
+    owner: null
+    role: null
+    depends_on: []
+    module_path: Assets/Game/Modules/Enemies
+    dimension: both
+    genre_tags: [universal, action, arcade, tower-defense, rpg, shooting]
+    description: 적 유닛 — 스폰, 웨이브/패턴, AI, HP 관리
+
+  - name: Warriors
     status: done
     priority: medium
     owner: null
     role: null
-    depends_on: [StatusEffect]
-    module_path: Assets/Game/Modules/BuffIconUI
-    description: 상태이상 아이콘 UI 표시
+    depends_on: [Economy]
+    module_path: Assets/Game/Modules/Warriors
+    dimension: both
+    genre_tags: [tower-defense, rpg, idle, simulation, action]
+    description: 아군 유닛 — 고용, 배치, 자동 전투, 장비 착용
 
-  # ── 우선순위 LOW: 최종 단계 ──
+  # ── [Building & Placement] — 건설/배치/구조물 ──
 
-  - name: EndCard
+  - name: DefenseTowers
     status: done
-    priority: low
-    owner: null
-    role: null
-    depends_on: [Fortress]
-    module_path: Assets/Game/Modules/EndCard
-    description: 앤드카드 — 딤드 + 로고 + CTA 버튼
-
-  - name: UI
-    status: done
-    priority: low
+    priority: medium
     owner: null
     role: null
     depends_on: [Economy]
-    module_path: Assets/Game/Modules/UI
-    description: UI 관리, 코인 표시, CTA 버튼
+    module_path: Assets/Game/Modules/DefenseTowers
+    dimension: both
+    genre_tags: [tower-defense, idle, simulation]
+    description: 타워/구조물 건설·배치 — 건설 비용, 유닛 배치, 업그레이드
 
-  - name: GameManager
+  - name: Fortress
     status: done
-    priority: low
+    priority: medium
     owner: null
     role: null
-    depends_on: [Player, Enemies, Economy, Warriors, DefenseTowers, Fortress]
-    module_path: Assets/Game/Modules/GameManager
-    description: 게임 매니저, 전체 시퀀스/플로우 제어
+    depends_on: [Economy]
+    module_path: Assets/Game/Modules/Fortress
+    dimension: both
+    genre_tags: [tower-defense, idle, simulation, rpg]
+    description: 거점/기지 — HP 관리, 다단계 업그레이드
 
-  # ── item-stacking feature_group ──
+  - name: HireNodes
+    status: done
+    priority: medium
+    owner: null
+    role: null
+    depends_on: [Economy, Warriors]
+    module_path: Assets/Game/Modules/HireNodes
+    dimension: both
+    genre_tags: [tower-defense, idle, simulation]
+    description: 고용/구매 노드 — 필드 인터랙션 포인트, 비용 관리, 일괄 처리
+
+  - name: Blacksmith
+    status: done
+    priority: medium
+    owner: null
+    role: null
+    depends_on: [Economy, Warriors]
+    module_path: Assets/Game/Modules/Blacksmith
+    dimension: both
+    genre_tags: [rpg, idle, tower-defense, action]
+    description: 제작/강화 — 장비 생성, 유닛 장비 배분
+
+  # ── [Economy & Resource] — 재화/자원 ──
+
+  - name: Pickups
+    status: done
+    priority: medium
+    owner: null
+    role: null
+    depends_on: [Economy]
+    module_path: Assets/Game/Modules/Pickups
+    dimension: both
+    genre_tags: [universal, arcade, action, idle, runner]
+    description: 필드 드롭 수집 — 자동/수동 수집, Economy 연동
+
+  # ── [Item & Inventory] ──
 
   - name: ItemStacking
     status: done
@@ -216,6 +199,8 @@ modules:
     depends_on: []
     module_path: Assets/Game/Modules/ItemStacking
     feature_group: item-stacking
+    dimension: both
+    genre_tags: [universal, idle, stacking, arcade, simulation]
     description: 아이템 스태킹/언스태킹 시스템 — Push/Pop/PopAll, 고정 배열 스택
 
     human_state: validated
@@ -230,8 +215,6 @@ modules:
     human_fixes: []
     review_report: null
 
-  # ── inventory-system feature_group ──
-
   - name: InventorySystem
     status: done
     priority: medium
@@ -240,6 +223,8 @@ modules:
     depends_on: [ItemStacking]
     module_path: Assets/Game/Modules/InventorySystem
     feature_group: inventory-system
+    dimension: both
+    genre_tags: [universal, rpg, idle, simulation, merge]
     description: >
       슬롯 기반 인벤토리 시스템. ItemStacking을 슬롯 단위 스택으로 재사용.
       Add/Remove/Query/Has/GetCount API. 오버플로우 핸들링.
@@ -255,3 +240,226 @@ modules:
     updated_at: "2026-03-18T20:30:00"
     human_fixes: []
     review_report: "Reviewer PASS — AIValidationReport Passed:true, Errors:0, Warnings:0. Builder self-check 10/10. Human validated. EInventoryResult→EInventorySystemResult naming fix applied per ModuleBoundaryValidator."
+
+  # ── [UI & UX] ──
+
+  - name: Guide
+    status: done
+    priority: medium
+    owner: null
+    role: null
+    depends_on: []
+    module_path: Assets/Game/Modules/Guide
+    dimension: both
+    genre_tags: [universal]
+    description: 튜토리얼/가이드 — 화살표 가이드, 조건부 노출, 유저 유도
+
+  - name: BuffIconUI
+    status: done
+    priority: medium
+    owner: null
+    role: null
+    depends_on: [StatusEffect]
+    module_path: Assets/Game/Modules/BuffIconUI
+    dimension: both
+    genre_tags: [universal, action, rpg, tower-defense, arcade]
+    description: 상태이상 아이콘 UI 표시
+
+  - name: UI
+    status: done
+    priority: low
+    owner: null
+    role: null
+    depends_on: [Economy]
+    module_path: Assets/Game/Modules/UI
+    dimension: both
+    genre_tags: [universal]
+    description: 공통 UI — 재화 표시, CTA 버튼, HUD 관리
+
+  - name: EndCard
+    status: done
+    priority: low
+    owner: null
+    role: null
+    depends_on: []
+    module_path: Assets/Game/Modules/EndCard
+    dimension: both
+    genre_tags: [universal]
+    description: Playable Ad 엔드카드 — 딤드 배경 + 로고 + CTA 버튼
+
+  # ── [Game Flow] ──
+
+  - name: GameManager
+    status: done
+    priority: low
+    owner: null
+    role: null
+    depends_on: [Player, Enemies, Economy]
+    module_path: Assets/Game/Modules/GameManager
+    dimension: both
+    genre_tags: [universal]
+    description: 게임 전체 시퀀스/플로우 제어 — 게임마다 dependencies 재구성
+
+  # ── Match Clash Puzzle RPG Modules ──
+
+  - name: PuzzleBlock
+    status: done
+    priority: high
+    owner: builder_ai
+    role: reviewer
+    depends_on: []
+    module_path: Assets/Game/Modules/PuzzleBlock
+    feature_group: match-clash
+    description: >
+      블록 타입 정의(5색+특수블록), SpriteRenderer 제어, Fallback 컬러, 풀링 지원.
+    human_state: validated
+    learning_state: recorded
+    commit_state: committed
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T00:00:00"
+    updated_at: "2026-03-19T13:30:00"
+    integration_strategy: create_new
+    arch_diff_risk: low
+    arch_diff_blocked: false
+    review_report: "Reviewer PASS — AIValidationReport Passed:true, Errors:0. Human validated. Builder self-check 10/10."
+    commit_hash: "264b70d74"
+
+  - name: PuzzleBoard
+    status: done
+    priority: high
+    owner: builder_ai
+    role: reviewer
+    depends_on: [PuzzleBlock]
+    module_path: Assets/Game/Modules/PuzzleBoard
+    feature_group: match-clash
+    description: >
+      6x5 매치-3 퍼즐 보드 엔진 + 특수 블록(Bomb/SameColorClear) + PuzzleBoardInstance.
+    human_state: validated
+    learning_state: recorded
+    commit_state: committed
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T00:00:00"
+    updated_at: "2026-03-19T13:30:00"
+    integration_strategy: create_new
+    arch_diff_risk: medium
+    arch_diff_blocked: false
+    review_report: "Reviewer PASS — AIValidationReport Passed:true, Errors:0. Human validated. Builder self-check 10/10."
+    commit_hash: "264b70d74"
+
+  - name: BattleCharacter
+    status: done
+    priority: high
+    owner: builder_ai
+    role: reviewer
+    depends_on: []
+    module_path: Assets/Game/Modules/BattleCharacter
+    feature_group: match-clash
+    description: >
+      3명 캐릭터 관리, 스킬 게이지(50), 기본/스킬 공격. 5색 중 3색(R/G/B) 캐릭터 연동.
+    human_state: validated
+    learning_state: recorded
+    commit_state: committed
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T00:00:00"
+    updated_at: "2026-03-19T13:30:00"
+    integration_strategy: create_new
+    arch_diff_risk: low
+    arch_diff_blocked: false
+    review_report: "Reviewer PASS — AIValidationReport Passed:true, Errors:0. Human validated. Builder self-check 10/10."
+    commit_hash: "264b70d74"
+
+  - name: BattleMonster
+    status: done
+    priority: high
+    owner: builder_ai
+    role: reviewer
+    depends_on: []
+    module_path: Assets/Game/Modules/BattleMonster
+    feature_group: match-clash
+    description: >
+      몬스터 HP(300), 피격/사망 이벤트, 플래시 연출.
+    human_state: validated
+    learning_state: recorded
+    commit_state: committed
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T00:00:00"
+    updated_at: "2026-03-19T13:30:00"
+    integration_strategy: create_new
+    arch_diff_risk: low
+    arch_diff_blocked: false
+    review_report: "Reviewer PASS — AIValidationReport Passed:true, Errors:0. Human validated. Builder self-check 10/10."
+    commit_hash: "264b70d74"
+
+  - name: BattleEffect
+    status: done
+    priority: medium
+    owner: builder_ai
+    role: reviewer
+    depends_on: []
+    module_path: Assets/Game/Modules/BattleEffect
+    feature_group: match-clash
+    description: >
+      투사체, 데미지 텍스트 팝업, 화면 흔들림 이펙트 시스템.
+    human_state: validated
+    learning_state: recorded
+    commit_state: committed
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T00:00:00"
+    updated_at: "2026-03-19T13:30:00"
+    integration_strategy: create_new
+    arch_diff_risk: low
+    arch_diff_blocked: false
+    review_report: "Reviewer PASS — AIValidationReport Passed:true, Errors:0. Human validated. Builder self-check 10/10."
+    commit_hash: "264b70d74"
+
+  - name: MatchClashUI
+    status: done
+    priority: medium
+    owner: builder_ai
+    role: reviewer
+    depends_on: [BattleCharacter, BattleMonster]
+    module_path: Assets/Game/Modules/MatchClashUI
+    feature_group: match-clash
+    description: >
+      Match Clash 게임 전용 HUD. 몬스터 HP바, 스킬 게이지, 스킬 버튼, 승리 패널.
+    human_state: validated
+    learning_state: recorded
+    commit_state: committed
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T00:00:00"
+    updated_at: "2026-03-19T13:30:00"
+    integration_strategy: create_new
+    arch_diff_risk: low
+    arch_diff_blocked: false
+    review_report: "Reviewer PASS — AIValidationReport Passed:true, Errors:0. Human validated. Builder self-check 10/10."
+    commit_hash: "264b70d74"
+
+  - name: SpecialBlock
+    status: done
+    priority: medium
+    owner: builder_ai
+    role: reviewer
+    depends_on: [PuzzleBlock, PuzzleBoard]
+    module_path: Assets/Game/Modules/SpecialBlock
+    feature_group: match-clash
+    description: >
+      특수 블록 시스템. 4매치 Bomb(주변 8칸 파괴), 5매치 Same-Color Clear(동일 색 전체 파괴).
+      시각적 오버레이, 활성화 이펙트, Config 기반 임계값/효과 시간 관리.
+    human_state: validated
+    learning_state: recorded
+    commit_state: committed
+    retry_count: 0
+    blocked_reason: null
+    created_at: "2026-03-19T12:00:00"
+    updated_at: "2026-03-19T13:30:00"
+    integration_strategy: create_new
+    arch_diff_risk: medium
+    arch_diff_blocked: false
+    review_report: "Reviewer PASS — AIValidationReport Passed:true, Errors:0. Human validated. Builder self-check 10/10."
+    commit_hash: "264b70d74"

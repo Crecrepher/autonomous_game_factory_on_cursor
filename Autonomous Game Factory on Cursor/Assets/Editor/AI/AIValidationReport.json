@@ -1,8 +1,885 @@
 {
-    "Timestamp": "2026-03-18T08:28:06.4208700Z",
-    "ScannedFileCount": 804,
+    "Timestamp": "2026-03-19T05:02:37.7600310Z",
+    "ScannedFileCount": 1344,
     "ErrorCount": 0,
-    "WarningCount": 0,
+    "WarningCount": 146,
     "Passed": true,
-    "Entries": []
+    "Entries": [
+        {
+            "Message": "Instantiate detected — consider object pooling: BattleEffectBootstrap.cs",
+            "Path": "Game/Modules/BattleEffect/BattleEffectBootstrap.cs",
+            "Severity": "Warning",
+            "ValidatorName": "Performance"
+        },
+        {
+            "Message": "Instantiate detected — consider object pooling: PuzzleBoardBootstrap.cs",
+            "Path": "Game/Modules/PuzzleBoard/PuzzleBoardBootstrap.cs",
+            "Severity": "Warning",
+            "ValidatorName": "Performance"
+        },
+        {
+            "Message": "Config conflict: duplicate source-of-truth detected. InventorySystemConfig._maxStackSizePerSlot vs ItemStackingConfig._maxStackSize (similarity: 0.80). Preferred source: ItemStackingConfig",
+            "Path": "Assets/Game/Modules/InventorySystem/InventorySystemConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigConflict"
+        },
+        {
+            "Message": "Config conflict: duplicate source-of-truth detected. PuzzleBoardConfig._destroyDuration vs PuzzleBlockConfig._destroyDuration (similarity: 1.00). Preferred source: PuzzleBlockConfig",
+            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigConflict"
+        },
+        {
+            "Message": "[empty_interface] IStatusEffect has no methods but 1 modules depend on it",
+            "Path": "StatusEffect",
+            "Severity": "Warning",
+            "ValidatorName": "RegressionGuardian"
+        },
+        {
+            "Message": "[empty_interface] IEconomy has no methods but 8 modules depend on it",
+            "Path": "Economy",
+            "Severity": "Warning",
+            "ValidatorName": "RegressionGuardian"
+        },
+        {
+            "Message": "[empty_interface] IPlayer has no methods but 1 modules depend on it",
+            "Path": "Player",
+            "Severity": "Warning",
+            "ValidatorName": "RegressionGuardian"
+        },
+        {
+            "Message": "[empty_interface] IEnemies has no methods but 1 modules depend on it",
+            "Path": "Enemies",
+            "Severity": "Warning",
+            "ValidatorName": "RegressionGuardian"
+        },
+        {
+            "Message": "[empty_interface] IWarriors has no methods but 2 modules depend on it",
+            "Path": "Warriors",
+            "Severity": "Warning",
+            "ValidatorName": "RegressionGuardian"
+        },
+        {
+            "Message": "[empty_interface] IItemStacking has no methods but 1 modules depend on it",
+            "Path": "ItemStacking",
+            "Severity": "Warning",
+            "ValidatorName": "RegressionGuardian"
+        },
+        {
+            "Message": "[empty_interface] IPuzzleBlock has no methods but 2 modules depend on it",
+            "Path": "PuzzleBlock",
+            "Severity": "Warning",
+            "ValidatorName": "RegressionGuardian"
+        },
+        {
+            "Message": "[empty_interface] IPuzzleBoard has no methods but 1 modules depend on it",
+            "Path": "PuzzleBoard",
+            "Severity": "Warning",
+            "ValidatorName": "RegressionGuardian"
+        },
+        {
+            "Message": "[empty_interface] IBattleCharacter has no methods but 1 modules depend on it",
+            "Path": "BattleCharacter",
+            "Severity": "Warning",
+            "ValidatorName": "RegressionGuardian"
+        },
+        {
+            "Message": "[empty_interface] IBattleMonster has no methods but 1 modules depend on it",
+            "Path": "BattleMonster",
+            "Severity": "Warning",
+            "ValidatorName": "RegressionGuardian"
+        },
+        {
+            "Message": "Responsibility duplication: BattleMonster and Blacksmith have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
+            "Path": "Assets/Game/Modules/BattleMonster/IBattleMonster.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleReuseIntegrity"
+        },
+        {
+            "Message": "Responsibility duplication: BattleMonster and EndCard have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
+            "Path": "Assets/Game/Modules/BattleMonster/IBattleMonster.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleReuseIntegrity"
+        },
+        {
+            "Message": "Responsibility duplication: BattleMonster and Fortress have 60% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
+            "Path": "Assets/Game/Modules/BattleMonster/IBattleMonster.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleReuseIntegrity"
+        },
+        {
+            "Message": "Responsibility duplication: BattleMonster and Pickups have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
+            "Path": "Assets/Game/Modules/BattleMonster/IBattleMonster.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleReuseIntegrity"
+        },
+        {
+            "Message": "Responsibility duplication: BattleMonster and SpecialBlock have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
+            "Path": "Assets/Game/Modules/BattleMonster/IBattleMonster.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleReuseIntegrity"
+        },
+        {
+            "Message": "Responsibility duplication: Blacksmith and EndCard have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
+            "Path": "Assets/Game/Modules/Blacksmith/IBlacksmith.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleReuseIntegrity"
+        },
+        {
+            "Message": "Responsibility duplication: Blacksmith and Pickups have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
+            "Path": "Assets/Game/Modules/Blacksmith/IBlacksmith.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleReuseIntegrity"
+        },
+        {
+            "Message": "Responsibility duplication: Blacksmith and SpecialBlock have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
+            "Path": "Assets/Game/Modules/Blacksmith/IBlacksmith.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleReuseIntegrity"
+        },
+        {
+            "Message": "Responsibility duplication: EndCard and Pickups have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
+            "Path": "Assets/Game/Modules/EndCard/IEndCard.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleReuseIntegrity"
+        },
+        {
+            "Message": "Responsibility duplication: EndCard and SpecialBlock have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
+            "Path": "Assets/Game/Modules/EndCard/IEndCard.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleReuseIntegrity"
+        },
+        {
+            "Message": "Responsibility duplication: EndCard and UI have 57% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
+            "Path": "Assets/Game/Modules/EndCard/IEndCard.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleReuseIntegrity"
+        },
+        {
+            "Message": "Responsibility duplication: Pickups and SpecialBlock have 50% interface method overlap. This may indicate duplicated responsibility. If one should reuse the other, update integration_strategy accordingly.",
+            "Path": "Assets/Game/Modules/Pickups/IPickups.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ModuleReuseIntegrity"
+        },
+        {
+            "Message": "Configuration authority conflict: Pickups._maxPendingPickups (Config_Serialized) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PickupsConfig. Architectural fix: consolidate this config field into PickupsConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Pickups/PickupsConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Pickups._maxPendingPickups (Config_Serialized) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PickupsConfig. Architectural fix: consolidate this config field into PickupsConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Pickups/PickupsConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Pickups.MaxPendingPickups (Config_Public) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PickupsConfig. Architectural fix: consolidate this config field into PickupsConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Pickups/PickupsConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Pickups.MaxPendingPickups (Config_Public) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PickupsConfig. Architectural fix: consolidate this config field into PickupsConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Pickups/PickupsConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Warriors._maxWarriors (Config_Serialized) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: WarriorsConfig. Architectural fix: consolidate this config field into WarriorsConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Warriors/WarriorsConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Warriors._maxWarriors (Config_Serialized) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: WarriorsConfig. Architectural fix: consolidate this config field into WarriorsConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Warriors/WarriorsConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Warriors._hireCostMax (Config_Serialized) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: WarriorsConfig. Architectural fix: consolidate this config field into WarriorsConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Warriors/WarriorsConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Warriors._hireCostMax (Config_Serialized) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: WarriorsConfig. Architectural fix: consolidate this config field into WarriorsConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Warriors/WarriorsConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Warriors.MaxWarriors (Config_Public) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: WarriorsConfig. Architectural fix: consolidate this config field into WarriorsConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Warriors/WarriorsConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Warriors.MaxWarriors (Config_Public) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: WarriorsConfig. Architectural fix: consolidate this config field into WarriorsConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Warriors/WarriorsConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Warriors.HireCostMax (Config_Public) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: WarriorsConfig. Architectural fix: consolidate this config field into WarriorsConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Warriors/WarriorsConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Warriors.HireCostMax (Config_Public) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: WarriorsConfig. Architectural fix: consolidate this config field into WarriorsConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Warriors/WarriorsConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: DefenseTowers._maxTowers (Config_Serialized) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: DefenseTowersConfig. Architectural fix: consolidate this config field into DefenseTowersConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/DefenseTowers/DefenseTowersConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: DefenseTowers._maxTowers (Config_Serialized) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: DefenseTowersConfig. Architectural fix: consolidate this config field into DefenseTowersConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/DefenseTowers/DefenseTowersConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: DefenseTowers.MaxTowers (Config_Public) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: DefenseTowersConfig. Architectural fix: consolidate this config field into DefenseTowersConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/DefenseTowers/DefenseTowersConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: DefenseTowers.MaxTowers (Config_Public) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: DefenseTowersConfig. Architectural fix: consolidate this config field into DefenseTowersConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/DefenseTowers/DefenseTowersConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Fortress._maxHp (Config_Serialized) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: FortressConfig. Architectural fix: consolidate this config field into FortressConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Fortress/FortressConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Fortress._maxHp (Config_Serialized) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: FortressConfig. Architectural fix: consolidate this config field into FortressConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Fortress/FortressConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Fortress._maxUpgradeLevel (Config_Serialized) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: FortressConfig. Architectural fix: consolidate this config field into FortressConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Fortress/FortressConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Fortress._maxUpgradeLevel (Config_Serialized) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: FortressConfig. Architectural fix: consolidate this config field into FortressConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Fortress/FortressConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Fortress.MaxHp (Config_Public) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: FortressConfig. Architectural fix: consolidate this config field into FortressConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Fortress/FortressConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Fortress.MaxHp (Config_Public) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: FortressConfig. Architectural fix: consolidate this config field into FortressConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Fortress/FortressConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Fortress.MaxUpgradeLevel (Config_Public) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: FortressConfig. Architectural fix: consolidate this config field into FortressConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Fortress/FortressConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Fortress.MaxUpgradeLevel (Config_Public) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: FortressConfig. Architectural fix: consolidate this config field into FortressConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Fortress/FortressConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: HireNodes._maxNodes (Config_Serialized) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: HireNodes._maxNodes (Config_Serialized) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: HireNodes.MaxNodes (Config_Public) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: HireNodes.MaxNodes (Config_Public) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: HireNodes._maxNodes (Config_Serialized) vs Warriors._maxWarriors (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: HireNodes._maxNodes (Config_Serialized) vs Warriors._hireCostMax (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: HireNodes._maxNodes (Config_Serialized) vs Warriors.MaxWarriors (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: HireNodes._maxNodes (Config_Serialized) vs Warriors.HireCostMax (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: HireNodes.MaxNodes (Config_Public) vs Warriors._maxWarriors (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: HireNodes.MaxNodes (Config_Public) vs Warriors._hireCostMax (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: HireNodes.MaxNodes (Config_Public) vs Warriors.MaxWarriors (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: HireNodes.MaxNodes (Config_Public) vs Warriors.HireCostMax (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: HireNodesConfig. Architectural fix: consolidate this config field into HireNodesConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/HireNodes/HireNodesConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith._maxForgeCount (Config_Serialized) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith._maxForgeCount (Config_Serialized) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith.MaxForgeCount (Config_Public) vs Economy._maxBalance (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith.MaxForgeCount (Config_Public) vs Economy.MaxBalance (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith._forgeCost (Config_Serialized) vs Warriors._hireCostBase (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith._forgeCost (Config_Serialized) vs Warriors._hireCostIncrement (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith._forgeCost (Config_Serialized) vs Warriors._hireCostMax (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith._forgeCost (Config_Serialized) vs Warriors.HireCostBase (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith._forgeCost (Config_Serialized) vs Warriors.HireCostIncrement (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith._forgeCost (Config_Serialized) vs Warriors.HireCostMax (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith._maxForgeCount (Config_Serialized) vs Warriors._maxWarriors (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith._maxForgeCount (Config_Serialized) vs Warriors.MaxWarriors (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith.ForgeCost (Config_Public) vs Warriors._hireCostBase (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith.ForgeCost (Config_Public) vs Warriors._hireCostIncrement (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith.ForgeCost (Config_Public) vs Warriors._hireCostMax (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith.ForgeCost (Config_Public) vs Warriors.HireCostBase (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith.ForgeCost (Config_Public) vs Warriors.HireCostIncrement (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith.ForgeCost (Config_Public) vs Warriors.HireCostMax (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith.MaxForgeCount (Config_Public) vs Warriors._maxWarriors (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Blacksmith.MaxForgeCount (Config_Public) vs Warriors.MaxWarriors (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BlacksmithConfig. Architectural fix: consolidate this config field into BlacksmithConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Blacksmith/BlacksmithConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: InventorySystem._maxStackSizePerSlot (Config_Serialized) vs ItemStacking._maxStackSize (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: InventorySystemConfig. Architectural fix: consolidate this config field into InventorySystemConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/InventorySystem/InventorySystemConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: InventorySystem._maxStackSizePerSlot (Config_Serialized) vs ItemStacking.MaxStackSize (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: InventorySystemConfig. Architectural fix: consolidate this config field into InventorySystemConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/InventorySystem/InventorySystemConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: InventorySystem.MaxStackSizePerSlot (Config_Public) vs ItemStacking._maxStackSize (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: InventorySystemConfig. Architectural fix: consolidate this config field into InventorySystemConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/InventorySystem/InventorySystemConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: InventorySystem.MaxStackSizePerSlot (Config_Public) vs ItemStacking.MaxStackSize (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: InventorySystemConfig. Architectural fix: consolidate this config field into InventorySystemConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/InventorySystem/InventorySystemConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: BuffIconUI._maxIcons (Config_Serialized) vs StatusEffect._maxActiveEffects (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BuffIconUIConfig. Architectural fix: consolidate this config field into BuffIconUIConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/BuffIconUI/BuffIconUIConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: BuffIconUI._maxIcons (Config_Serialized) vs StatusEffect.MaxActiveEffects (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BuffIconUIConfig. Architectural fix: consolidate this config field into BuffIconUIConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/BuffIconUI/BuffIconUIConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: BuffIconUI.MaxIcons (Config_Public) vs StatusEffect._maxActiveEffects (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BuffIconUIConfig. Architectural fix: consolidate this config field into BuffIconUIConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/BuffIconUI/BuffIconUIConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: BuffIconUI.MaxIcons (Config_Public) vs StatusEffect.MaxActiveEffects (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: BuffIconUIConfig. Architectural fix: consolidate this config field into BuffIconUIConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/BuffIconUI/BuffIconUIConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: PuzzleBoard._swapDuration (Config_Serialized) vs PuzzleBlock._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: PuzzleBoard._swapDuration (Config_Serialized) vs PuzzleBlock.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: PuzzleBoard._destroyDuration (Config_Serialized) vs PuzzleBlock._destroyDuration (Config_Serialized). Exact duplicate config field name across dependent modules. Only one module should be source-of-truth for 'destroy_duration'. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: PuzzleBoard._destroyDuration (Config_Serialized) vs PuzzleBlock.DestroyDuration (Config_Public). Exact duplicate config field name across dependent modules. Only one module should be source-of-truth for 'destroy_duration'. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: PuzzleBoard._fallDuration (Config_Serialized) vs PuzzleBlock._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: PuzzleBoard._fallDuration (Config_Serialized) vs PuzzleBlock.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: PuzzleBoard.SwapDuration (Config_Public) vs PuzzleBlock._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: PuzzleBoard.SwapDuration (Config_Public) vs PuzzleBlock.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: PuzzleBoard.DestroyDuration (Config_Public) vs PuzzleBlock._destroyDuration (Config_Serialized). Exact duplicate config field name across dependent modules. Only one module should be source-of-truth for 'destroy_duration'. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: PuzzleBoard.DestroyDuration (Config_Public) vs PuzzleBlock.DestroyDuration (Config_Public). Exact duplicate config field name across dependent modules. Only one module should be source-of-truth for 'destroy_duration'. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: PuzzleBoard.FallDuration (Config_Public) vs PuzzleBlock._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: PuzzleBoard.FallDuration (Config_Public) vs PuzzleBlock.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: PuzzleBoardConfig. Architectural fix: consolidate this config field into PuzzleBoardConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/PuzzleBoard/PuzzleBoardConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock._bombEffectDuration (Config_Serialized) vs PuzzleBlock._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock._bombEffectDuration (Config_Serialized) vs PuzzleBlock.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock._sameColorClearEffectDuration (Config_Serialized) vs PuzzleBlock._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock._sameColorClearEffectDuration (Config_Serialized) vs PuzzleBlock.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock.BombEffectDuration (Config_Public) vs PuzzleBlock._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock.BombEffectDuration (Config_Public) vs PuzzleBlock.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock.SameColorClearEffectDuration (Config_Public) vs PuzzleBlock._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock.SameColorClearEffectDuration (Config_Public) vs PuzzleBlock.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock._bombEffectDuration (Config_Serialized) vs PuzzleBoard._swapDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock._bombEffectDuration (Config_Serialized) vs PuzzleBoard._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock._bombEffectDuration (Config_Serialized) vs PuzzleBoard._fallDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock._bombEffectDuration (Config_Serialized) vs PuzzleBoard.SwapDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock._bombEffectDuration (Config_Serialized) vs PuzzleBoard.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock._bombEffectDuration (Config_Serialized) vs PuzzleBoard.FallDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock._sameColorClearEffectDuration (Config_Serialized) vs PuzzleBoard._swapDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock._sameColorClearEffectDuration (Config_Serialized) vs PuzzleBoard._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock._sameColorClearEffectDuration (Config_Serialized) vs PuzzleBoard._fallDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock._sameColorClearEffectDuration (Config_Serialized) vs PuzzleBoard.SwapDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock._sameColorClearEffectDuration (Config_Serialized) vs PuzzleBoard.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock._sameColorClearEffectDuration (Config_Serialized) vs PuzzleBoard.FallDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock.BombEffectDuration (Config_Public) vs PuzzleBoard._swapDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock.BombEffectDuration (Config_Public) vs PuzzleBoard._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock.BombEffectDuration (Config_Public) vs PuzzleBoard._fallDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock.BombEffectDuration (Config_Public) vs PuzzleBoard.SwapDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock.BombEffectDuration (Config_Public) vs PuzzleBoard.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock.BombEffectDuration (Config_Public) vs PuzzleBoard.FallDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock.SameColorClearEffectDuration (Config_Public) vs PuzzleBoard._swapDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock.SameColorClearEffectDuration (Config_Public) vs PuzzleBoard._destroyDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock.SameColorClearEffectDuration (Config_Public) vs PuzzleBoard._fallDuration (Config_Serialized). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock.SameColorClearEffectDuration (Config_Public) vs PuzzleBoard.SwapDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock.SameColorClearEffectDuration (Config_Public) vs PuzzleBoard.DestroyDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: SpecialBlock.SameColorClearEffectDuration (Config_Public) vs PuzzleBoard.FallDuration (Config_Public). Config fields controlling similar concept across dependent modules. Risk: ambiguous source-of-truth for same runtime behavior. Recommended source-of-truth: SpecialBlockConfig. Architectural fix: consolidate this config field into SpecialBlockConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/SpecialBlock/SpecialBlockConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Player._moveSpeed (Config_Serialized) vs Warriors._moveSpeed (Config_Serialized). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Player._moveSpeed (Config_Serialized) vs Warriors.MoveSpeed (Config_Public). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Player._attackSpeed (Config_Serialized) vs Warriors._attackSpeed (Config_Serialized). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Player._attackSpeed (Config_Serialized) vs Warriors.AttackSpeed (Config_Public). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Player._attackDamage (Config_Serialized) vs Warriors._attackDamage (Config_Serialized). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Player._attackDamage (Config_Serialized) vs Warriors.AttackDamage (Config_Public). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Player.MoveSpeed (Config_Public) vs Warriors._moveSpeed (Config_Serialized). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Player.MoveSpeed (Config_Public) vs Warriors.MoveSpeed (Config_Public). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Player.AttackSpeed (Config_Public) vs Warriors._attackSpeed (Config_Serialized). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Player.AttackSpeed (Config_Public) vs Warriors.AttackSpeed (Config_Public). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Player.AttackDamage (Config_Public) vs Warriors._attackDamage (Config_Serialized). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        },
+        {
+            "Message": "Configuration authority conflict: Player.AttackDamage (Config_Public) vs Warriors.AttackDamage (Config_Public). Identical config field name in unrelated modules. Risk: runtime confusion over which config governs the behavior. Recommended source-of-truth: PlayerConfig. Architectural fix: consolidate this config field into PlayerConfig and reference it from the dependent module.",
+            "Path": "Assets/Game/Modules/Player/PlayerConfig.cs",
+            "Severity": "Warning",
+            "ValidatorName": "ConfigurationAuthority"
+        }
+    ]
 }

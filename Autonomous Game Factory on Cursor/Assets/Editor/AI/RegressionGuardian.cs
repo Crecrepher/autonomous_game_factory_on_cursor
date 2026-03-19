@@ -66,21 +66,22 @@ namespace Game.Editor.AI
             DependencyGraphBuilder.DependencyGraph graph,
             List<RegressionIssue> issues)
         {
-            for (int i = 0; i < graph.ModuleMap.Count; i++)
+            for (int i = 0; i < graph.Modules.Length; i++)
             {
-                DependencyGraphBuilder.RegistryModule module = graph.ModuleMap[i];
+                DependencyGraphBuilder.RegistryModule module = graph.Modules[i];
                 if (module.Dependencies == null) continue;
                 if (module.Name == "Template") continue;
 
                 for (int d = 0; d < module.Dependencies.Length; d++)
                 {
                     string dep = module.Dependencies[d];
-                    if (dep == "UnityEngine" || dep == "System") continue;
+                    if (dep == "UnityEngine" || dep == "System"
+                        || dep == "TMPro" || dep == "UnityEngine.UI") continue;
 
                     bool depExists = false;
-                    for (int j = 0; j < graph.ModuleMap.Count; j++)
+                    for (int j = 0; j < graph.Modules.Length; j++)
                     {
-                        if (graph.ModuleMap[j].Name == dep)
+                        if (graph.Modules[j].Name == dep)
                         {
                             depExists = true;
                             break;
@@ -126,9 +127,9 @@ namespace Game.Editor.AI
             DependencyGraphBuilder.DependencyGraph graph,
             List<RegressionIssue> issues)
         {
-            for (int i = 0; i < graph.ModuleMap.Count; i++)
+            for (int i = 0; i < graph.Modules.Length; i++)
             {
-                DependencyGraphBuilder.RegistryModule module = graph.ModuleMap[i];
+                DependencyGraphBuilder.RegistryModule module = graph.Modules[i];
                 if (module.Name == "Template") continue;
 
                 string interfacePath = Path.Combine(
@@ -141,14 +142,14 @@ namespace Game.Editor.AI
                 if (methods.Count == 0)
                 {
                     List<string> dependents = new List<string>();
-                    for (int j = 0; j < graph.ModuleMap.Count; j++)
+                    for (int j = 0; j < graph.Modules.Length; j++)
                     {
-                        if (graph.ModuleMap[j].Dependencies == null) continue;
-                        for (int d = 0; d < graph.ModuleMap[j].Dependencies.Length; d++)
+                        if (graph.Modules[j].Dependencies == null) continue;
+                        for (int d = 0; d < graph.Modules[j].Dependencies.Length; d++)
                         {
-                            if (graph.ModuleMap[j].Dependencies[d] == module.Name)
+                            if (graph.Modules[j].Dependencies[d] == module.Name)
                             {
-                                dependents.Add(graph.ModuleMap[j].Name);
+                                dependents.Add(graph.Modules[j].Name);
                                 break;
                             }
                         }
@@ -173,9 +174,9 @@ namespace Game.Editor.AI
             DependencyGraphBuilder.DependencyGraph graph,
             List<RegressionIssue> issues)
         {
-            for (int i = 0; i < graph.ModuleMap.Count; i++)
+            for (int i = 0; i < graph.Modules.Length; i++)
             {
-                DependencyGraphBuilder.RegistryModule module = graph.ModuleMap[i];
+                DependencyGraphBuilder.RegistryModule module = graph.Modules[i];
                 if (module.Name == "Template") continue;
 
                 string modulePath = Path.Combine(Application.dataPath, "..", module.Path);

@@ -53,16 +53,16 @@ namespace Game.Editor.AI
             List<CandidateModule> candidates = new List<CandidateModule>();
             string queryLower = featureQuery.ToLower();
 
-            for (int i = 0; i < graph.ModuleMap.Count; i++)
+            for (int i = 0; i < graph.Modules.Length; i++)
             {
-                string moduleName = graph.ModuleMap[i].Name;
+                string moduleName = graph.Modules[i].Name;
                 if (moduleName == "Template")
                     continue;
 
                 float nameScore = ComputeNameSimilarity(featureKeywords, moduleName);
                 float interfaceScore = ComputeInterfaceSimilarity(featureKeywords, moduleName);
-                float responsibilityScore = ComputeResponsibilitySimilarity(queryLower, graph.ModuleMap[i]);
-                float dependencyScore = ComputeDependencySimilarity(featureKeywords, graph.ModuleMap[i]);
+                float responsibilityScore = ComputeResponsibilitySimilarity(queryLower, graph.Modules[i]);
+                float dependencyScore = ComputeDependencySimilarity(featureKeywords, graph.Modules[i]);
 
                 float totalScore = nameScore * NAME_WEIGHT
                     + interfaceScore * INTERFACE_WEIGHT

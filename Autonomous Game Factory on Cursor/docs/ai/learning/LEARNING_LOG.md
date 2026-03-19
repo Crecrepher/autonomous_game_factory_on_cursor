@@ -156,4 +156,43 @@
 
 ---
 
-## 다음 엔트리 ID: LL-0004
+### LL-0004: match-clash feature group 파이프라인 완료
+
+```yaml
+id: LL-0004
+date: "2026-03-19"
+module: PuzzleBlock, PuzzleBoard, BattleCharacter, BattleMonster, BattleEffect, MatchClashUI, SpecialBlock
+feature_group: match-clash
+event_type: pipeline_completion
+source: ai_pipeline
+description: >
+  Match Clash 매치-3 퍼즐 RPG Playable Ad의 7개 모듈 전체 파이프라인 완료.
+  Feature Intake → Queue Generator → Architecture Diff → Planning → Builder → 
+  Human Validation → Reviewer → Committer까지 전 과정 완주.
+root_cause: N/A
+fix_summary: >
+  파이프라인 진행 중 발견된 위반 사항:
+  1. ModuleBoundary 위반 — MatchClashGameLoop.cs → PuzzleBoardInstance.cs 리네이밍
+  2. DependencyValidator TMPro/UnityEngine.UI 미등록 → 화이트리스트 추가
+  3. RegressionGuardian 동일 이슈 → 별도 화이트리스트 추가
+  4. 매직넘버 5건 → const 교체
+  human_fixes: 0건. AI 자체 수정으로 모든 위반 해결.
+rationale: >
+  Validator가 분산되어 있을 때(DependencyValidator, RegressionGuardian) 동일한 
+  화이트리스트를 각각 독립적으로 유지하면 한쪽만 수정해도 다른 쪽에서 동일 에러가 
+  재발한다. 향후 화이트리스트를 공통 상수로 통합하는 것을 권장한다.
+files_affected:
+  - Assets/Editor/AI/Validators/DependencyValidator.cs
+  - Assets/Editor/AI/RegressionGuardian.cs
+  - Assets/Game/Modules/PuzzleBoard/PuzzleBoardInstance.cs
+  - Assets/Game/Modules/BattleCharacter/Tests/Editor/BattleCharacterTests.cs
+  - Assets/Game/Modules/MatchClashUI/MatchClashUIBootstrap.cs
+recurring: false
+cross_project: true
+related_rules: []
+tags: [match-clash, pipeline-completion, validator-whitelist, module-boundary, dependency]
+```
+
+---
+
+## 다음 엔트리 ID: LL-0005

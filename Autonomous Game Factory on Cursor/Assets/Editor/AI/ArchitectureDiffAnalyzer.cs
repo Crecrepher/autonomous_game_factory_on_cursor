@@ -82,9 +82,9 @@ namespace Game.Editor.AI
             bool cycleDetected = false;
 
             bool moduleExists = false;
-            for (int i = 0; i < graph.ModuleMap.Count; i++)
+            for (int i = 0; i < graph.Modules.Length; i++)
             {
-                if (graph.ModuleMap[i].Name == moduleName)
+                if (graph.Modules[i].Name == moduleName)
                 {
                     moduleExists = true;
                     break;
@@ -183,9 +183,9 @@ namespace Game.Editor.AI
 
             string descLower = proposedDescription.ToLower();
 
-            for (int i = 0; i < graph.ModuleMap.Count; i++)
+            for (int i = 0; i < graph.Modules.Length; i++)
             {
-                DependencyGraphBuilder.RegistryModule existing = graph.ModuleMap[i];
+                DependencyGraphBuilder.RegistryModule existing = graph.Modules[i];
                 if (existing.Name == "Template" || existing.Name == moduleName)
                     continue;
 
@@ -238,9 +238,9 @@ namespace Game.Editor.AI
             List<string> blockingReasons)
         {
             int dependentCount = 0;
-            for (int i = 0; i < graph.ModuleMap.Count; i++)
+            for (int i = 0; i < graph.Modules.Length; i++)
             {
-                DependencyGraphBuilder.RegistryModule m = graph.ModuleMap[i];
+                DependencyGraphBuilder.RegistryModule m = graph.Modules[i];
                 if (m.Dependencies == null) continue;
                 for (int d = 0; d < m.Dependencies.Length; d++)
                 {
@@ -347,11 +347,11 @@ namespace Game.Editor.AI
             if (proposedDeps == null) return;
 
             string[] existingDeps = null;
-            for (int i = 0; i < graph.ModuleMap.Count; i++)
+            for (int i = 0; i < graph.Modules.Length; i++)
             {
-                if (graph.ModuleMap[i].Name == moduleName)
+                if (graph.Modules[i].Name == moduleName)
                 {
-                    existingDeps = graph.ModuleMap[i].Dependencies;
+                    existingDeps = graph.Modules[i].Dependencies;
                     break;
                 }
             }
@@ -389,13 +389,13 @@ namespace Game.Editor.AI
                     });
 
                     bool reverseExists = false;
-                    for (int m = 0; m < graph.ModuleMap.Count; m++)
+                    for (int m = 0; m < graph.Modules.Length; m++)
                     {
-                        if (graph.ModuleMap[m].Name != dep) continue;
-                        if (graph.ModuleMap[m].Dependencies == null) continue;
-                        for (int d = 0; d < graph.ModuleMap[m].Dependencies.Length; d++)
+                        if (graph.Modules[m].Name != dep) continue;
+                        if (graph.Modules[m].Dependencies == null) continue;
+                        for (int d = 0; d < graph.Modules[m].Dependencies.Length; d++)
                         {
-                            if (graph.ModuleMap[m].Dependencies[d] == moduleName)
+                            if (graph.Modules[m].Dependencies[d] == moduleName)
                             {
                                 reverseExists = true;
                                 break;

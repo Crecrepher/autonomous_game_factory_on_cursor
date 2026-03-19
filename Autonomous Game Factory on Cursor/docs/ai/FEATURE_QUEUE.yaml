@@ -58,3 +58,23 @@ features:
       - docs/ai/MODULE_TEMPLATES.md
       - Assets/Game/Modules/ItemStacking/
     created_at: "2026-03-18"
+
+  - name: match-clash-puzzle-system
+    feature_group: match-clash
+    status: done
+    description: >
+      Match Clash 매치-3 퍼즐 RPG Playable Ad (002).
+      6x5 퍼즐 보드, 5색 블록, 특수 블록(Bomb/SameColorClear),
+      캐릭터 스킬, 몬스터 전투, 연출 이펙트, HUD UI.
+    modules: [PuzzleBlock, PuzzleBoard, BattleCharacter, BattleMonster, BattleEffect, MatchClashUI, SpecialBlock]
+    constraints:
+      - GC-Free (no coroutines, no lambda, no LINQ, no foreach)
+      - MonoBehaviour는 Bootstrap만
+      - 모든 리소스 null fallback 필수
+    references:
+      - docs/ai/CODING_RULES.md
+      - docs/ai/MODULE_TEMPLATES.md
+      - "/Users/supercent/Downloads/cursor_guideline_Match Clash Playable 002.md"
+    created_at: "2026-03-19"
+    updated_at: "2026-03-19"
+    commit_hash: "264b70d74"

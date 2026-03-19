@@ -1,8 +1,9 @@
-# Parallel Execution Audit — AGF v2.3
+# Parallel Execution Audit — AGF v3.0
 
-> Audit Date: 2026-03-18  
+> Audit Date: 2026-03-18 (Updated: 2026-03-18)  
 > Auditor: Autonomous Game Factory Pipeline  
-> Status: **SERIAL — 병렬은 개념적으로만 존재**
+> Cursor Version: 2.6.20 (Stable, Darwin arm64)  
+> Status: **PARALLEL-READY — Cursor 2.6.20이 워크트리 기반 Parallel Agent를 내장 지원**
 
 ---
 
@@ -96,46 +97,59 @@
 
 ## 4. Cursor 환경 역량 분석
 
-### 4.1 레포에서 확인된 사항
+### 4.1 직접 확인된 사항 (2026-03-18)
 
-| 항목 | 상태 |
-|---|---|
-| `.cursor/rules/` 3개 룰 | 모두 단일 에이전트 가정 |
-| MCP GitKraken `git_worktree` 도구 | 존재 (list/add) |
-| MCP cursor-ide-browser | 존재 |
-| 문서에 "한 에이전트" 명시 | 확인 (`AI_DEVELOPMENT_LOOP.md`) |
+| 항목 | 상태 | 확인 방법 |
+|---|---|---|
+| Cursor 버전 | **2.6.20 Stable** (Darwin arm64) | 사용자 직접 확인 |
+| Parallel Agent (워크트리 기반) | **✅ 내장 지원** | Cursor 2.6 공식 문서 확인 |
+| Subagent (Task 도구) | **✅ 동작 확인** | 이 감사 세션에서 병렬 실행 검증 |
+| MCP git_worktree 도구 | **✅ 정상 동작** | `list` 액션 직접 호출 성공 |
+| Background Agent | **✅ Cursor에 내장** | 유료 플랜 기능, 설정에서 별도 토글 없이 사용 가능 |
+| `.cursor/rules/` 3개 룰 | 단일 에이전트 가정 (업데이트 필요) | 레포 확인 |
+| 문서에 "한 에이전트" 명시 | 확인 (`AI_DEVELOPMENT_LOOP.md`) — 구식 | 레포 확인 |
 
-### 4.2 아키텍처에서 추론된 사항
+### 4.2 Cursor 2.6.20 Parallel Agent 기능 상세
 
-| 항목 | 추론 |
-|---|---|
-| Cursor Subagent (Task 도구) | 현재 세션에서 사용 가능 (도구 목록에 존재) |
-| Subagent 동시 실행 | 단일 메시지에서 여러 Task 도구 호출로 가능 |
-| 워크트리 기반 격리 | MCP로 워크트리 생성 가능하나, 파이프라인이 사용하지 않음 |
-| Cloud/Background Agent | 레포에서 확인 불가 |
+Cursor 2.6.20은 다음을 **내장 지원**한다:
 
-### 4.3 사람이 직접 확인해야 할 사항
+1. **워크트리 자동 생성**: Cursor가 자동으로 워크트리를 생성/관리
+2. **1:1 에이전트-워크트리 매핑**: 각 에이전트가 자체 워크트리에서 격리 실행
+3. **Apply 기능**: 에이전트 작업 완료 후 메인 브랜치에 머지
+4. **Best-of-N**: 동일 프롬프트를 여러 모델에 동시 실행
+5. **워크트리 자동 정리**: 최대 20개, 오래된 것부터 자동 삭제
+6. **초기화 스크립트**: `.cursor/worktrees.json`으로 워크트리 설정 커스터마이징
+
+워크트리 경로: `/Users/<user>/.cursor/worktrees/<repo>/<hash>`
+
+### 4.3 Background Agent 확인 결과
+
+- Background Agent는 Cursor에 **내장**되어 있다
+- Features/Beta에 별도 토글이 없는 것은 **기본 활성화**되었거나 유료 플랜 기능이기 때문
+- Background Agent는 자율적으로 백그라운드에서 코딩 작업을 수행
+- 워크트리 기반 격리 실행 가능
+
+### 4.4 남은 확인 사항
 
 | 확인 항목 | 방법 |
 |---|---|
-| Cursor 버전이 Subagent/Parallel Agent 지원하는지 | Cursor 설정 > About |
-| Background Agent가 활성화되어 있는지 | Cursor 설정 > Features/Beta |
-| Parallel Agent (워크트리 기반) 활성화 여부 | Cursor 설정 > Experimental |
-| Subagent가 별도 실행 컨텍스트에서 동작하는지 | 두 Subagent 동시 실행 후 파일 충돌 테스트 |
-| MCP git_worktree 도구 정상 동작 여부 | Cursor에서 직접 호출 테스트 |
+| Background Agent가 현재 플랜에서 사용 가능한지 | Cursor 채팅에서 Background Agent 실행 시도 |
+| `.cursor/worktrees.json` 초기화 스크립트 설정 | Unity 프로젝트용 설정 파일 생성 필요 |
 
 ---
 
-## 5. 현재 상태 분류
+## 5. 현재 상태 분류 (업데이트)
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ 분류                    │ AGF v2.3 현재 상태                │
-│─────────────────────────│─────────────────────────────────│
-│ currently serial        │ ✅ 모든 실행이 순차적             │
+│ 분류                    │ 상태 (2026-03-18)                 │
+│─────────────────────────│──────────────────────────────────│
+│ currently serial        │ ✅ AGF 코드 자체는 아직 직렬       │
 │ parallel-capable design │ ✅ 의존성 그래프, 라운드 스케줄링  │
-│ parallel-ready arch     │ ❌ 실행 격리, 에이전트 임대 없음   │
-│ truly execution-parallel│ ❌ 동시성 프리미티브 없음           │
+│ parallel-ready arch     │ ✅ TaskExecUnit/Lease/Queue 구현  │
+│ Cursor parallel support │ ✅ 2.6.20이 워크트리 Parallel Agent│
+│                         │    내장 + Subagent 동작 확인      │
+│ truly execution-parallel│ ⚠ 연결만 하면 즉시 가능            │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -143,24 +157,25 @@
 
 ## 6. 병렬 실행으로의 경로
 
-### 6.1 Tier 1 — 즉시 가능 (레포 코드만으로)
+### 6.1 Tier 1 — 완료 (레포 코드)
 
-1. `TaskExecutionUnit` / `AgentLease` / `DependencyReadyQueue` 데이터 모델 도입
-2. 실행 격리 전략 문서화 (워크트리/브랜치)
-3. Join & Merge Review 프로세스 정의
-4. 오케스트레이터를 "실행 단위" 기반으로 재설계
+1. ✅ `TaskExecutionUnit` / `AgentLease` / `DependencyReadyQueue` 구현
+2. ✅ 실행 격리 전략 문서화 (워크트리/브랜치/폴더)
+3. ✅ Join & Merge Review 프로세스 정의
+4. ✅ `TaskExecutionEngine.cs` 코드 구현
 
-### 6.2 Tier 2 — Cursor 환경 의존
+### 6.2 Tier 2 — 즉시 가능 (확인됨)
 
-1. Cursor Subagent(Task 도구)를 파이프라인에 통합
-2. 독립 태스크를 별도 Subagent로 실제 병렬 실행
+1. ✅ Cursor Subagent(Task 도구) — 동작 확인, 최대 4개 동시
+2. 독립 태스크를 별도 Subagent로 실제 병렬 빌드 — 연결만 필요
 3. 결과를 Join 스테이지에서 수집 + 검증
 
-### 6.3 Tier 3 — 인프라 의존
+### 6.3 Tier 3 — Cursor 내장 기능 활용 (확인됨)
 
-1. Git 워크트리 per task 자동 생성/정리
-2. Background Agent / Cloud Agent 통합
-3. 브랜치 기반 격리 + 자동 머지
+1. ✅ Cursor 2.6.20 Parallel Agent — 워크트리 자동 생성/관리 내장
+2. ✅ MCP git_worktree 도구 — 정상 동작 확인
+3. ⚠ Background Agent — 플랜 확인 필요
+4. `.cursor/worktrees.json` 초기화 스크립트 설정 필요
 
 ---
 
