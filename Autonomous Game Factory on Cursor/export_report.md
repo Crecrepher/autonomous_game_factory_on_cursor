@@ -1,6 +1,6 @@
 # Framework Export Report
 
-- **Timestamp**: 2026-03-19 10:05:36 UTC
+- **Timestamp**: 2026-03-20 05:45:08 UTC
 - **Mode**: Full
 - **Dry Run**: No
 - **Changed-only filter**: False
@@ -10,12 +10,12 @@
 
 | Category | Count |
 |----------|------:|
-| Total files scanned | 22143 |
-| **Exported** | **454** |
+| Total files scanned | 22121 |
+| **Exported** | **455** |
 | Risky (included, flagged) | 201 |
 | Unknown (NOT exported) | 1 |
-| Skipped (outside paths) | 2325 |
-| Denied (blocked) | 19363 |
+| Skipped (outside paths) | 2339 |
+| Denied (blocked) | 19326 |
 | Git-filtered (unchanged) | 0 |
 | Errors | 0 |
 | Total export size | 1.00 MB |
@@ -110,6 +110,7 @@
 - `docs/ai/generated_specs/README.md`
 - `docs/ai/generated_specs/InventorySystem_SPEC.md`
 - `docs/ai/generated_specs/ItemStacking_SPEC.md`
+- `docs/ai/guides/AI_FRAMEWORK_USER_GUIDE.md`
 - `docs/ai/guides/INSTALL.md`
 - `docs/ai/guides/HOW_TO_EVOLVE_RULES.md`
 - `docs/ai/guides/HOW_TO_APPLY_TO_PROJECT.md`
@@ -221,8 +222,7 @@
 - `Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterBootstrap.cs.meta`
 - `Assets/Game/Modules/P002_BattleCharacter/P002BattleCharacterConfig.cs.meta`
 - `Assets/Game/Modules/P002_BattleCharacter/Tests.meta`
-- `Assets/Game/Modules/P002_BattleCharacter/IP002BattleCharacter.cs.meta`
-- ... and 254 more
+- ... and 255 more
 
 ## Risky Files (Review Before Applying!)
 
@@ -441,7 +441,7 @@
 
 ## Skipped Files (Outside Allowed Paths)
 
-_2325 files were outside the allowed paths._
+_2339 files were outside the allowed paths._
 
 - `.DS_Store`
 - `ToonyColorsPro.Runtime.csproj`
@@ -643,17 +643,17 @@ _2325 files were outside the allowed paths._
 - `Assets/Supercent/Luna/Util/AssetPackageEditBase.cs.meta`
 - `Assets/Supercent/Luna/Util/Repository.meta`
 - `Assets/Supercent/Luna/Util/AssetPackageEditBase.cs`
-- ... and 2125 more
+- ... and 2139 more
 
 ## Denied Files (Blocked by Rules)
 
-_19363 files were blocked by deny rules._
+_19326 files were blocked by deny rules._
 
-- `Temp/FSTimeGet-7161e169061514d3d9f4e729af87ff21` — Path in deny list
+- `Temp/FSTimeGet-a0b8dd3c988594faa920b973214a464e` — Path in deny list
 - `Temp/UnityLockfile` — Path in deny list
-- `Temp/FSTimeGet-dd9da46378e9b4d298551ad615084dfa` — Path in deny list
-- `Temp/FSTimeGet-a5245fb2483984fda817e1fad59071a1` — Path in deny list
+- `Temp/FSTimeGet-db63e4137c2374e99b337ddab260e966` — Path in deny list
 - `Temp/workerlic` — Path in deny list
+- `Temp/FSTimeGet-a4fe9dfa3437f43f48d9046b351fc515` — Path in deny list
 - `Library/SourceAssetDB-lock` — Path in deny list
 - `Library/EditorOnlyVirtualTextureState.json` — Path in deny list
 - `Library/Style.catalog` — Path in deny list
@@ -692,9 +692,9 @@ _19363 files were blocked by deny rules._
 - `Logs/shadercompiler-UnityShaderCompiler4.log` — Path in deny list
 - `Packages/manifest.json` — Path in deny list
 - `Packages/packages-lock.json` — Path in deny list
+- `LunaTemp/diagnostics-1345f0b0-f55c-4d73-bc42-bcdba19774ff.sent.json` — Path in deny list
 - `LunaTemp/luna.log` — Path in deny list
 - `LunaTemp/luna-cache.json` — Path in deny list
-- `LunaTemp/diagnostics-bc1b3caf-f22e-45f7-b2bb-3c36c9ce568e.sent.json` — Path in deny list
 - `LunaTemp/project-config.json` — Path in deny list
 - `LunaTemp/.buildID` — Path in deny list
 - `.vscode/settings.json` — Path in deny list
@@ -733,7 +733,7 @@ _19363 files were blocked by deny rules._
 - `Library/Search/propertyAliases.db.st` — Path in deny list
 - `Library/Search/propertyAliases.db` — Path in deny list
 - `Library/Search/transactions.db` — Path in deny list
-- `Library/PlayModeViewStates/953afb81b43774abd9644aa650dfe05d` — Path in deny list
+- `Library/PlayModeViewStates/09381b48b672e40448232d1cca347695` — Path in deny list
 - `Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll` — Path in deny list
 - `Library/ScriptAssemblies/Unity.Rider.Editor.dll` — Path in deny list
@@ -806,26 +806,6 @@ _19363 files were blocked by deny rules._
 - `UserSettings/Layouts/default-2022.dwlt` — Path in deny list
 - `LunaTemp/Assemblies/scriptData.json` — Path in deny list
 - `LunaTemp/stage3/deps.json` — Path in deny list
-- `Temp/obj/Assembly-CSharp/project.nuget.cache` — Path in deny list
-- `Temp/obj/Assembly-CSharp/Assembly-CSharp.csproj.nuget.g.props` — Path in deny list
-- `Temp/obj/Assembly-CSharp/Assembly-CSharp.csproj.nuget.g.targets` — Path in deny list
-- `Temp/obj/Assembly-CSharp/project.assets.json` — Path in deny list
-- `Temp/obj/Assembly-CSharp/Assembly-CSharp.csproj.nuget.dgspec.json` — Path in deny list
-- `Temp/obj/ToonyColorsPro.Editor/ToonyColorsPro.Editor.csproj.nuget.g.props` — Path in deny list
-- `Temp/obj/ToonyColorsPro.Editor/project.nuget.cache` — Path in deny list
-- `Temp/obj/ToonyColorsPro.Editor/ToonyColorsPro.Editor.csproj.nuget.dgspec.json` — Path in deny list
-- `Temp/obj/ToonyColorsPro.Editor/project.assets.json` — Path in deny list
-- `Temp/obj/ToonyColorsPro.Editor/ToonyColorsPro.Editor.csproj.nuget.g.targets` — Path in deny list
-- `Temp/obj/ToonyColorsPro.Runtime/ToonyColorsPro.Runtime.csproj.nuget.g.targets` — Path in deny list
-- `Temp/obj/ToonyColorsPro.Runtime/ToonyColorsPro.Runtime.csproj.nuget.g.props` — Path in deny list
-- `Temp/obj/ToonyColorsPro.Runtime/project.nuget.cache` — Path in deny list
-- `Temp/obj/ToonyColorsPro.Runtime/ToonyColorsPro.Runtime.csproj.nuget.dgspec.json` — Path in deny list
-- `Temp/obj/ToonyColorsPro.Runtime/project.assets.json` — Path in deny list
-- `Temp/obj/Assembly-CSharp-Editor/Assembly-CSharp-Editor.csproj.nuget.g.props` — Path in deny list
-- `Temp/obj/Assembly-CSharp-Editor/project.nuget.cache` — Path in deny list
-- `Temp/obj/Assembly-CSharp-Editor/Assembly-CSharp-Editor.csproj.nuget.g.targets` — Path in deny list
-- `Temp/obj/Assembly-CSharp-Editor/project.assets.json` — Path in deny list
-- `Temp/obj/Assembly-CSharp-Editor/Assembly-CSharp-Editor.csproj.nuget.dgspec.json` — Path in deny list
 - `Library/Artifacts/61/6180df54c1264e540aa65ddef76b2614` — Path in deny list
 - `Library/Artifacts/61/61baacea04bee22d06caee8259ad9baa` — Path in deny list
 - `Library/Artifacts/61/6199f3eecd5e383f953c8490de5ee7f5` — Path in deny list
@@ -849,7 +829,27 @@ _19363 files were blocked by deny rules._
 - `Library/Artifacts/61/6114434687510544f8d8e36363f02375` — Path in deny list
 - `Library/Artifacts/61/61eae26116a48bcb3309bd2f04c9211e` — Path in deny list
 - `Library/Artifacts/61/61e3154bb5b33537024deedc73f15c36` — Path in deny list
-- ... and 19163 more
+- `Library/Artifacts/61/61d8944dd6cf425cbeaf40098b53036d` — Path in deny list
+- `Library/Artifacts/61/615da78bbd2b940d052bd17861314c00` — Path in deny list
+- `Library/Artifacts/61/61b051de631856eaa6332ccb2cac6bdb` — Path in deny list
+- `Library/Artifacts/61/612921d78b4359c5b48c72be8bce19e0` — Path in deny list
+- `Library/Artifacts/0d/0d833ec2cfec9c696647fdbcb70497b2` — Path in deny list
+- `Library/Artifacts/0d/0d417348aedd666c17ff17e94fc285c4` — Path in deny list
+- `Library/Artifacts/0d/0d7fdcb28b4ccc1a8157c5e0e2016892` — Path in deny list
+- `Library/Artifacts/0d/0dba543fa4284f13e2bfc5f8a716b90b` — Path in deny list
+- `Library/Artifacts/0d/0d32e0f9b836449dcc9a548317925cca` — Path in deny list
+- `Library/Artifacts/0d/0d1424be9e4704dc094ff5960983438f` — Path in deny list
+- `Library/Artifacts/0d/0d0a24c40f0c57c131cd62e4328dca84` — Path in deny list
+- `Library/Artifacts/0d/0d19e0aa7387e3ed45d1651bcefd734d` — Path in deny list
+- `Library/Artifacts/0d/0d93d9e1d475dd7ffcb65afaa39ce0f3` — Path in deny list
+- `Library/Artifacts/0d/0dde4f6b8f369def821e18c4276e402e` — Path in deny list
+- `Library/Artifacts/0d/0d77b8496634b26d5cc14597e34a0d2b` — Path in deny list
+- `Library/Artifacts/0d/0d07ff6048b13d63052d5ea8ea7f5812` — Path in deny list
+- `Library/Artifacts/0d/0d50e19e537c9d4823a22d340ba74aa9` — Path in deny list
+- `Library/Artifacts/0d/0d82cbb66bd8512472139b58d2f61b51` — Path in deny list
+- `Library/Artifacts/0d/0d1925a8151b9817bcdf200363f890b6` — Path in deny list
+- `Library/Artifacts/0d/0da02664a1ec690b8b16e0c5a534d4fe` — Path in deny list
+- ... and 19126 more
 
 ## Errors
 
