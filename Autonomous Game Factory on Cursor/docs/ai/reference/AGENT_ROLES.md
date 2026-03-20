@@ -508,7 +508,7 @@ LEARNING SUMMARY:
 |------|-----|
 | 트리거 | TASK_QUEUE에 pending/planned 엔트리 존재 |
 | 입력 | `TASK_QUEUE.yaml`, `MODULE_REGISTRY.yaml` |
-| 처리 | DependencyGraph 빌드 → 토폴로지 정렬 → 실행 가능 모듈 선출 → Builder Pool 배정 (최대 6개 동시) |
+| 처리 | DependencyGraph 빌드 → 토폴로지 정렬 → 실행 가능 모듈 선출 → Builder 배정 (최대 3개 동시) |
 | 바톤 전달 | Planner → Builder |
 | 구현 | `DependencyGraphBuilder.cs`, `ParallelBuilderOrchestrator.cs`, `OrchestratorSimulator.cs` |
 
@@ -529,8 +529,8 @@ LEARNING SUMMARY:
 사용자 요청 수신            FEATURE_QUEUE 읽기          TASK_QUEUE 읽기
 FEATURE_QUEUE              learning/ 스캔              DependencyGraph 빌드
   status: intake           모듈 분해 + 의존 추론       실행 가능 모듈 선출
-      │                    TASK_QUEUE 엔트리 생성       Builder Pool 배정
-      ▼                      status: pending            (최대 6개 동시)
+      │                    TASK_QUEUE 엔트리 생성       Builder 배정
+      ▼                      status: pending            (최대 3개 동시)
   [2]로 바톤                MODULE_REGISTRY 등록             │
                             generated_specs/ 생성             ▼
                             FEATURE_QUEUE                 [4]로 바톤
@@ -623,32 +623,9 @@ status: pending             코드 6파일 생성             human_fixes 기록
 
 ---
 
-## 9. 병렬 실행 아키텍처 (v3.0)
+## 9. 병렬 실행 규칙
 
-### 9.1 기존 역할 vs 실행 단위
+**Cursor는 단일 에이전트다.** 병렬은 사용자가 여러 Cursor 창에서 동시 작업할 때만 적용.
+단일 창에서는 직렬 실행. 멀티 에이전트를 시뮬레이션하지 않는다.
 
-기존 9개 역할은 유지된다. 병렬 실행은 역할을 대체하는 것이 아니라,
-**Builder 역할의 실행 방식**을 직렬에서 병렬로 전환한다.
-
-```
-기존: Orchestrator → Builder(A) → Builder(B) → Builder(C) → Reviewer
-v3.0: Orchestrator → [Builder(A) ∥ Builder(B) ∥ Builder(C)] → Join → Reviewer
-```
-
-### 9.2 새로운 실행 개념
-
-| 개념 | 설명 | 기존 역할과의 관계 |
-|---|---|---|
-| TaskExecutionUnit | 독립 실행 가능한 작업 단위 | Builder의 작업 대상 |
-| AgentLease | 에이전트 슬롯의 태스크 임시 소유 | Builder 배정의 구체화 |
-| DependencyReadyQueue | 실행 가능 태스크 대기열 | Orchestrator의 스케줄링 강화 |
-| JoinAndMergeReview | 병렬 결과 합류/검증 | Reviewer의 사전 단계 |
-
-### 9.3 병렬 Builder의 격리 규칙
-
-- 각 Builder 슬롯은 **임대된 모듈 폴더만** 수정 가능
-- `Assets/Game/Shared/` 수정은 Orchestrator(직렬)만 수행
-- 전역 YAML 업데이트는 Join 단계에서만 수행
-- 읽기는 모든 파일에 대해 자유
-
-상세: `PARALLEL_ORCHESTRATION.md`, `TASK_EXECUTION_SCHEMA.md`, `WORKTREE_STRATEGY.md`
+병렬 조건과 제한은 `EXECUTION_ENTRYPOINT.md` §5를 따른다.

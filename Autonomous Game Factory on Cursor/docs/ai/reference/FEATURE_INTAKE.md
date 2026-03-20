@@ -192,7 +192,7 @@ Queue Generator:
  ↓
 Planner (각 모듈 PLAN 작성)
  ↓
-Builder Pool (병렬 구현)
+Builder (구현)
  ↓
 ★ Human Validation Gate ★
  ↓

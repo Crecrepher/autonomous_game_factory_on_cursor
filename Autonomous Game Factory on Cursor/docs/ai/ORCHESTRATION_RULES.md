@@ -231,7 +231,7 @@
 | 트리거 | TASK_QUEUE에 pending/planned 엔트리 존재 |
 | 읽기 | `TASK_QUEUE.yaml`, `MODULE_REGISTRY.yaml` |
 | 쓰기 | (직접 쓰기 없음 — 다른 역할에 배정 지시) |
-| 처리 | DependencyGraph 빌드 → 토폴로지 정렬 → 실행 가능 모듈 선출 → Builder Pool 배정 (최대 6개 동시) |
+| 처리 | DependencyGraph 빌드 → 토폴로지 정렬 → 실행 가능 모듈 선출 → Builder 배정 (최대 3개 동시) |
 | 바톤 전달 | 각 모듈에 Planner → Builder 순서로 역할 배정 |
 | 구현 | `DependencyGraphBuilder.cs`, `ParallelBuilderOrchestrator.cs`, `OrchestratorSimulator.cs` |
 
@@ -542,14 +542,14 @@ none ──► ready ──► committed ──► recommit_ready ──► reco
 [Step 3] Orchestrator
   DependencyGraph 빌드 → 토폴로지 정렬
   실행 가능 모듈 선출 (depends_on 모두 done)
-  Builder Pool 배정 (최대 6개 동시)
+  Builder 배정 (최대 3개 동시, 단일 에이전트 시 직렬)
 
 [Step 4] Planner (각 모듈)
   Spec + learning 읽기
   plans/<Module>_PLAN.md 작성
   status: pending → planned
 
-[Step 5] Builder (각 모듈, 병렬 가능)
+[Step 5] Builder (각 모듈)
   PLAN + Spec + learning 읽기
   Assets/Game/Modules/<Module>/ 에 6파일 생성
   자체 점검 (구조, 코딩 규칙, GC, naming)
@@ -723,19 +723,21 @@ Orchestrator는 모듈 생성 전에 의존성 그래프를 빌드하여 실행 
 
 ## 9. 병렬 실행 규칙
 
+**Cursor는 단일 에이전트다.** 병렬은 사용자가 여러 Cursor 창을 열어 동시 작업할 때만 적용된다.
+단일 창에서는 직렬로 실행한다. 멀티 에이전트를 시뮬레이션하지 않는다.
+
 ### 9.1 모듈 격리
 
 - 각 Builder는 **자기 모듈 폴더만** 수정: `Assets/Game/Modules/<자기 모듈>/`
-- 서로 다른 모듈의 Builder는 파일 충돌 없이 동시 작업 가능
 - 동일 모듈에 두 명 이상의 Builder 동시 할당 불가 (owner 필드)
 
 ### 9.2 제한
 
-| 제한 | 값 | 이유 |
-|------|-----|------|
-| 최대 동시 Builder | 6 | 리소스 관리 |
-| 최대 오케스트레이션 라운드 | 20 | 무한 루프 방지 |
-| 최대 검증 재시도 | 3 | escalated 전환 |
+| 제한 | 값 |
+|------|-----|
+| 최대 동시 Builder | 3 |
+| 최대 오케스트레이션 라운드 | 20 |
+| 최대 검증 재시도 | 3 |
 
 ### 9.3 태스크 할당 절차
 

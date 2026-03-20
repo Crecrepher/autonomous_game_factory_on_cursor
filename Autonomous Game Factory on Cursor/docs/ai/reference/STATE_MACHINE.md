@@ -440,49 +440,10 @@ commit_state: committed   # 이미 커밋 완료
 
 ---
 
-## 13. 차원 5: execution (병렬 실행 — v3.0)
+## 13. 병렬 실행 참고
 
-v3.0에서 병렬 실행을 지원하기 위해 추가된 실행 메타데이터 차원.
-기존 4차원은 유지되며, `execution` 블록은 TASK_QUEUE 엔트리에 선택적으로 추가된다.
+**Cursor는 단일 에이전트다.** v3.0의 execution 차원(execution_status, dependency_status, lease_status)은
+멀티 에이전트 환경을 전제로 설계되었으나, 현재 실행 환경에서는 사용하지 않는다.
 
-### 13.1 실행 상태 (execution_status)
-
-| 상태 | 설명 |
-|---|---|
-| `pending` | 실행 대기 (기존 status와 동기) |
-| `ready` | 의존성 만족, 실행 가능 |
-| `executing` | 에이전트 슬롯이 임대하여 실행 중 |
-| `validating` | 빌드 완료, 검증 진행 중 |
-| `merging` | 검증 통과, 머지 대기 |
-| `done` | 실행 완료 |
-| `blocked` | 실행 불가 |
-
-### 13.2 의존성 상태 (dependency_status)
-
-| 상태 | 설명 |
-|---|---|
-| `waiting` | 선행 의존 모듈이 아직 완료되지 않음 |
-| `satisfied` | 모든 선행 의존 완료 |
-| `blocked` | 선행 의존 중 하나 이상이 blocked |
-
-### 13.3 에이전트 임대 상태 (lease_status)
-
-| 상태 | 설명 |
-|---|---|
-| `active` | 에이전트가 태스크를 소유하고 실행 중 |
-| `completed` | 실행 완료, 임대 해제 |
-| `released` | 수동 해제 |
-| `timeout` | 타임아웃으로 자동 해제 |
-| `failed` | 실행 실패, 임대 해제 |
-
-### 13.4 기존 차원과의 관계
-
-| execution_status | 대응하는 status (기존) |
-|---|---|
-| pending | pending / planned |
-| ready | planned (depends_on 모두 done) |
-| executing | in_progress |
-| done | done (review/commit 전) |
-| blocked | blocked |
-
-상세 스키마: `TASK_EXECUTION_SCHEMA.md`
+기존 4차원(status, human_state, learning_state, commit_state)만으로 상태를 추적한다.
+병렬 조건은 `EXECUTION_ENTRYPOINT.md` §5를 따른다.

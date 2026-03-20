@@ -1,91 +1,23 @@
 ---
-description: 
-alwaysApply: true
+description: AGF 개발자 안전 규칙. Assets/Game/ 하위 코드 수정 시 참조.
+alwaysApply: false
+globs:
+  - "Assets/Game/**/*.cs"
 ---
 
-<!-- ============================================================
-     FRAMEWORK NOTE
-     This file is part of the AI Game Dev Framework.
-     It is designed to be copied into target Unity projects as-is.
-     All paths below (Docs/ai/*, Assets/Game/*, etc.) refer to the
-     TARGET Unity project structure, not this framework repository.
-     See: docs/guides/HOW_TO_APPLY_TO_PROJECT.md
-     ============================================================ -->
+# Developer Safety Rules
 
-# Autonomous Developer Rule
+`docs/ai/EXECUTION_ENTRYPOINT.md`의 지시를 우선한다.
 
-**이 프레임워크는 모든 장르의 Playable Ad(2D / 3D / 아이소메트릭 / 탑다운 / 사이드뷰 등)를 타겟으로 한다.**
-특정 게임에 종속되지 않으며, 기획서가 주어지면 해당 장르에 맞는 모듈을 동적으로 생성하거나 기존 모듈 카탈로그에서 재사용한다.
-MODULE_REGISTRY.yaml의 `dimension`(2d/3d/both)과 `genre_tags`를 참조하여 재사용 가능한 모듈을 우선 탐색한다.
+## 코드 수정 전
 
-When modifying this Unity project, behave as a **safe autonomous developer**. Follow this workflow and constraints every time.
+1. `PROJECT_CONSTITUTION.md` 읽기
+2. `CODING_RULES.md` 읽기
+3. `MODULE_REGISTRY.yaml`에서 대상 모듈의 editable/risk 확인
 
-## 1. Read AI Documentation First
+## 규칙
 
-Before writing or changing any code:
-
-- Read **Docs/ai/PROJECT_OVERVIEW.md** (purpose, gameplay loop, architecture, folder structure).
-- Read **Docs/ai/CODING_RULES.md** (naming, MonoBehaviour, performance, structure).
-- Read **Docs/ai/MODULE_REGISTRY.yaml** (module paths, dependencies, `editable`, `risk`).
-
-If the user request is ambiguous, infer intent from these docs. Do not add code that contradicts them.
-
-## 2. Plan Before Implementing
-
-For every feature or change:
-
-1. **Write a short PLAN** (bullet list or numbered steps) before editing files.
-2. Include: target module(s), new types/classes if any, and which existing types you will reuse or extend.
-3. Only after the plan is clear, start implementing.
-
-Do not implement large features in one shot without a visible plan.
-
-## 3. Map Every Feature to a Module
-
-- Each feature must belong to **exactly one** existing or new module listed in **MODULE_REGISTRY.yaml**.
-- If the feature spans multiple domains, pick the **primary** module and use dependencies (e.g. Shared, other modules) without creating unlisted top-level modules.
-- To add a **new module**: add an entry to **MODULE_REGISTRY.yaml** (name, path, editable, risk, description, dependencies) and create code only under **Assets/Game/Modules/<ModuleName>/**.
-- Respect **editable: false** (e.g. Core): do not modify that module unless the user **explicitly allows** it.
-
-## 4. New Code Only Under Assets/Game/Modules
-
-- **All new code** (scripts, ScriptableObjects, etc.) must live under **Assets/Game/Modules/** (e.g. `Assets/Game/Modules/Combat`, `Assets/Game/Modules/Economy`).
-- Exception: **Shared** types and interfaces may live under **Assets/Game/Shared** when they are cross-module contracts.
-- Do not create new top-level folders or scripts outside `Assets/Game/` that bypass the module registry.
-
-## 5. Never Modify Core Unless Explicitly Allowed
-
-- **Do not** add, edit, or delete files under **Assets/Game/Core/** unless the user explicitly says so (e.g. "you may change Core" or "add X to Core").
-- Core is `editable: false` and `risk: high`. Treat it as read-only for normal feature work.
-- If a feature logically belongs in Core, propose it and ask for explicit permission before touching Core.
-
-## 6. Avoid Large Scene or Prefab Modifications
-
-- Prefer **small, localized** changes to scenes and prefabs (e.g. adding a component, wiring one reference).
-- Avoid bulk edits, mass renames, or structural overhauls of scenes/prefabs unless the user explicitly requests them.
-- When possible, implement behavior in **new or existing prefabs** and keep scene hierarchy changes minimal.
-
-## 7. Generate at Least One Test for New Modules
-
-- When **creating a new module** (new folder under `Assets/Game/Modules/<ModuleName>` with new scripts):
-  - Add **at least one test** (e.g. EditMode or PlayMode test in `Assets/Game/Modules/<ModuleName>/Tests` or project test folder) that covers the main entry point or a critical path of that module.
-- For **existing modules**: add or extend tests when adding non-trivial behavior, when the user asks for tests, or when the change is risky.
-
-## 8. Summarize Changes and Risk After Edits
-
-After completing code (or doc) changes, post a **short summary** that includes:
-
-- **Modified files**: list of paths (e.g. `Assets/Game/Modules/Combat/Health.cs`, `Docs/ai/MODULE_REGISTRY.yaml`).
-- **Risk level**: `low` | `medium` | `high` (aligned with MODULE_REGISTRY and scope of change).
-- Optional: one-line description per file or per module touched.
-
-Example:
-
-```
-Summary:
-- Modified: Assets/Game/Modules/Economy/CurrencyService.cs, Assets/Game/Modules/Economy/CurrencyWallet.cs
-- New: Assets/Game/Modules/Economy/Tests/CurrencyServiceTests.cs
-- Risk: medium (Economy module, no Core change)
-```
-
-This rule works together with **Docs/ai/CODING_RULES.md** and **Docs/ai/MODULE_REGISTRY.yaml**. When in doubt, prefer safety: no Core edits, small prefab/scene changes, and a clear plan before implementation.
+- 계획 먼저 → 코드 작성
+- 새 코드는 `Assets/Game/Modules/<Module>/`에만
+- Core(`editable: false`) 수정 금지 (명시적 허가 없이)
+- 작업 후 수정 파일 목록 + risk level 출력
